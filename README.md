@@ -1,6 +1,6 @@
 # 🧠 Programa de Pesquisa: Tecnologia, Cérebro e Desenvolvimento Infantil
 
-> Repositório-mestre do programa de pesquisa de 5 projetos (2026–2030) na interseção entre **Tecnologia Educacional**, **Neurociência Cognitiva** e **Desenvolvimento Infantil**, conduzido em parceria com a Profa. Dra.  e o Instituto 
+> Repositório-mestre do programa de pesquisa de 5 projetos (2026–2030) na interseção entre **Tecnologia Educacional**, **Neurociência Cognitiva** e **Desenvolvimento Infantil**, conduzido em parceria com a Profa. Dra. Ângela Chuvas Naschold (UFRN) e o Instituto do Cérebro da UFRN (ICe).
 
 ---
 
@@ -8,7 +8,7 @@
 
 Investigar, em uma série coordenada de 5 estudos, como diferentes tecnologias educacionais (tutores de IA generativa, gamificação, leitura digital, assistentes de escrita com IA) moldam o desenvolvimento cognitivo, atencional e metacognitivo de crianças entre 5 e 12 anos — e como o cérebro responde a essas tecnologias em janelas desenvolvimentais críticas.
 
-**Linha de pesquisa ancorada em:** *Leitura + Neurociências* (RedLeitura ), sob coordenação da Profa. 
+**Linha de pesquisa ancorada em:** *Leitura + Neurociências* (RedLeitura / UFRN), sob coordenação da Profa. Ângela Naschold.
 
 ---
 
@@ -71,7 +71,7 @@ Cada pasta de projeto segue o padrão: `instrumentos/` (TCLE, TALE, escalas), `p
 
 ## 🤝 Contato
 
-- Pesquisadora: 
-- Orientadora: Profa. 
-- Linha de pesquisa: RedLeitura / Leitura + Neurociências 
-
+- Pesquisadora: [Seu nome]
+- Orientadora: Profa. Dra. Ângela Maria Chuvas Naschold — `angela.naschold@ufrn.br`
+- Linha de pesquisa: RedLeitura / Leitura + Neurociências (UFRN)
+- Laboratório parceiro: Instituto do Cérebro da UFRN (ICe)

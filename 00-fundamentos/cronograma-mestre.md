@@ -29,7 +29,7 @@ P05                                          ███████████�
 
 | Mês | Marco | Projeto | Status |
 |---|---|---|---|
-| **M1** | Reunião com Angela, apresentar plano 4 anos | Programa | ✅ |
+| **M1** | Reunião com Angela, apresentar plano 4 anos | Programa | ⬜ |
 | **M1** | Ler Naschold (2017) + Dehaene (2010) | Fund. | ⬜ |
 | **M2** | Submissão CEP — Projeto 01 | P01 | ⬜ |
 | **M2** | ORCID + Lattes atualizados | Programa | ⬜ |
