@@ -106,3 +106,14 @@ htmlcov/
 # ============================================
 **/output/tmp/
 **/cache/
+
+# ============================================
+# BUILD ARTIFACTS (não versionar)
+# ============================================
+*.zip
+*.tar.gz
+*.tgz
+programa-pesquisa-*.zip
+push-to-github.sh
+*.bak
+*.tmp
