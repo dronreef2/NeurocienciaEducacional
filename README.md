@@ -1,6 +1,6 @@
 # 🧠 Programa de Pesquisa: Tecnologia, Cérebro e Desenvolvimento Infantil
 
-> Repositório-mestre do programa de pesquisa de 5 projetos (2026–2030) na interseção entre **Tecnologia Educacional**, **Neurociência Cognitiva** e **Desenvolvimento Infantil**, conduzido em parceria com a Profa. Dra. Ângela Chuvas Naschold (UFRN) e o Instituto do Cérebro da UFRN (ICe).
+> Repositório-mestre do programa de pesquisa de 5 projetos (2026–2030) na interseção entre **Tecnologia Educacional**, **Neurociência Cognitiva** e **Desenvolvimento Infantil**, conduzido em parceria com a Profa. Dra.  e o Instituto 
 
 ---
 
