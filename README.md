@@ -8,7 +8,7 @@
 
 Investigar, em uma série coordenada de 5 estudos, como diferentes tecnologias educacionais (tutores de IA generativa, gamificação, leitura digital, assistentes de escrita com IA) moldam o desenvolvimento cognitivo, atencional e metacognitivo de crianças entre 5 e 12 anos — e como o cérebro responde a essas tecnologias em janelas desenvolvimentais críticas.
 
-**Linha de pesquisa ancorada em:** *Leitura + Neurociências* (RedLeitura / UFRN), sob coordenação da Profa. Ângela Naschold.
+**Linha de pesquisa ancorada em:** *Leitura + Neurociências* (RedLeitura ), sob coordenação da Profa. 
 
 ---
 
