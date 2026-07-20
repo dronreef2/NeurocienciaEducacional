@@ -71,7 +71,7 @@ Cada pasta de projeto segue o padrão: `instrumentos/` (TCLE, TALE, escalas), `p
 
 ## 🤝 Contato
 
-- Pesquisadora: [Seu nome]
-- Orientadora: Profa. Dra. Ângela Maria Chuvas Naschold — `angela.naschold@ufrn.br`
-- Linha de pesquisa: RedLeitura / Leitura + Neurociências (UFRN)
-- Laboratório parceiro: Instituto do Cérebro da UFRN (ICe)
+- Pesquisadora: 
+- Orientadora: Profa. 
+- Linha de pesquisa: RedLeitura / Leitura + Neurociências 
+
