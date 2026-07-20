@@ -8,7 +8,7 @@
 
 Pesquisadora pós-graduada em **gestão de projetos**, com acesso a **bolsista de produtividade da UFRN (Profa. Dra. Ângela Maria Chuvas Naschold)** e ao **Instituto do Cérebro da UFRN (ICe)**, está montando um programa de **5 projetos de pesquisa** (2026–2030) na interseção entre **tecnologia educacional, neurociência cognitiva e desenvolvimento infantil**. O programa está em fase de **estruturação** (M1 de 60): pasta criada, instrumentos do P01 prontos, cronograma definido, mas o **primeiro push pro GitHub ainda não foi feito**.
 
-**Próximo passo concreto:** finalizar o primeiro push via SSH (já configurado) e em paralelo escrever o `projeto-detalhado.md` para submissão ao CEP.
+**Próximo passo concreto:** escrever o `projeto-detalhado.md` para submissão ao CEP/UFRN via Plataforma Brasil.
 
 ---
 
@@ -67,15 +67,19 @@ Pesquisadora pós-graduada em **gestão de projetos**, com acesso a **bolsista d
 - LICENSE (MIT para código, CC BY 4.0 para docs)
 - `.gitignore` robusto
 - **P01 — README do projeto, roteiro de entrevista (4 blocos), TCLE para pais, TALE para crianças (linguagem acessível), checklist do CEP**
+- ✅ **Push pro GitHub concluído** — repo `dronreef2/NeurocienciaEducacional` *(2026-07-20)*
+- ✅ **Reunião com Angela realizada** — plano de 4 anos validado *(2026-07-20)*
+- ✅ **Tutor de IA definido** — Khanmigo (Khan Academy/Microsoft) como benchmark principal *(2026-07-20)*
 
 ### ❌ Pendente (próximos alvos)
-- **Submissão ao GitHub** (commit local já feito — `1ebb664`; falta push via SSH)
 - **P01 — protocolo detalhado** para submissão ao CEP/UFRN
 - **P01 — questionário para pais e professores**, **protocolo de think-aloud**, **template de diário**
 - **READMEs iniciais** de P02, P03, P04, P05
 - **Documentos institucionais**: ata de reunião, política de dados, avaliação anual
 - **Template de manuscrito** (IMRaD)
 - **Notas de leitura** dos papers seminais
+- **Confirmar critérios do CEP/UFRN** para pesquisa com IA e crianças
+- **Negociar escola parceira** (candidatas: Ipanguaçu, Currais Novos, Natal)
 
 ---
 
@@ -144,14 +148,8 @@ programa-pesquisa/
 ## 8. Próximos passos concretos (executar em ordem)
 
 ### Imediato (esta semana)
-1. **Finalizar push pro GitHub via SSH** (SSH key já gerada em `~/.ssh/github_neurociencia`, já validada com "Hi dronreef2!")
-   ```powershell
-   # Reativa o SSH agent (esquecido entre sessões)
-   Start-Service ssh-agent
-   ssh-add $HOME\.ssh\github_neurociencia
-   git push -u origin main
-   ```
-2. **Reunião de 15 min com a Angela** — levar plano de 4 anos em 2 páginas
+1. ~~**Push pro GitHub via SSH**~~ ✅ *(concluído em 2026-07-20 — repo `dronreef2/NeurocienciaEducacional`)*
+2. ~~**Reunião com a Angela**~~ ✅ *(realizada — plano de 4 anos validado)*
 3. **Comprar/baixar 2 livros prioritários**: Dehaene (2010) *Reading in the Brain* + Luck (2014) *An Introduction to the ERP Technique*
 
 ### Curto prazo (M1–M3)
@@ -228,6 +226,6 @@ Se você é uma IA lendo este blueprint em uma IDE (Cursor, Claude Code, Copilot
 
 ---
 
-> **Última atualização:** 2026-07-20
-> **Versão do blueprint:** 0.1
+> **Última atualização:** 2026-07-20 (push GitHub + decisões Khanmigo/Angela)
+> **Versão do blueprint:** 0.2
 > **Próxima revisão:** mensal

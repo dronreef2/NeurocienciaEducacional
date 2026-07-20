@@ -9,7 +9,10 @@ Você está em um **programa de pesquisa científica** de 5 projetos (2026–203
 - **P01** (qualitativo sobre crianças e IA) em fase de estruturação
 - **P02–P05** ainda em fase de planejamento
 - Estrutura de pastas, cronograma, trilha de formação e instrumentos do P01 já criados
-- Pendente: primeiro push pro GitHub via SSH (já configurado) + projeto-detalhado para CEP
+- ✅ Push pro GitHub concluído (`dronreef2/NeurocienciaEducacional`)
+- ✅ Reunião com Angela realizada — plano validado
+- ✅ Tutor definido: **Khanmigo** (benchmark principal)
+- Pendente: escrever `projeto-detalhado.md` para submissão ao CEP/UFRN
 
 ## Convenções obrigatórias
 - **Idioma**: português brasileiro

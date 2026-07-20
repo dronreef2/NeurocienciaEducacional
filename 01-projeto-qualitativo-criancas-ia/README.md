@@ -115,11 +115,11 @@ Estudo qualitativo + componentes mistos. Triangulação de:
 
 ## 📝 Issues abertas (a serem criadas)
 
-- [ ] Definir qual tutor de IA generativa será usado
-- [ ] Negociar escola parceira (Ipanguaçu? Currais Novos? Natal?)
+- [x] ~~Definir qual tutor de IA generativa será usado~~ → **Khanmigo** (Khan Academy / Microsoft, gratuito para professores) como benchmark principal. MVP open-source será desenhado apenas se a pergunta de pesquisa exigir manipular comportamento do tutor, logs ou prompts de forma que a plataforma fechada não permita. *(Decidido em 2026-07-20)*
+- [/] Negociar escola parceira — candidatas: Ipanguaçu, Currais Novos, Natal (parceria em andamento via Angela)
 - [ ] Confirmar quais critérios éticos o CEP da UFRN exige para pesquisa com IA
 - [ ] Verificar se há necessidade de seguro para participantes
 
 ---
 
-> **Próxima ação imediata:** agendar reunião com Angela para apresentar este protocolo e pedir revisão crítica.
+> **Próxima ação imediata:** escrever `protocolo/projeto-detalhado.md` para submissão ao CEP/UFRN via Plataforma Brasil.
