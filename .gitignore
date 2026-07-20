@@ -1,0 +1,108 @@
+# ============================================
+# DADOS SENSÍVEIS (NUNCA VERSIONAR)
+# ============================================
+**/dados/**
+**/data/**
+**/raw/**
+**/processed/**
+*.csv
+*.xlsx
+*.xls
+*.sav
+*.dta
+*.set
+*.fdt
+*.bdf
+*.edf
+*.fif
+*.vhdr
+*.vmrk
+
+# ============================================
+# DOCUMENTOS PESSOAIS / CONFIDENCIAIS
+# ============================================
+**/TCLE-*.pdf
+**/TALE-*.pdf
+**/anuencias/
+**/cartas-cep/
+*.docx
+!docs/modelos/**/*.docx
+!docs/modelos/**/*.doc
+
+# ============================================
+# AMBIENTE / SISTEMA
+# ============================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# PYTHON
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+.env
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ============================================
+# R
+# ============================================
+.Rhistory
+.RData
+.Rapp.history
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# ============================================
+# MATLAB / EEG
+# ============================================
+*.mat
+*.fig
+*.asv
+*.autosave
+
+# ============================================
+# LaTeX
+# ============================================
+*.aux
+*.log
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.out
+*.toc
+*.lof
+*.lot
+
+# ============================================
+# NOTAS E RASCUNHOS
+# ============================================
+**/rascunhos/**
+**/notas-pessoais/**
+**/_privado/**
+
+# ============================================
+# TEMPORÁRIOS DE ANÁLISE
+# ============================================
+**/output/tmp/
+**/cache/
