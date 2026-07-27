@@ -93,11 +93,31 @@ A pesquisa será realizada em **uma escola pública parceira do Projeto Leitura 
 | Instrumento | Tipo | Aplicação | Duração |
 |---|---|---|---|
 | Entrevista semiestruturada | Individual, gravada em áudio | Com cada criança, em sala reservada na escola | 30–45 min |
-| Sessão de "pensar em voz alta" (think-aloud) | Individual, gravada em áudio + captura de tela | Durante uso real do tutor de IA | 15–20 min |
+| Sessão de "pensar em voz alta" (think-aloud) | Individual, gravada em áudio + captura de tela | Durante uso real do **Khanmigo** (tutor de IA) | 15–20 min |
 | Desenho projetivo | Individual, em papel | Após a entrevista, com prompt padronizado | 10–15 min |
 | Diário de uso | Individual, texto escrito/desenhado | Pela criança, durante 2 semanas, com apoio da pesquisadora | 5–10 min/dia |
 | Questionário para pais | Online ou papel | Uma vez, pelos pais/responsáveis | 10 min |
 | Questionário para professores | Online ou papel | Uma vez, pelos professores das turmas envolvidas | 15 min |
+
+#### 5.4.1. Sobre o Khanmigo (plataforma selecionada)
+
+**Khanmigo** é o tutor de IA generativa da Khan Academy, lançado em maio de 2023, baseado em GPT-4. Características:
+
+- **Método socrático:** faz perguntas em vez de dar respostas diretas, estimulando pensamento crítico
+- **Bilíngue:** disponível em inglês e espanhol (português em beta limitado em 2026)
+- **Idade-alvo:** 6–18 anos
+- **Modelo de acesso:** gratuito para professores nos EUA; em expansão para outros países
+- **Foco pedagógico:** desenvolvido por equipe da Khan Academy (Sal Khan), alinhado com práticas de Science of Reading e matemática por domínio
+- **Diferenciais:** (1) detecta quando o aluno está confuso; (2) oferece **rubricas de avaliação**; (3) tem "modo professor" que ajuda o professor a preparar aulas; (4) tem **moderação de conteúdo** rigorosa para crianças
+
+**Por que foi escolhido para este estudo:**
+1. É o tutor de IA com **maior rigor pedagógico** do mercado (não foi feito para impressionar, foi feito para ensinar)
+2. Tem **método socrático** explícito — permite investigar como crianças reagem a uma IA que *não dá respostas prontas*
+3. Está **alinhado com a linha de pesquisa da orientadora** (Leitura + Neurociências, foco em alfabetização)
+4. É **open-source em parte** (a Khan Academy publica parte do código), o que facilita replicação
+5. Está em **fase de expansão para o Brasil** (parcerias com secretarias municipais) — estudo de linha de base agora tem valor prospectivo
+
+**Risco identificado:** a interface em inglês pode ser barreira para crianças de 5º ano com baixa fluência. **Mitigação:** combinar com a escola o uso de **Khan Academy Brasil** (versão em PT-BR) para a parte das atividades, e **Khanmigo em inglês** apenas para o estudo experimental, com a pesquisadora mediando quando necessário.
 
 Os instrumentos serão **piloteados** com 3 crianças antes da coleta formal, para validação e ajustes.
 
