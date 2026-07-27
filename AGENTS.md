@@ -4,15 +4,12 @@
 
 Você está em um **programa de pesquisa científica** de 5 projetos (2026–2030) na interseção entre **tecnologia educacional, neurociência cognitiva e desenvolvimento infantil**. A pesquisadora responsável é uma pós-graduada em gestão de projetos, com orientação da Profa. Dra. Ângela Maria Chuvas Naschold (UFRN).
 
-## Estado atual
+## Estado atual (atualizado 2026-07-25)
 - **M1 de 60** (mês 1 de um programa de 5 anos)
-- **P01** (qualitativo sobre crianças e IA) em fase de estruturação
-- **P02–P05** ainda em fase de planejamento
-- Estrutura de pastas, cronograma, trilha de formação e instrumentos do P01 já criados
-- ✅ Push pro GitHub concluído (`dronreef2/NeurocienciaEducacional`)
-- ✅ Reunião com Angela realizada — plano validado
-- ✅ Tutor definido: **Khanmigo** (benchmark principal)
-- Pendente: escrever `projeto-detalhado.md` para submissão ao CEP/UFRN
+- **P01** (qualitativo sobre crianças e IA) — **CEP-ready**: projeto-detalhado.md (19KB) + 7 instrumentos + checklist prontos
+- **P02–P05** ainda em fase de planejamento (apenas estrutura de pastas)
+- 22 arquivos no repo, ~1.926 linhas de markdown
+- Pendente: push pro GitHub via SSH (commit local já feito), revisão com Angela, Lattes atualizado, READMEs de P02–P05, sistema de notas de leitura
 
 ## Convenções obrigatórias
 - **Idioma**: português brasileiro
@@ -30,14 +27,18 @@ Você está em um **programa de pesquisa científica** de 5 projetos (2026–203
 4. **Manter coerência** com a linha de pesquisa da orientadora (Leitura + Neurociências)
 5. **Em caso de dúvida**: perguntar à pesquisadora, não decidir sozinho
 
-## Comandos úteis
-- Próxima tarefa prioritária: escrever `01-projeto-qualitativo-criancas-ia/protocolo/projeto-detalhado.md` para submissão ao CEP/UFRN
-- Para subir o repo (SSH já configurado):
-  ```bash
-  Start-Service ssh-agent
-  ssh-add $HOME\.ssh\github_neurociencia
-  git push -u origin main
-  ```
+## Próximas tarefas prioritárias (em ordem)
+1. **Push do repo pro GitHub** (SSH já configurado):
+   ```powershell
+   Start-Service ssh-agent
+   ssh-add $HOME\.ssh\github_neurociencia
+   git push -u origin main
+   ```
+2. **READMEs de P02–P05** (análogos ao P01, com pergunta, método, cronograma, leituras)
+3. **Notas de leitura** dos papers seminais (Dehaene 2010, Diamond 2013, Miyake 2000, Hamari 2014, Luck 2014)
+4. **Documentos de gestão** (roadmap mês-a-mês, ata de reunião, política de dados, template de paper)
+5. **Revisão com a Angela** do projeto-detalhado do P01
+6. **Submissão ao CEP** (depois de revisão e carta de anuência)
 
 ## Referências
 - `BLUEPRINT.md` — contexto completo

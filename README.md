@@ -32,11 +32,11 @@ Investigar, em uma série coordenada de 5 estudos, como diferentes tecnologias e
 │   ├── bibliografia-seminais.md
 │   ├── trilha-formacao.md
 │   └── cronograma-mestre.md
-├── 01-projeto-qualitativo-criancas-ia/
-├── 02-projeto-gamificacao-autorregulacao/
-├── 03-projeto-eeg-leitura-digital/
-├── 04-projeto-ia-generativa-funcoes-executivas/
-├── 05-projeto-coorte-longitudinal/
+├── 01-projeto-qualitativo-criancas-ia/   # ✅ CEP-ready (9 docs)
+├── 02-projeto-gamificacao-autorregulacao/  # 🟡 planejado (README)
+├── 03-projeto-eeg-leitura-digital/      # 🟡 planejado (README) — flagship
+├── 04-projeto-ia-generativa-funcoes-executivas/  # 🟡 planejado (README)
+├── 05-projeto-coorte-longitudinal/      # 🟡 planejado (README) — visão 5+ anos
 ├── docs/                            # Atas, modelos, referências cruzadas
 └── .github/                         # Templates de issue, workflows
 ```

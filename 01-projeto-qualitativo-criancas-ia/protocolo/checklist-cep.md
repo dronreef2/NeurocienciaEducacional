@@ -4,20 +4,21 @@
 
 ## 📂 Documentos obrigatórios (Plataforma Brasil)
 
-- [ ] **Projeto de pesquisa detalhado** (em `protocolo/projeto-detalhado.md` — *a criar*)
-  - Resumo, introdução, justificativa, objetivos, método, referências
-- [ ] **TCLE para pais/responsáveis** (em `instrumentos/07-tcle-pais.md`) ✅
-- [ ] **TALE para crianças** (em `instrumentos/08-tale-crianca.md`) ✅
-- [ ] **Roteiro de entrevista** (em `instrumentos/01-roteiro-entrevista.md`) ✅
-- [ ] **Roteiro de think-aloud** (em `instrumentos/02-protocolo-thinkaloud.md` — *a criar*)
-- [ ] **Prompt do desenho** (em `instrumentos/03-prompt-desenho.md` — *a criar*)
-- [ ] **Questionário para pais** (em `instrumentos/05-questionario-pais.md` — *a criar*)
+- [x] **Projeto de pesquisa detalhado** (em `protocolo/projeto-detalhado.md`) ✅
+- [x] **TCLE para pais/responsáveis** (em `instrumentos/07-tcle-pais.md`) ✅
+- [x] **TALE para crianças** (em `instrumentos/08-tale-crianca.md`) ✅
+- [x] **Roteiro de entrevista** (em `instrumentos/01-roteiro-entrevista.md`) ✅
+- [x] **Protocolo de think-aloud** (em `instrumentos/02-protocolo-thinkaloud.md`) ✅
+- [x] **Template do diário de uso** (em `instrumentos/04-diario-uso.md`) ✅
+- [x] **Questionário para pais** (em `instrumentos/05-questionario-pais.md`) ✅
+- [x] **Questionário para professores** (em `instrumentos/06-questionario-professores.md`) ✅
+- [ ] **Prompt do desenho projetivo** (em `instrumentos/03-prompt-desenho.md` — *a criar, ou usar o que está no roteiro de entrevista bloco 3*)
 - [ ] **Carta de anuência da escola** (solicitar à direção — via Angela)
 - [ ] **Carta de anuência da Secretaria de Educação** (se aplicável)
 - [ ] **Currículo Lattes** da pesquisadora e da orientadora
 - [ ] **Declaração de concordância** da orientadora
 - [ ] **Termo de compromisso** com a resolução CNS 466/2012
-- [ ] **Orçamento detalhado** (mesmo que seja "R$ 0,00" para cada item)
+- [ ] **Orçamento detalhado** (já no projeto-detalhado) ✅
 
 ## 🛡️ Cuidados específicos com crianças
 
@@ -60,4 +61,4 @@
 
 ---
 
-> **Status atual:** TCLE e TALE prontos em v0.1. Faltam: projeto detalhado, questionário dos pais, carta de anuência, currículo Lattes atualizado.
+> **Status atual (2026-07-25):** Todos os documentos do P01 prontos em v0.1! Faltam só: prompt do desenho (opcional, usar do roteiro), carta de anuência (via Angela), Lattes atualizado, revisão da orientadora.
