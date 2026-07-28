@@ -4,12 +4,15 @@
 
 Você está em um **programa de pesquisa científica** de 5 projetos (2026–2030) na interseção entre **tecnologia educacional, neurociência cognitiva e desenvolvimento infantil**. A pesquisadora responsável é uma pós-graduada em gestão de projetos, com orientação da Profa. Dra. Ângela Maria Chuvas Naschold (UFRN).
 
-## Estado atual (atualizado 2026-07-25)
+## Estado atual (atualizado 2026-07-27)
 - **M1 de 60** (mês 1 de um programa de 5 anos)
-- **P01** (qualitativo sobre crianças e IA) — **CEP-ready**: projeto-detalhado.md (19KB) + 7 instrumentos + checklist prontos
-- **P02–P05** ainda em fase de planejamento (apenas estrutura de pastas)
-- 22 arquivos no repo, ~1.926 linhas de markdown
-- Pendente: push pro GitHub via SSH (commit local já feito), revisão com Angela, Lattes atualizado, READMEs de P02–P05, sistema de notas de leitura
+- **P01** (qualitativo sobre crianças e IA) — **CEP-ready** + documentos de submissão Plataforma Brasil prontos
+- **P02** (gamificação) — **projeto-detalhado** estruturado
+- **P03** (EEG leitura) — **projeto-detalhado** estruturado
+- **P04 e P05** ainda em fase de planejamento (apenas READMEs)
+- 57 arquivos no repo, ~7.500 linhas de markdown
+- **GitHub:** no ar (dronreef2/NeurocienciaEducacional)
+- Pendente: revisão com Angela, submissão CEP, mestrado PPGED/UFRN, pré-registros OSF
 
 ## Convenções obrigatórias
 - **Idioma**: português brasileiro
@@ -28,17 +31,12 @@ Você está em um **programa de pesquisa científica** de 5 projetos (2026–203
 5. **Em caso de dúvida**: perguntar à pesquisadora, não decidir sozinho
 
 ## Próximas tarefas prioritárias (em ordem)
-1. **Push do repo pro GitHub** (SSH já configurado):
-   ```powershell
-   Start-Service ssh-agent
-   ssh-add $HOME\.ssh\github_neurociencia
-   git push -u origin main
-   ```
-2. **READMEs de P02–P05** (análogos ao P01, com pergunta, método, cronograma, leituras)
-3. **Notas de leitura** dos papers seminais (Dehaene 2010, Diamond 2013, Miyake 2000, Hamari 2014, Luck 2014)
-4. **Documentos de gestão** (roadmap mês-a-mês, ata de reunião, política de dados, template de paper)
-5. **Revisão com a Angela** do projeto-detalhado do P01
-6. **Submissão ao CEP** (depois de revisão e carta de anuência)
+1. **Revisão com a Angela** dos 3 projetos detalhados (P01, P02, P03)
+2. **Submissão do P01 ao CEP** (Plataforma Brasil — checklist já pronto)
+3. **Aplicar para o mestrado PPGED/UFRN** (statement of purpose já pronto)
+4. **Pré-registros no OSF** (templates já prontos, falta escolher projetos)
+5. **Notas de leitura adicionais** (17+ papers prioritários na fila, ver `00-fundamentos/notas-leitura/README.md`)
+6. **Lattes + ORCID atualizados**
 
 ## Referências
 - `BLUEPRINT.md` — contexto completo

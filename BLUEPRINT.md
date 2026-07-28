@@ -8,13 +8,18 @@
 
 Pesquisadora pós-graduada em **gestão de projetos**, com acesso a **bolsista de produtividade da UFRN (Profa. Dra. Ângela Maria Chuvas Naschold)** e ao **Instituto do Cérebro da UFRN (ICe)**, está montando um programa de **5 projetos de pesquisa** (2026–2030) na interseção entre **tecnologia educacional, neurociência cognitiva e desenvolvimento infantil**. O programa está em fase de **estruturação** (M1 de 60).
 
-**Status atual (2026-07-25):**
-- P01 (qualitativo) — **CEP-ready**: projeto-detalhado.md + 7 instrumentos + checklist prontos
-- P02–P05 — apenas estrutura de pastas (placeholders)
-- 22 arquivos no repositório, ~1.926 linhas de markdown
-- Pendente: push pro GitHub (commit local já feito, SSH configurado), revisão com a Angela, Lattes
+**Status atual (2026-07-27):**
+- P01 (qualitativo) — **CEP-ready** + documentos de submissão prontos (carta de anuência, termo CNS 466, checklist Plataforma Brasil, statement of purpose mestrado)
+- P02 (gamificação) — **projeto-detalhado** estruturado
+- P03 (EEG leitura) — **projeto-detalhado** estruturado
+- P04 e P05 — apenas READMEs
+- **10 papers com notas de leitura** (8 com nota de aplicação) + glossário consolidado
+- 4 documentos de gestão (roadmap, ata, política de dados, política de autoria, paper template)
+- 1 template de pré-registro (OSF-style)
+- 1 script de auto-pull (evita conflitos com GitHub Web)
+- 57 arquivos markdown, ~7.500 linhas, **no ar no GitHub** ✅
 
-**Próximos passos concretos:** (1) push via SSH, (2) revisão do P01 com Angela, (3) READMEs de P02–P05, (4) criar sistema de notas de leitura.
+**Próximos passos concretos:** (1) revisão dos 3 projetos detalhados (P01, P02, P03) com a Angela, (2) finalizar instrumentos de coleta, (3) submissão ao CEP, (4) mestrado PPGED/UFRN.
 
 ---
 
