@@ -1,0 +1,46 @@
+# ============================================
+# Dependências Python — Programa de Pesquisa
+# ============================================
+# Instalação: pip install -r requirements.txt
+# Uso em produção: usar pip freeze > requirements.txt
+# ============================================
+
+# Análise de EEG / ERP
+mne>=1.5.0          # MEG/EEG analysis
+mne-bids>=0.12      # BIDS dataset support
+mne-connectivity>=0.4  # Connectivity analysis
+pybv>=0.7           # BrainVision file format
+pyedflib>=0.1.30    # EDF file reading
+scipy>=1.11         # Scientific computing
+numpy>=1.24         # Numerical computing
+pandas>=2.0         # Data manipulation
+
+# Visualização
+matplotlib>=3.7
+seaborn>=0.12
+plotly>=5.17        # Interactive plots
+nilearn>=0.10       # Neuroimaging visualization (se necessário)
+
+# Machine learning (P04 — para análise exploratória)
+scikit-learn>=1.3
+mne-features>=0.3   # EEG feature extraction
+
+# Utilitários
+tqdm>=4.65          # Progress bars
+rich>=13.5          # Rich terminal output
+pyyaml>=6.0         # Config files
+h5py>=3.9           # HDF5 for EEG storage
+
+# Desenvolvimento
+pytest>=7.4          # Testing
+black>=23.7          # Formatting
+ruff>=0.0.285        # Linting
+mypy>=1.5            # Type checking
+jupyter>=1.0         # Notebooks
+
+# ============================================
+# Notas:
+# - Para R, veja renv.lock (a ser criado)
+# - Para EEG, versão de MNE deve ser >= 1.0
+#   (mudar de MNE-Python 0.x a 1.x foi grande)
+# ============================================
