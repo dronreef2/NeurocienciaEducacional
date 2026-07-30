@@ -1,0 +1,313 @@
+---
+title: "P05 — Visualização de Trajetórias Longitudinais (LGCM)"
+subtitle: "Exploração interativa do crescimento de FE ao longo de 5 anos"
+author: "[Seu nome]"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: simplex
+    code_folding: show
+    fig_caption: yes
+    number_sections: yes
+  pdf_document:
+    toc: true
+    number_sections: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 10,
+  fig.height = 6
+)
+set.seed(42)
+```
+
+# Resumo
+
+Este notebook apresenta uma **exploração visual** das trajetórias de
+desenvolvimento de Funções Executivas (FE) em crianças acompanhadas dos 7 aos
+11 anos (5 ondas). Usamos **Latent Growth Curve Models (LGCM)** para modelar
+crescimento linear, condicional e quadrático.
+
+# 1. Setup
+
+```{r libraries}
+library(tidyverse)
+library(lavaan)
+library(OpenMx)
+library(tidySEM)
+library(here)
+library(knitr)
+library(DT)
+```
+
+# 2. Dados (sintéticos para exemplo)
+
+```{r load-data}
+# Criar dados sintéticos de coorte (5 ondas, 150 crianças)
+set.seed(42)
+n <- 150
+dados <- expand.grid(
+  id = 1:n,
+  onda = 1:5,
+  idade = c(7, 8, 9, 10, 11)
+) |>
+  arrange(id, onda) |>
+  mutate(
+    sexo = rep(sample(c("F", "M"), n, replace = TRUE), each = 5),
+    ses = rep(rnorm(n, 0, 1), each = 5),
+    escola = rep(sample(c("publica", "privada"), n,
+                        replace = TRUE, prob = c(0.7, 0.3)), each = 5),
+    tempo = onda - 1
+  )
+
+# Simular trajetórias com intercept e slope individuais
+dados$fe_score <- NA
+for (i in 1:n) {
+  intercept_i <- rnorm(1, 0, 0.5)
+  slope_i <- rnorm(1, 0.5, 0.2) + 0.1 * dados$ses[dados$id == i][1]
+  for (t in 1:5) {
+    idx <- (i - 1) * 5 + t
+    dados$fe_score[idx] <- intercept_i + slope_i * (t - 1) + rnorm(1, 0, 0.3)
+  }
+}
+
+cat("✅ Dados criados:", nrow(dados), "observações de", n, "crianças\n")
+```
+
+# 3. Estatísticas descritivas por onda
+
+```{r descritivas}
+desc_onda <- dados |>
+  group_by(onda, idade) |>
+  summarise(
+    n = n(),
+    media = mean(fe_score, na.rm = TRUE),
+    dp = sd(fe_score, na.rm = TRUE),
+    min = min(fe_score, na.rm = TRUE),
+    max = max(fe_score, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+kable(desc_onda, digits = 2,
+      caption = "Estatísticas descritivas por onda")
+```
+
+# 4. Visualização das trajetórias individuais
+
+```{r trajetorias-spaghetti, fig.cap="Trajetórias individuais de FE (cores por sexo)"}
+p1 <- ggplot(dados, aes(x = idade, y = fe_score, group = id, color = sexo)) +
+  geom_line(alpha = 0.3) +
+  geom_smooth(aes(group = sexo), method = "lm", se = TRUE, size = 1.5) +
+  labs(
+    title = "Trajetórias de desenvolvimento de FE (5 anos)",
+    subtitle = "Linhas finas = trajetórias individuais; Linhas grossas = tendência linear média",
+    x = "Idade (anos)",
+    y = "Escore FE (z)",
+    color = "Sexo"
+  ) +
+  scale_color_manual(values = c("F" = "#d62728", "M" = "#1f77b4")) +
+  theme_minimal(base_size = 14)
+
+p1
+```
+
+# 5. Boxplots por onda
+
+```{r boxplot-onda, fig.cap="Boxplots do escore FE por onda"}
+ggplot(dados, aes(x = factor(idade), y = fe_score, fill = factor(idade))) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.2) +
+  labs(x = "Idade (anos)", y = "Escore FE",
+       title = "Distribuição do escore FE por idade") +
+  scale_fill_brewer(palette = "Blues") +
+  theme(legend.position = "none")
+```
+
+# 6. Modelo de Crescimento Latente (LGCM)
+
+## 6.1. Preparar dados (wide format)
+
+```{r wide-format}
+dados_wide <- dados |>
+  select(id, onda, fe_score) |>
+  pivot_wider(names_from = onda, values_from = fe_score,
+              names_prefix = "fe_onda") |>
+  left_join(
+    dados |>
+      filter(onda == 1) |>
+      select(id, sexo, ses, escola),
+    by = "id"
+  ) |>
+  mutate(
+    sexo_num = ifelse(sexo == "M", 1, 0),
+    escola_num = ifelse(escola == "privada", 1, 0),
+    ses_c = scale(ses)[, 1]
+  )
+
+cat("✅ Dados em formato wide:", nrow(dados_wide), "participantes\n")
+```
+
+## 6.2. LGCM Linear
+
+```{r lgcm-linear}
+modelo_linear <- '
+  intercept =~ 1*fe_onda1 + 1*fe_onda2 + 1*fe_onda3 + 1*fe_onda4 + 1*fe_onda5
+  slope =~ 0*fe_onda1 + 1*fe_onda2 + 2*fe_onda3 + 3*fe_onda4 + 4*fe_onda5
+  intercept ~ 1
+  slope ~ 1
+  intercept ~~ intercept
+  slope ~~ slope
+  intercept ~~ slope
+  fe_onda1 ~~ fe_onda1
+  fe_onda2 ~~ fe_onda2
+  fe_onda3 ~~ fe_onda3
+  fe_onda4 ~~ fe_onda4
+  fe_onda5 ~~ fe_onda5
+'
+
+fit_linear <- growth(modelo_linear, data = dados_wide, missing = "ml")
+
+summary(fit_linear, fit.measures = TRUE, standardized = TRUE)$pe |>
+  as.data.frame() |>
+  select(lhs, op, rhs, est, se, pvalue) |>
+  kable(digits = 3, caption = "Parâmetros do LGCM Linear")
+```
+
+## 6.3. LGCM Condicional (com covariáveis)
+
+```{r lgcm-condicional}
+modelo_cond <- '
+  intercept =~ 1*fe_onda1 + 1*fe_onda2 + 1*fe_onda3 + 1*fe_onda4 + 1*fe_onda5
+  slope =~ 0*fe_onda1 + 1*fe_onda2 + 2*fe_onda3 + 3*fe_onda4 + 4*fe_onda5
+  intercept ~ sexo_num + ses_c + escola_num
+  slope ~ sexo_num + ses_c + escola_num
+  intercept ~~ intercept
+  slope ~~ slope
+  intercept ~~ slope
+'
+
+fit_cond <- growth(modelo_cond, data = dados_wide, missing = "ml",
+                   meanstructure = TRUE)
+
+summary(fit_cond, fit.measures = TRUE, standardized = TRUE)$pe |>
+  as.data.frame() |>
+  filter(op %in% c("~", "~~")) |>
+  kable(digits = 3, caption = "LGCM Condicional — regressões e covariâncias")
+```
+
+# 7. Comparação de modelos
+
+```{r comparacao}
+comparacao <- data.frame(
+  Modelo = c("Linear", "Condicional"),
+  chisq = c(fitMeasures(fit_linear, "chisq"),
+            fitMeasures(fit_cond, "chisq")),
+  df = c(fitMeasures(fit_linear, "df"),
+         fitMeasures(fit_cond, "df")),
+  CFI = c(fitMeasures(fit_linear, "cfi"),
+          fitMeasures(fit_cond, "cfi")),
+  TLI = c(fitMeasures(fit_linear, "tli"),
+          fitMeasures(fit_cond, "tli")),
+  RMSEA = c(fitMeasures(fit_linear, "rmsea"),
+            fitMeasures(fit_cond, "rmsea")),
+  SRMR = c(fitMeasures(fit_linear, "srmr"),
+           fitMeasures(fit_cond, "srmr"))
+)
+
+kable(comparacao, digits = 3,
+      caption = "Comparação de modelos de crescimento")
+```
+
+# 8. Trajetórias preditas por perfil
+
+```{r trajetorias-preditas, fig.cap="Trajetórias preditas por perfil (modelo condicional)"}
+# Coeficientes do modelo
+coefs <- coef(fit_cond)
+
+novo_dados <- expand.grid(
+  sexo_num = c(0, 1),
+  ses_c = c(-1, 0, 1),
+  escola_num = c(0, 1)
+)
+
+# Calcular intercept e slope preditos
+novo_dados <- novo_dados |>
+  mutate(
+    intercept_pred = coefs["intercept~1"] +
+      coefs["intercept~sexo_num"] * sexo_num +
+      coefs["intercept~ses_c"] * ses_c +
+      coefs["intercept~escola_num"] * escola_num,
+    slope_pred = coefs["slope~1"] +
+      coefs["slope~sexo_num"] * sexo_num +
+      coefs["slope~ses_c"] * ses_c +
+      coefs["slope~escola_num"] * escola_num
+  )
+
+# Long format
+novo_dados_long <- novo_dados |>
+  crossing(tempo = 0:4) |>
+  mutate(
+    fe_pred = intercept_pred + slope_pred * tempo,
+    idade = 7 + tempo
+  )
+
+# Plot
+ggplot(novo_dados_long,
+       aes(x = idade, y = fe_pred,
+           color = factor(sexo_num),
+           linetype = factor(ses_c),
+           group = interaction(sexo_num, ses_c, escola_num))) +
+  geom_line(alpha = 0.6) +
+  facet_wrap(~ escola_num,
+             labeller = as_labeller(c("0" = "Pública", "1" = "Privada"))) +
+  labs(
+    title = "Trajetórias preditas de FE por perfil (LGCM Condicional)",
+    x = "Idade (anos)",
+    y = "Escore FE predito",
+    color = "Sexo (0=F, 1=M)",
+    linetype = "SES"
+  ) +
+  scale_color_manual(values = c("0" = "#d62728", "1" = "#1f77b4")) +
+  theme_minimal(base_size = 12)
+```
+
+# 9. Interpretação
+
+## 9.1. Intercept (estado inicial aos 7 anos)
+
+> A média do intercept representa o nível médio de FE aos 7 anos. Interpretação depende do Z-score (se 0, é média padronizada).
+
+## 9.2. Slope (taxa de crescimento anual)
+
+> O slope médio representa quanto a FE cresce por ano. Tipicamente, d = 0.3-0.5 por ano para FE em crianças típicas (Karr et al., 2018).
+
+## 9.3. Variância do slope
+
+> Variância significativa do slope indica **heterogeneidade** — algumas crianças crescem mais rápido que outras. Permite testar moderadores (sexo, SES, escola).
+
+# 10. Limitações
+
+1. **N=150**: adequado para LGCM linear, mas pode ser sub-dimensionado para LGMM
+2. **5 ondas**: mínimo recomendado (Singer & Willett, 2003)
+3. **Atrição**: LGCM robusto a MAR (Missing at Random), mas MNAR é mais difícil
+4. **Generalizabilidade**: uma coorte, um contexto
+
+# 11. Próximos passos
+
+- [ ] LGMM (Latent Growth Mixture Model) para identificar subgrupos
+- [ ] Análise multivariada (FE + leitura + matemática)
+- [ ] Inclusão de preditores longitudinais (uso de tecnologia, etc.)
+- [ ] Submissão a *Developmental Science*
+
+# 12. Sessão
+
+```{r sessioninfo}
+sessionInfo()
+```

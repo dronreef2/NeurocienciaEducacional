@@ -1,0 +1,287 @@
+---
+title: "P01 — Análise Temática Exploratória (Khanmigo)"
+subtitle: "Notebook interativo para exploração qualitativa"
+author: "[Seu nome]"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    theme: cosmo
+    highlight: tango
+    code_folding: show
+    df_print: paged
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 10
+    fig_height: 6
+  pdf_document:
+    toc: true
+    number_sections: yes
+    fig_caption: yes
+  word_document:
+    toc: true
+    fig_caption: yes
+bibliography: "../../../00-fundamentos/bibliografia-seminais.bib"
+csl: "../../../00-fundamentos/abnt.csl"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 10,
+  fig.height = 6,
+  out.width = "100%",
+  cache = FALSE,
+  comment = "#>"
+)
+```
+
+# Resumo executivo
+
+Este notebook documenta a **Análise Temática Reflexiva** (Braun & Clarke, 2022) das
+entrevistas com crianças do 2º ano do ensino fundamental sobre o uso do tutor IA
+**Khanmigo**. O objetivo é compreender como as crianças percebem, interpretam e
+confiam no tutor, e como isso se relaciona com funções executivas e metacognição.
+
+**Hipótese principal:** Crianças que demonstram maior **metacognição explícita**
+(verbalizam seu pensamento) terão maior **confiança calibrada** no tutor
+(reconhecem seus limites).
+
+# 1. Setup
+
+```{r libraries}
+# Pacotes
+library(tidyverse)
+library(tidytext)
+library(quanteda)
+library(here)
+library(knitr)
+
+# Configuração visual
+theme_set(theme_minimal(base_size = 12))
+```
+
+# 2. Dados
+
+```{r load-data}
+# Caminho para as transcrições
+INPUT_DIR <- here("dados", "raw", "P01")
+
+# Verificar se há dados
+if (dir.exists(INPUT_DIR) && length(list.files(INPUT_DIR, pattern = "\\.txt$")) > 0) {
+  arquivos <- list.files(INPUT_DIR, pattern = "\\.txt$", full.names = TRUE)
+  transcricoes <- tibble(
+    arquivo = basename(arquivos),
+    participante = tools::file_path_sans_ext(basename(arquivos)),
+    texto = sapply(arquivos, function(f) paste(readLines(f, warn = FALSE), collapse = " "))
+  )
+  cat("✅ Carregadas", nrow(transcricoes), "transcrições\n")
+} else {
+  cat("⚠️  Nenhuma transcrição encontrada. Criando dados de exemplo...\n")
+  # Dados de exemplo
+  transcricoes <- tibble(
+    participante = sprintf("C%02d", 1:5),
+    texto = c(
+      "Khanmigo me ajuda. Às vezes ela explica. Quando ela erra eu falo pra professora.",
+      "Ela é inteligente mas às vezes erra. Eu confio nela pra matemática.",
+      "Não gosto quando ela demora pra responder. Prefiro a professora.",
+      "A Khanmigo é minha amiga. Ela sabe tudo sobre animais.",
+      "Ela me ajuda a ler. Quando não entendo, pergunto de novo."
+    )
+  )
+}
+```
+
+```{r data-preview}
+DT::datatable(transcricoes, options = list(pageLength = 5, scrollX = TRUE))
+```
+
+# 3. Pré-processamento
+
+```{r preprocessing}
+# Função de limpeza
+limpar_texto <- function(texto) {
+  texto |>
+    str_to_lower() |>
+    str_replace_all("[áàãâä]", "a") |>
+    str_replace_all("[éèêë]", "e") |>
+    str_replace_all("[íìîï]", "i") |>
+    str_replace_all("[óòõôö]", "o") |>
+    str_replace_all("[úùûü]", "u") |>
+    str_replace_all("[ç]", "c") |>
+    str_replace_all("[[:punct:]]", " ") |>
+    str_replace_all("[[:digit:]]", " ") |>
+    str_replace_all("\\s+", " ") |>
+    str_trim()
+}
+
+transcricoes <- transcricoes |>
+  mutate(texto_limpo = limpar_texto(texto))
+
+# Verificar
+kable(head(transcricoes, 3), caption = "Amostra de transcrições processadas")
+```
+
+# 4. Análise de frequência
+
+```{r frequency-analysis}
+# Tokenização
+tokens <- transcricoes |>
+  unnest_tokens(palavra, texto_limpo) |>
+  anti_join(tidytext::stop_words, by = "palabra")
+
+# Stop words customizadas em PT
+stop_words_pt <- tibble(palabra = c(
+  "é", "foi", "sao", "as", "os", "um", "uma", "de", "do", "da",
+  "em", "no", "na", "para", "pra", "com", "que", "se", "nao",
+  "mais", "menos", "muito", "pouco", "ai", "entao", "tipo", "assim"
+))
+tokens <- tokens |> anti_join(stop_words_pt, by = "palavra")
+
+# Frequência
+freq <- tokens |>
+  count(palavra, sort = TRUE) |>
+  mutate(freq_relativa = n / sum(n) * 100)
+
+# Top 20
+kable(head(freq, 20), caption = "Top 20 palavras mais frequentes",
+      col.names = c("Palavra", "Frequência", "Frequência relativa (%)"))
+```
+
+```{r freq-plot, fig.cap="Top 15 palavras mais frequentes nas entrevistas"}
+freq |>
+  head(15) |>
+  ggplot(aes(x = reorder(palavra, n), y = n)) +
+  geom_col(fill = "#1f77b4") +
+  coord_flip() +
+  labs(x = NULL, y = "Frequência", title = "Top 15 palavras mais frequentes")
+```
+
+# 5. Análise de TF-IDF
+
+```{r tfidf}
+# TF-IDF: identifica palavras características de cada participante
+tfidf <- tokens |>
+  count(participante, palavra) |>
+  bind_tf_idf(palavra, participante, n) |>
+  arrange(participante, desc(tf_idf))
+
+# Top 5 por participante
+top_tfidf <- tfidf |>
+  group_by(participante) |>
+  top_n(5, tf_idf) |>
+  ungroup()
+
+kable(top_tfidf, caption = "Top 5 palavras mais características por participante (TF-IDF)")
+```
+
+# 6. Wordcloud
+
+```{r wordcloud, fig.cap="Wordcloud das palavras mais frequentes"}
+if (requireNamespace("wordcloud", quietly = TRUE)) {
+  library(wordcloud)
+  wordcloud(words = freq$palavra,
+            freq = freq$n,
+            min.freq = 1,
+            max.words = 50,
+            random.order = FALSE,
+            rot.per = 0.35,
+            colors = brewer.pal(8, "Dark2"))
+} else {
+  cat("⚠️  Instale o package 'wordcloud' para visualizar\n")
+}
+```
+
+# 7. Análise de termos-chave (qualitativa)
+
+```{r term-cooccurrence}
+# Termos-chave definidos conforme protocolo
+termos_chave <- c(
+  "khanmigo", "tutor", "ajuda", "explica", "confunde",
+  "erro", "certa", "amigo", "professora", "lição",
+  "inteligente", "confia", "entende"
+)
+
+# Calcular presença por participante
+presenca <- map_dfr(termos_chave, function(termo) {
+  n_docs <- sum(str_detect(transcricoes$texto_limpo, regex(termo, ignore_case = TRUE)))
+  tibble(
+    termo = termo,
+    n_participantes = n_docs,
+    pct_participantes = n_docs / nrow(transcricoes) * 100
+  )
+}) |>
+  arrange(desc(n_participantes))
+
+kable(presenca, caption = "Presença de termos-chave nas entrevistas")
+```
+
+```{r termos-plot, fig.cap="Coocorrência de termos-chave"}
+presenca |>
+  filter(n_participantes > 0) |>
+  ggplot(aes(x = reorder(termo, n_participantes), y = n_participantes)) +
+  geom_col(fill = "#ff7f0e") +
+  coord_flip() +
+  labs(x = NULL, y = "Nº de participantes",
+       title = "Termos-chave mencionados nas entrevistas")
+```
+
+# 8. Codebook inicial (sugestões para Taguette)
+
+```{r codebook}
+# Sugestões de códigos para codificação manual no Taguette
+codebook <- tribble(
+  ~codigo, ~descricao, ~exemplo,
+  "metacognicao_explicita", "Criança verbaliza explicitamente seu pensamento", "Eu pensei que talvez...",
+  "metacognicao_implicita", "Indícios implícitos de monitoramento (pausas, correções)", "(pausa longa)",
+  "confianca_alta", "Expressa alta confiança no tutor", "Ela sempre acerta",
+  "confianca_baixa", "Expressa baixa confiança", "Às vezes ela erra",
+  "deteccao_erro", "Identifica e reage a erros do tutor", "Ela errou!",
+  "comparacao_humano", "Compara tutor com humano", "É como uma pessoa",
+  "atribuicao_inteligencia", "Atribui inteligência ao tutor", "Ela é inteligente",
+  "uso_estrategico", "Uso instrumental/estratégico", "Uso quando não sei",
+  "uso_emocional", "Uso para suporte emocional", "Quando tô triste",
+  "resistencia", "Resiste ou se opõe ao uso", "Não gosto de usar"
+)
+
+kable(codebook, caption = "Codebook inicial (sugestões)")
+```
+
+# 9. Reflexão metodológica
+
+## Decisões tomadas
+
+1. **Análise Temática Reflexiva (Braun & Clarke 2022)** ao invés de Análise Temática "codebook" — mais flexível e contemporânea
+2. **Codificação mista**: automática (TF-IDF) + manual (Taguette)
+3. **Intercoder reliability**: 2+ codificadores em 20% do corpus (a implementar)
+
+## Limitações
+
+- **Amostra pequena** (5-10 crianças) — generalização limitada
+- **Cegamento**: pesquisador sabe o que as crianças usaram (Khanmigo vs. controle)
+- **Efeito Hawthorne**: crianças podem mudar comportamento por saber que estão sendo observadas
+
+## Próximos passos
+
+- [ ] Coletar mais 5-10 entrevistas
+- [ ] Implementar intercoder reliability (Cohen's kappa)
+- [ ] Triangular com questionário de pais
+- [ ] Cross-case analysis (comparar crianças com diferentes perfis)
+
+# 10. Referências
+
+```{r refs, echo=FALSE}
+knitr::write_bib(c("base", "tidyverse", "tidytext", "quanteda"),
+                 file = NULL, prefix = "")
+```
+
+# 11. Sessão
+
+```{r session-info}
+sessionInfo()
+```

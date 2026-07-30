@@ -1,0 +1,225 @@
+---
+title: "P02 — ANCOVA: Efeitos da Gamificação Adaptativa sobre FE"
+subtitle: "Relatório técnico de análise estatística"
+author: "[Seu nome]"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: flatly
+    highlight: kate
+    code_folding: hide
+    df_print: paged
+    fig_caption: yes
+    number_sections: yes
+  pdf_document:
+    toc: true
+    number_sections: yes
+    keep_tex: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 10,
+  fig.height = 6,
+  out.width = "100%",
+  dpi = 300
+)
+
+# Set seed para reprodutibilidade
+set.seed(42)
+```
+
+# Resumo
+
+Este relatório apresenta os resultados da **ANCOVA 2×4 fatorial** do P02
+(Gamificação Adaptativa), com **5 grupos** (2×2 fatorial + controle),
+**N = 200 crianças do 2º ano**, e **3 desfechos primários** (Stroop, Backward
+Digit Span, DCCS).
+
+## Principais achados
+
+*(A ser preenchido após análise com dados reais)*
+
+```{r run-analysis, include=FALSE}
+# Rodar pipeline completo
+source(here::here("R", "02_anova_p02.R"))
+```
+
+# 1. Métodos
+
+## 1.1. Design
+
+- **Tipo:** Ensaio controlado randomizado (ECR) 2×2 fatorial + controle
+- **Fator 1:** Tipo de gamificação (ADAPTATIVA vs FIXA)
+- **Fator 2:** Duração (8 vs 16 semanas)
+- **Grupos:** 5 (ADAP_8, ADAP_16, FIXA_8, FIXA_16, CTRL)
+- **Randomização:** Alocação 1:1:1:1:1 com bloco permutado (blocos de 10)
+
+## 1.2. Participantes
+
+- **N total:** `r nrow(dados)` crianças
+- **Idade média:** `r round(mean(dados$idade), 2)` anos (DP = `r round(sd(dados$idade), 2)`)
+- **Sexo:** `r sum(dados$sexo == "F")` meninas, `r sum(dados$sexo == "M")` meninos
+
+## 1.3. Medidas
+
+| Constructo | Instrumento | Tempo |
+|---|---|---|
+| Controle inibitório | Stroop Digital | 8 min |
+| Memória de trabalho | Backward Digit Span | 10 min |
+| Flexibilidade | Dimensional Change Card Sort (DCCS) | 5 min |
+
+## 1.4. Análise estatística
+
+- **Análise primária:** ANCOVA 2×4 (Tipo × Duração) com pré-teste como covariável
+- **Pressupostos verificados:** Normalidade (Shapiro-Wilk), Homogeneidade de variâncias (Levene), Homogeneidade de slopes
+- **Post-hoc:** Tukey HSD via `emmeans`
+- **Correção de múltiplas comparações:** Bonferroni (3 outcomes)
+- **Tamanho de efeito:** eta² parcial + Cohen's d
+- **Software:** R `r getRversion()` com `afex`, `emmeans`, `car`
+
+# 2. Resultados
+
+## 2.1. Estatísticas descritivas
+
+```{r descritivas}
+kable(desc_grupo, digits = 2,
+      caption = "Estatísticas descritivas por grupo (média ± DP)")
+```
+
+## 2.2. Verificação de pressupostos
+
+```{r pressupostos}
+# Tabela de pressupostos
+pressupostos <- data.frame(
+  Outcome = c("Stroop", "BDS", "DCCS"),
+  Shapiro_p = c(press_stroop$shapiro$p.value,
+                press_bds$shapiro$p.value,
+                press_dccs$shapiro$p.value),
+  Levene_p = c(press_stroop$levene$`Pr(>F)`[1],
+               press_bds$levene$`Pr(>F)`[1],
+               press_dccs$levene$`Pr(>F)`[1]),
+  Slopes_p = c(press_stroop$interacao_p,
+               press_bds$interacao_p,
+               press_dccs$interacao_p)
+) |>
+  mutate(across(where(is.numeric), ~round(., 4)))
+
+kable(pressupostos,
+      caption = "P-valores dos testes de pressupostos")
+```
+
+> **Interpretação:** Se algum p-valor < .05, considerar transformação, Welch ANOVA, ou ANCOVA robusta.
+
+## 2.3. ANCOVA — Stroop
+
+```{r ancova-stroop}
+kable(anova_stroop, digits = 4,
+      caption = "ANCOVA tipo III: Stroop (Controle Inibitório)")
+
+kable(eta2_stroop, digits = 4,
+      caption = "Tamanho de efeito (eta² parcial) — Stroop")
+```
+
+```{r emm-stroop-plot, fig.cap="Médias marginais estimadas (emmeans) — Stroop"}
+# Plot emmeans
+emm_stroop_df <- as.data.frame(emm_stroop_summary)
+
+ggplot(emm_stroop_df, aes(x = grupo, y = emmean,
+                           ymin = lower.CL, ymax = upper.CL,
+                           color = grupo)) +
+  geom_point(size = 3) +
+  geom_errorbar(width = 0.2) +
+  labs(x = "Grupo", y = "Média marginal (95% IC)",
+       title = "Médias marginais estimadas — Stroop (ANCOVA)") +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## 2.4. ANCOVA — Backward Digit Span
+
+```{r ancova-bds}
+kable(anova_bds, digits = 4,
+      caption = "ANCOVA tipo III: Backward Digit Span (Memória de Trabalho)")
+```
+
+## 2.5. ANCOVA — DCCS
+
+```{r ancova-dccs}
+kable(anova_dccs, digits = 4,
+      caption = "ANCOVA tipo III: DCCS (Flexibilidade Cognitiva)")
+```
+
+## 2.6. Correção de Bonferroni
+
+```{r bonferroni}
+kable(correcao, digits = 4,
+      caption = "Correção de Bonferroni para múltiplas comparações")
+```
+
+## 2.7. Tabela consolidada
+
+```{r tabela-final}
+kable(tabela_resultados, digits = 4,
+      caption = "Tabela consolidada de resultados")
+```
+
+# 3. Discussão
+
+*(A ser preenchido após discussão com a equipe)*
+
+## 3.1. H1: Gamificação adaptativa > fixa > controle
+
+> **Achado:** [Preencher após análise]
+
+## 3.2. H2: Efeito sobre engajamento
+
+> **Achado:** [Preencher]
+
+## 3.3. H3: Mediação
+
+> **Achado:** [Preencher]
+
+## 3.4. H4: Moderação por SES
+
+> **Achado:** [Preencher]
+
+# 4. Limitações
+
+1. **Generalizabilidade:** Uma região (Natal/RN) — limitada
+2. **N:** 200 é adequado para efeitos médios, mas pode ser sub-dimensionado para interações
+3. **Cegamento:** Professores não podem ser cegados
+4. **Adesão:** Taxa de drop-out típica de plataformas digitais
+
+# 5. Próximos passos
+
+- [ ] Análise de mediação (SEM) com `lavaan`
+- [ ] Análise de subgrupos (sexo, SES, dificuldades)
+- [ ] Follow-up 3 meses (T2)
+- [ ] Submissão a *Learning and Instruction*
+
+# 6. Referências
+
+- Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.).
+- Cohen, P., Cohen, J., West, S. G., & Aiken, L. S. (2003). *Applied multiple regression/correlation analysis for the behavioral sciences* (3rd ed.).
+- Maxwell, S. E., & Delaney, H. D. (2004). *Designing experiments and analyzing data*.
+
+# 7. Apêndices
+
+## 7.1. Código R
+
+```{r ref.label="run-analysis", eval=FALSE, echo=TRUE}
+```
+
+## 7.2. Sessão
+
+```{r sessioninfo}
+sessionInfo()
+```

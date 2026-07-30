@@ -1,118 +1,157 @@
 # ============================================
-# pyproject.toml — configuração Python
-# (PEP 621 + setuptools)
+# pyproject.toml — Poetry (empacotamento Python)
+# ============================================
+# Instalação Poetry: https://python-poetry.org/docs/#installation
+# Depois:
+#   poetry install
+#   poetry run python analise/Python/00_setup.py
+#   poetry run pytest analise/Python/tests/
 # ============================================
 
-[build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
+[tool.poetry]
 name = "neurociencia-edu"
 version = "0.1.0"
-description = "Pipeline de análise para o Programa de Pesquisa em Neurociência Educacional (UFRN)"
-readme = "README.md"
-requires-python = ">=3.11"
-license = { text = "MIT" }
+description = "Pipeline de análise para o Programa de Pesquisa em Neurociência Educacional (UFRN/CERES)"
 authors = [
-    { name = "Programa de Pesquisa", email = "pesquisa@neurociencia.edu" }
+    "Programa de Pesquisa <pesquisa@neurociencia.edu>",
 ]
+maintainers = [
+    "Investigador Principal <ip@neurociencia.edu>",
+    "Ângela Maria Chuvas Naschold <angela.naschold@ufrn.br>",
+]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/dronreef2/NeurocienciaEducacional"
+repository = "https://github.com/dronreef2/NeurocienciaEducacional"
+documentation = "https://github.com/dronreef2/NeurocienciaEducacional/wiki"
 keywords = [
     "neurociencia",
     "educacao",
     "eeg",
     "erp",
     "mne",
-    "pesquisa"
+    "pesquisa",
+    "psicologia",
+    "desenvolvimento",
+    "cognicao",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Medical Science",
+    "Topic :: Scientific/Engineering :: Psychology",
+    "Topic :: Education",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Natural Language :: English",
+]
+packages = [
+    { include = "neurociencia_edu", from = "analise/Python" },
+]
+include = [
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    { path = "docs", format = ["sdist", "wheel"] },
 ]
 
-dependencies = [
-    "mne>=1.5.0",
-    "numpy>=1.24",
-    "pandas>=2.0",
-    "scipy>=1.11",
-    "matplotlib>=3.7",
-    "seaborn>=0.12",
-    "plotly>=5.17",
-    "scikit-learn>=1.3",
-    "tqdm>=4.65",
-    "rich>=13.5",
-    "pyyaml>=6.0",
-    "h5py>=3.9",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4",
-    "pytest-cov>=4.1",
-    "black>=23.7",
-    "ruff>=0.0.285",
-    "mypy>=1.5",
-    "jupyter>=1.0",
-    "ipykernel>=6.25",
-]
-docs = [
-    "sphinx>=7.2",
-    "sphinx-rtd-theme>=1.3",
-    "myst-parser>=2.0",
-]
-
-[project.urls]
-Homepage = "https://github.com/dronreef2/NeurocienciaEducacional"
-Repository = "https://github.com/dronreef2/NeurocienciaEducacional"
-Issues = "https://github.com/dronreef2/NeurocienciaEducacional/issues"
-
-[project.scripts]
-neurociencia-setup = "setup:cli_main"
-neurociencia-eeg = "Python.01_eeg_preprocessing:main"
-neurociencia-erp = "Python.02_eeg_erp_analysis:main"
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/dronreef2/NeurocienciaEducacional/issues"
+"Pre-registros" = "https://osf.io/"
+"UFRN/CERES" = "https://www.ufrn.br/"
 
 # ============================================
-# Tooling
+# Dependências
 # ============================================
-[tool.setuptools]
-packages = ["setup", "Python"]
+[tool.poetry.dependencies]
+python = "^3.11"
 
-[tool.pytest.ini_options]
-testpaths = ["Python/tests"]
-python_files = ["test_*.py"]
-addopts = "-v --tb=short --strict-markers"
-markers = [
-    "slow: marca testes lentos",
-    "integration: marca testes de integração",
-    "eeg: marca testes que precisam de dados EEG",
-]
+# Análise de EEG / ERP
+mne = "^1.5.0"
+mne-bids = "^0.12"
+numpy = "^1.24"
+pandas = "^2.0"
+scipy = "^1.11"
+h5py = "^3.9"
+pybv = "^0.7"
+pyedflib = "^0.1.30"
 
-[tool.coverage.run]
-source = ["Python", "setup.py"]
-omit = ["*/tests/*", "*/test_*.py"]
+# Visualização
+matplotlib = "^3.7"
+seaborn = "^0.12"
+plotly = "^5.17"
 
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "raise NotImplementedError",
-    "if __name__ == .__main__.:",
-]
+# Machine Learning
+scikit-learn = "^1.3"
 
-[tool.black]
-line-length = 100
-target-version = ["py311", "py312"]
-include = '\.pyi?$'
+# Utilitários
+tqdm = "^4.65"
+rich = "^13.5"
+pyyaml = "^6.0"
+jinja2 = "^3.1"
 
+[tool.poetry.group.dev.dependencies]
+# Testes
+pytest = "^7.4"
+pytest-cov = "^4.1"
+pytest-mock = "^3.12"
+
+# Linting / formatação
+ruff = "^0.4.7"
+mypy = "^1.5"
+black = "^23.7"
+
+# Notebooks
+jupyter = "^1.0"
+ipykernel = "^6.25"
+nbconvert = "^7.10"
+nbformat = "^5.9"
+
+# Documentação
+sphinx = "^7.2"
+sphinx-rtd-theme = "^1.3"
+myst-parser = "^2.0"
+
+# Pre-commit
+pre-commit = "^3.5"
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.2"
+sphinx-rtd-theme = "^1.3"
+myst-parser = "^2.0"
+sphinx-autoapi = "^2.1"
+
+# ============================================
+# Scripts entry points
+# ============================================
+[tool.poetry.scripts]
+neurociencia-setup = "neurociencia_edu.setup:cli_main"
+neurociencia-eeg-preprocess = "neurociencia_edu.01_eeg_preprocessing:main"
+neurociencia-eeg-erp = "neurociencia_edu.02_eeg_erp_analysis:main"
+neurociencia-test = "neurociencia_edu.tests:run_all_tests"
+
+# ============================================
+# Poetry configuration
+# ============================================
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# ============================================
+# Ruff
+# ============================================
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-extend-exclude = [".venv", "build", "dist"]
+extend-exclude = [".venv", "build", "dist", "*.ipynb"]
 
 [tool.ruff.lint]
 select = [
@@ -128,23 +167,99 @@ select = [
     "PT",  # pytest style
     "RET", # return statements
     "ARG", # unused arguments
+    "PL",  # pylint
+    "RUF", # ruff-specific
 ]
 ignore = [
-    "E501",  # line too long (black handles)
+    "E501",  # line too long
     "B008",  # function call in default argument
-    "B905",  # zip() without explicit strict= (Python 3.10+)
+    "PLR0913",  # too many arguments
 ]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
-"tests/*" = ["ARG", "S101"]
+"tests/*" = ["ARG", "S101", "PLR2004"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["setup", "Python"]
+known-first-party = ["neurociencia_edu"]
 
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+# ============================================
+# Black (legado, mas mantém compat)
+# ============================================
+[tool.black]
+line-length = 100
+target-version = ["py311", "py312"]
+
+# ============================================
+# Mypy
+# ============================================
 [tool.mypy]
 python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
 ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+
+# ============================================
+# Pytest
+# ============================================
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["analise/Python/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=neurociencia_edu",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+markers = [
+    "slow: marca testes lentos (desmarcar com -m 'not slow')",
+    "integration: marca testes de integração",
+    "eeg: marca testes que precisam de dados EEG",
+    "unit: marca testes unitários",
+]
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:mne",
+    "ignore::PendingDeprecationWarning",
+]
+
+# ============================================
+# Coverage
+# ============================================
+[tool.coverage.run]
+source = ["analise/Python"]
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__init__.py",
+    "*/setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
+show_missing = true
+precision = 2
+
+[tool.coverage.html]
+directory = "analise/Python/coverage_html"

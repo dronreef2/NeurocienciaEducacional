@@ -1,0 +1,303 @@
+---
+title: "P04 — SEM: Mediação entre IA Generativa e FE"
+subtitle: "Modelagem de equações estruturais com visualização"
+author: "[Seu nome]"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+    code_folding: show
+    fig_caption: yes
+    number_sections: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 10,
+  fig.height = 6
+)
+set.seed(42)
+```
+
+# Resumo
+
+Este notebook apresenta o **modelo de equações estruturais (SEM)** testando
+se o **uso de IA generativa** (X) afeta **funções executivas** (Y) através da
+**mediação** do **engajamento** (M), com **moderação** do **letramento
+digital** (W).
+
+# 1. Setup
+
+```{r libraries}
+library(tidyverse)
+library(lavaan)
+library(semTools)
+library(semPlot)
+library(psych)
+library(here)
+library(knitr)
+```
+
+# 2. Dados
+
+```{r load-data}
+INPUT_FILE <- here("dados", "processed", "P04", "p04_clean.csv")
+
+if (file.exists(INPUT_FILE)) {
+  dados <- read.csv(INPUT_FILE)
+} else {
+  # Dados sintéticos
+  set.seed(42)
+  n <- 200
+  dados <- data.frame(
+    participante = sprintf("P%03d", 1:n),
+    idade = sample(c(7, 8, 9), n, replace = TRUE),
+    sexo = sample(c("F", "M"), n, replace = TRUE),
+    ses = rnorm(n, 0, 1),
+    uso_ia = pmin(pmax(rnorm(n, 3, 1.5), 0), 7),
+    engajamento = rnorm(n, 0, 1),
+    stroop = rnorm(n, 0, 1),
+    backward_digit = rnorm(n, 0, 1),
+    dccs = rnorm(n, 0, 1),
+    letramento_digital = rnorm(n, 0, 1)
+  )
+
+  # Efeito de mediação
+  dados$engajamento <- 0.3 * scale(dados$uso_ia)[,1] + rnorm(n, 0, 0.7)
+  dados$stroop <- 0.6 * rnorm(n, 0, 1) + 0.2 * scale(dados$uso_ia)[,1] + rnorm(n, 0, 0.5)
+  dados$backward_digit <- 0.6 * rnorm(n, 0, 1) + 0.2 * scale(dados$uso_ia)[,1] + rnorm(n, 0, 0.5)
+  dados$dccs <- 0.6 * rnorm(n, 0, 1) + 0.2 * scale(dados$uso_ia)[,1] + rnorm(n, 0, 0.5)
+}
+
+cat("✅ Dados:", nrow(dados), "observações\n")
+```
+
+# 3. Descritivas e correlações
+
+```{r descritivas}
+desc <- describe(dados[, c("uso_ia", "engajamento", "stroop",
+                            "backward_digit", "dccs", "letramento_digital")])
+kable(desc[, c("mean", "sd", "min", "max", "skew", "kurtosis")],
+      digits = 2, caption = "Estatísticas descritivas")
+```
+
+```{r correlacoes, fig.cap="Heatmap de correlações"}
+library(corrplot)
+cor_matrix <- cor(dados[, c("uso_ia", "engajamento", "stroop",
+                             "backward_digit", "dccs", "letramento_digital")],
+                  use = "complete.obs")
+
+corrplot(cor_matrix, method = "color", type = "upper",
+         addCoef.col = "black", number.cex = 0.7,
+         tl.col = "black", tl.srt = 45,
+         title = "Correlações entre variáveis",
+         mar = c(0, 0, 2, 0))
+```
+
+# 4. Modelo de Mensuração (CFA)
+
+```{r cfa}
+modelo_mensuracao <- '
+  FE =~ stroop + backward_digit + dccs
+'
+
+fit_cfa <- cfa(modelo_mensuracao, data = dados, std.lv = TRUE)
+
+summary(fit_cfa, fit.measures = TRUE, standardized = TRUE)$pe |>
+  as.data.frame() |>
+  filter(op == "=~") |>
+  select(Factor = lhs, Indicador = rhs, B = est, SE = se, Z = z, p = pvalue) |>
+  kable(digits = 3, caption = "Cargas fatoriais do constructo FE")
+```
+
+# 5. Modelo Estrutural — Mediação
+
+```{r sem-mediacao}
+modelo_sem <- '
+  # Mensuração
+  FE =~ stroop + backward_digit + dccs
+
+  # Estrutural
+  engajamento ~ a*uso_ia + idade + sexo + ses
+  FE ~ b*engajamento + c*uso_ia + idade + sexo + ses
+
+  # Efeito indireto
+  indirect := a*b
+  total := c + a*b
+'
+
+fit_sem <- sem(modelo_sem, data = dados, std.lv = TRUE,
+               se = "bootstrap", bootstrap = 5000)
+```
+
+## 5.1. Parâmetros
+
+```{r sem-params}
+params <- parameterEstimates(fit_sem, standardized = TRUE)
+kable(params, digits = 3, caption = "Parâmetros do modelo SEM")
+```
+
+## 5.2. Efeito indireto (mediação)
+
+```{r efeito-indireto}
+ind <- params |> filter(label == "indirect")
+total <- params |> filter(label == "total")
+
+resultado <- data.frame(
+  Efeito = c("Direto (c)", "Indireto (a*b)", "Total"),
+  Estimativa = c(
+    params |> filter(label == "c") |> pull(est),
+    ind$est,
+    total$est
+  ),
+  IC_inferior = c(
+    params |> filter(label == "c") |> pull(ci.lower),
+    ind$ci.lower,
+    total$ci.lower
+  ),
+  IC_superior = c(
+    params |> filter(label == "c") |> pull(ci.upper),
+    ind$ci.upper,
+    total$ci.upper
+  ),
+  p_valor = c(
+    params |> filter(label == "c") |> pull(pvalue),
+    ind$pvalue,
+    total$pvalue
+  )
+)
+
+kable(resultado, digits = 4,
+      caption = "Efeitos de mediação (bootstrap 5000 iterações)")
+```
+
+## 5.3. Índices de ajuste
+
+```{r fit-indices}
+fit_indices <- fitMeasures(fit_sem, c("cfi", "tli", "rmsea", "srmr", "chisq", "df"))
+fit_df <- data.frame(
+  Indice = c("χ²", "df", "CFI", "TLI", "RMSEA", "SRMR"),
+  Valor = c(
+    fit_indices["chisq"],
+    fit_indices["df"],
+    fit_indices["cfi"],
+    fit_indices["tli"],
+    fit_indices["rmsea"],
+    fit_indices["srmr"]
+  ),
+  Referencia = c(
+    "p > .05",
+    "—",
+    "> 0.95",
+    "> 0.95",
+    "< 0.06",
+    "< 0.08"
+  )
+)
+
+kable(fit_df, digits = 3, caption = "Índices de ajuste do modelo")
+```
+
+# 6. Diagrama do modelo
+
+```{r sem-plot, fig.cap="Diagrama do modelo SEM (estimativas padronizadas)"}
+semPaths(fit_sem,
+         what = "std",
+         layout = "tree",
+         edge.label.cex = 1.2,
+         sizeMan = 8,
+         sizeLat = 12,
+         nCharNodes = 0,
+         nCharEdges = 0,
+         residuals = FALSE,
+         exoCov = FALSE)
+```
+
+# 7. Modelo de Moderação
+
+```{r moderacao}
+# Criar termo de interação
+dados$uso_ia_c <- scale(dados$uso_ia)[, 1]
+dados$letramento_c <- scale(dados$letramento_digital)[, 1]
+dados$interacao <- dados$uso_ia_c * dados$letramento_c
+
+modelo_mod <- '
+  FE =~ stroop + backward_digit + dccs
+  FE ~ c*uso_ia_c + d*letramento_c + e*interacao
+  engajamento ~ a*uso_ia_c
+  indirect := a*c
+  indirect_cond := a*(c + e*mean(dados$letramento_c))
+'
+
+fit_mod <- sem(modelo_mod, data = dados, std.lv = TRUE)
+summary(fit_mod, standardized = TRUE)$pe |>
+  as.data.frame() |>
+  filter(op %in% c("~", ":=")) |>
+  kable(digits = 3, caption = "Modelo de moderação")
+```
+
+# 8. Visualização: efeito condicional do letramento digital
+
+```{r efeito-condicional, fig.cap="Efeito do uso de IA sobre FE por nível de letramento digital"}
+# Calcular slopes simples para diferentes níveis de letramento
+coefs_mod <- coef(fit_mod)
+
+df_plot <- expand.grid(
+  uso_ia = seq(min(dados$uso_ia_c), max(dados$uso_ia_c), length.out = 50),
+  letramento = c(-1, 0, 1)  # -1 DP, média, +1 DP
+) |>
+  mutate(
+    interacao = uso_ia * letramento,
+    fe_pred = coefs_mod["FE~c"] * uso_ia +
+              coefs_mod["FE~d"] * letramento +
+              coefs_mod["FE~e"] * interacao
+  )
+
+ggplot(df_plot, aes(x = uso_ia, y = fe_pred, color = factor(letramento))) +
+  geom_line(size = 1.2) +
+  labs(x = "Uso de IA (padronizado)",
+       y = "FE predito (padronizado)",
+       color = "Letramento Digital",
+       title = "Efeito de moderação do letramento digital") +
+  scale_color_brewer(palette = "Set1",
+                     labels = c("-1 DP", "Média", "+1 DP")) +
+  theme_minimal(base_size = 14)
+```
+
+# 9. Discussão
+
+## 9.1. Efeito de mediação
+
+> Se o efeito indireto (a*b) é significativo e o efeito direto (c) deixa de ser
+> significativo, há **mediação completa**. Se ambos são significativos, há
+> **mediação parcial**.
+
+## 9.2. Efeito de moderação
+
+> Se a interação uso_ia × letramento é significativa, o efeito da IA sobre FE
+> depende do nível de letramento digital da criança.
+
+# 10. Limitações
+
+1. **Corte transversal**: não permite inferir causalidade
+2. **Autoreporte**: uso de IA é autorrelatado pelos pais
+3. **Variáveis omitidas**: pode haver confundidores não medidos
+4. **Generalizabilidade**: amostra de conveniência
+
+# 11. Próximos passos
+
+- [ ] Análise com dados longitudinais (P05)
+- [ ] Subgrupos (idade, sexo, SES)
+- [ ] Submissão a *Computers in Human Behavior*
+
+# 12. Sessão
+
+```{r sessioninfo}
+sessionInfo()
+```

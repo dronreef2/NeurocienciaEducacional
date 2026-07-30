@@ -1,5 +1,19 @@
 # 🧠 Programa de Pesquisa: Tecnologia, Cérebro e Desenvolvimento Infantil
 
+<!-- Badges -->
+[![CI](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/ci.yml/badge.svg)](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/ci.yml)
+[![Lint Markdown](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/lint-markdown.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![R 4.4](https://img.shields.io/badge/R-4.4-blue.svg)](https://www.r-project.org/)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
+[![MNE 1.5](https://img.shields.io/badge/MNE-1.5-orange.svg)](https://mne.tools/)
+[![Code style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Open Science](https://img.shields.io/badge/Open%20Science-OSF-blue.svg)](https://osf.io/)
+[![LGPD Compliant](https://img.shields.io/badge/LGPD-compliant-green.svg)](https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd)
+[![UFRN](https://img.shields.io/badge/UFRN-CERES%2FICe-blue.svg)](https://www.ufrn.br/)
+
 > Repositório-mestre do programa de pesquisa de 5 projetos (2026–2030) na interseção entre **Tecnologia Educacional**, **Neurociência Cognitiva** e **Desenvolvimento Infantil**, conduzido em parceria com a Profa. Dra. Ângela Chuvas Naschold (UFRN) e o Instituto do Cérebro da UFRN (ICe).
 
 ---
