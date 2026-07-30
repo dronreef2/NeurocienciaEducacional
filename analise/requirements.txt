@@ -6,37 +6,37 @@
 # ============================================
 
 # Análise de EEG / ERP
-mne>=1.5.0          # MEG/EEG analysis
-mne-bids>=0.12      # BIDS dataset support
-mne-connectivity>=0.4  # Connectivity analysis
-pybv>=0.7           # BrainVision file format
-pyedflib>=0.1.30    # EDF file reading
-scipy>=1.11         # Scientific computing
-numpy>=1.24         # Numerical computing
-pandas>=2.0         # Data manipulation
+mne>=1.12.1          # MEG/EEG analysis
+mne-bids>=0.19.0      # BIDS dataset support
+mne-connectivity>=0.8.1  # Connectivity analysis
+pybv>=0.8.1           # BrainVision file format
+pyedflib>=0.1.42    # EDF file reading
+scipy>=1.18.0         # Scientific computing
+numpy>=2.5.1         # Numerical computing
+pandas>=3.0.5         # Data manipulation
 
 # Visualização
-matplotlib>=3.7
-seaborn>=0.12
-plotly>=5.17        # Interactive plots
-nilearn>=0.10       # Neuroimaging visualization (se necessário)
+matplotlib>=3.11.1
+seaborn>=0.13.2
+plotly>=6.9.0        # Interactive plots
+nilearn>=0.14.0       # Neuroimaging visualization (se necessário)
 
 # Machine learning (P04 — para análise exploratória)
-scikit-learn>=1.3
-mne-features>=0.3   # EEG feature extraction
+scikit-learn>=1.9.0
+mne-features>=0.3.2   # EEG feature extraction
 
 # Utilitários
-tqdm>=4.65          # Progress bars
-rich>=13.5          # Rich terminal output
-pyyaml>=6.0         # Config files
-h5py>=3.9           # HDF5 for EEG storage
+tqdm>=4.70.0          # Progress bars
+rich>=15.0.0          # Rich terminal output
+pyyaml>=6.0.3         # Config files
+h5py>=3.16.0           # HDF5 for EEG storage
 
 # Desenvolvimento
-pytest>=7.4          # Testing
-black>=23.7          # Formatting
-ruff>=0.0.285        # Linting
-mypy>=1.5            # Type checking
-jupyter>=1.0         # Notebooks
+pytest>=9.1.1          # Testing
+black>=26.5.1          # Formatting
+ruff>=0.16.0        # Linting
+mypy>=2.3.0            # Type checking
+jupyter>=1.1.1         # Notebooks
 
 # ============================================
 # Notas:
