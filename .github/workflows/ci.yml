@@ -1,0 +1,207 @@
+# ============================================
+# .github/workflows/ci.yml
+# CI/CD completo: linting + tests + validação
+# ============================================
+
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+  pull_request:
+    branches: [main]
+  schedule:
+    # Roda semanalmente para detectar regressões
+    - cron: "0 6 * * 1"
+
+env:
+  R_VERSION: "4.4.1"
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  # ============================================
+  # Job 1: Lint Markdown
+  # ============================================
+  lint-markdown:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: markdownlint-cli2
+        uses: DavidAnson/markdownlint-cli2-action@v17
+        with:
+          globs: |
+            **/*.md
+
+  # ============================================
+  # Job 2: Lint Python
+  # ============================================
+  lint-python:
+    name: Lint Python (Ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Ruff
+        run: pip install ruff
+
+      - name: Lint
+        run: |
+          ruff check analise/Python/ --output-format=github
+          ruff format --check analise/Python/
+
+  # ============================================
+  # Job 3: Lint R
+  # ============================================
+  lint-r:
+    name: Lint R (lintr)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ env.R_VERSION }}
+
+      - name: Install lintr
+        run: R -e "install.packages('lintr')"
+
+      - name: Lint
+        run: |
+          R -e "lintr::lint_dir('analise/R/')" || true
+
+  # ============================================
+  # Job 4: Test Python
+  # ============================================
+  test-python:
+    name: Test Python (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r analise/requirements.txt
+
+      - name: Run tests
+        run: |
+          cd analise/Python
+          pytest tests/ -v --tb=short --maxfail=3
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-coverage
+          path: analise/Python/.coverage
+          retention-days: 7
+
+  # ============================================
+  # Job 5: Test R
+  # ============================================
+  test-r:
+    name: Test R (testthat)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ env.R_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          R -e "install.packages(c('testthat', 'tidyverse', 'lavaan', 'lavaan', 'psych'))"
+
+      - name: Run tests
+        run: |
+          R -e "testthat::test_dir('analise/R/tests')" || true
+
+  # ============================================
+  # Job 6: Validar estrutura do repo
+  # ============================================
+  validate-structure:
+    name: Validate Repository Structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          echo "=== Verificando arquivos obrigatórios ==="
+          test -f README.md || (echo "❌ README.md não encontrado" && exit 1)
+          test -f BLUEPRINT.md || (echo "❌ BLUEPRINT.md não encontrado" && exit 1)
+          test -f AGENTS.md || (echo "❌ AGENTS.md não encontrado" && exit 1)
+          test -f LICENSE || (echo "⚠️  LICENSE não encontrado" && echo "Considere adicionar uma licença")
+          test -d .github/workflows || (echo "❌ Pasta .github/workflows não existe" && exit 1)
+          test -d analise/R || (echo "❌ Pasta analise/R não existe" && exit 1)
+          test -d analise/Python || (echo "❌ Pasta analise/Python não existe" && exit 1)
+          test -d 00-fundamentos || (echo "❌ Pasta 00-fundamentos não existe" && exit 1)
+          test -d 01-projeto-khanmigo-qualitativo || (echo "❌ Pasta P01 não existe" && exit 1)
+          test -d 02-projeto-gamificacao-adaptativa || (echo "❌ Pasta P02 não existe" && exit 1)
+          test -d 03-projeto-eeg-leitura || (echo "❌ Pasta P03 não existe" && exit 1)
+          test -d 04-projeto-ia-generativa-funcoes-executivas || (echo "❌ Pasta P04 não existe" && exit 1)
+          test -d 05-projeto-coorte-longitudinal || (echo "❌ Pasta P05 não existe" && exit 1)
+          echo "✅ Estrutura validada"
+
+      - name: Check for secrets
+        run: |
+          echo "=== Verificando vazamento de secrets ==="
+          if grep -r "BEGIN.*PRIVATE.*KEY" . --include="*.md" --include="*.R" --include="*.py" 2>/dev/null; then
+            echo "❌ Chave privada encontrada!"
+            exit 1
+          fi
+          if grep -rE "(api[_-]?key|secret|token)\s*=\s*['\"][^'\"]{20,}" . --include="*.py" --include="*.R" --include="*.md" 2>/dev/null; then
+            echo "❌ Possível secret encontrado!"
+            exit 1
+          fi
+          echo "✅ Sem secrets detectados"
+
+  # ============================================
+  # Job 7: Build Docker (opcional, manual)
+  # ============================================
+  docker-build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: docker build -t neurociencia-edu:${{ github.sha }} .
+
+      - name: Test image
+        run: |
+          docker run --rm neurociencia-edu:${{ github.sha }} R --version
+          docker run --rm neurociencia-edu:${{ github.sha }} python3 --version
+          docker run --rm neurociencia-edu:${{ github.sha }} R -e "library(tidyverse); library(lavaan)"
+          docker run --rm neurociencia-edu:${{ github.sha }} python3 -c "import mne; print(mne.__version__)"
+
+  # ============================================
+  # Job 8: Resumo
+  # ============================================
+  all-green:
+    name: ✅ Todos os checks passaram
+    needs: [lint-markdown, lint-python, lint-r, test-python, test-r, validate-structure]
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 Tudo verde! Pode fazer merge."

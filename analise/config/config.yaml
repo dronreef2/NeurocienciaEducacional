@@ -1,0 +1,72 @@
+# ============================================
+# config/config.yaml — configuração do Snakemake
+# ============================================
+
+# Geral
+projeto: "Neurociencia Educacional"
+output_dir: "resultados"
+log_dir: "logs"
+
+# Recursos
+threads: 4
+default_mem_mb: 4000
+
+# P01 — Análise Temática
+p01:
+  input_dir: "dados/raw/P01"
+  min_freq_wordcloud: 2
+  max_words_wordcloud: 100
+  top_n_bigramas: 30
+
+# P02 — ANCOVA
+p02:
+  input_file: "dados/processed/P02/p02_clean.csv"
+  n_grupos: 5
+  alpha: 0.05
+  correcao_multipla: "bonferroni"
+  posthoc: "tukey"
+
+# P03 — EEG
+p03:
+  n_subjects: 30  # esperado
+  input_dir: "dados/raw/P03"
+  output_dir: "dados/processed/P03"
+  sfreq: 250
+  l_freq: 0.1
+  h_freq: 30.0
+  notch_freq: 60.0
+  reject_threshold_uv: 100
+  componentes_erp:
+    - nome: "N170"
+      tmin: 0.13
+      tmax: 0.21
+      canais: ["P7", "P8", "O1", "O2"]
+    - nome: "N400"
+      tmin: 0.30
+      tmax: 0.50
+      canais: ["Cz", "CPz", "Pz"]
+    - nome: "P300"
+      tmin: 0.25
+      tmax: 0.45
+      canais: ["Cz", "Pz", "Fz"]
+    - nome: "P600"
+      tmin: 0.50
+      tmax: 0.80
+      canais: ["Pz", "CPz"]
+  n_permutations: 1024
+  alpha_cluster: 0.05
+
+# P04 — SEM
+p04:
+  input_file: "dados/processed/P04/p04_clean.csv"
+  n_bootstrap: 5000
+  covariaveis: ["idade", "sexo", "ses"]
+  alpha: 0.05
+
+# P05 — LGCM
+p05:
+  input_file: "dados/processed/P05/p05_long.csv"
+  n_ondas: 5
+  modelos: ["linear", "condicional", "quadratico"]
+  lgmm_classes: [1, 2, 3]
+  alpha: 0.05

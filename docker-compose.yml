@@ -1,0 +1,71 @@
+# ============================================
+# docker-compose.yml — orquestração para desenvolvimento
+# ============================================
+version: "3.9"
+
+services:
+  # Ambiente principal de análise
+  analysis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: neurociencia-edu:latest
+    container_name: neurociencia-analysis
+    volumes:
+      # Mount do código (live reload)
+      - .:/workspace
+      # Dados (persistente)
+      - dados-data:/workspace/analise/dados
+      # Resultados (persistente)
+      - resultados-data:/workspace/analise/resultados
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    environment:
+      - RENV_PATHS_CACHE=/workspace/.renv-cache
+      - PYTHONUNBUFFERED=1
+    command: bash
+
+  # RStudio Server (opcional)
+  rstudio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: neurociencia-edu:latest
+    container_name: neurociencia-rstudio
+    ports:
+      - "8787:8787"
+    volumes:
+      - .:/workspace
+      - dados-data:/workspace/analise/dados
+    environment:
+      - DISABLE_AUTH=true
+      - ROOT=true
+    command: >
+      bash -c "R -e 'options(shiny.port=8787, host=0.0.0.0)' &&
+               /usr/local/bin/R -e 'rstudioapi::initializeRStudio()' &&
+               /init.sh"
+
+  # Jupyter Lab (opcional)
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: neurociencia-edu:latest
+    container_name: neurociencia-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
+      - dados-data:/workspace/analise/dados
+    command: >
+      jupyter lab
+        --ip=0.0.0.0
+        --port=8888
+        --no-browser
+        --allow-root
+        --NotebookApp.token=''
+
+volumes:
+  dados-data:
+  resultados-data:

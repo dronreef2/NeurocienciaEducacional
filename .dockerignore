@@ -1,0 +1,71 @@
+# ============================================
+# .dockerignore — exclui arquivos do build
+# ============================================
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# SSH (NUNCA no Docker)
+.ssh/
+**/.ssh/
+**/id_*
+
+# Dados sensíveis
+**/dados/raw/
+**/dados/processed/
+**/resultados/
+*.csv
+*.xlsx
+*.sav
+*.set
+*.bdf
+*.edf
+*.fdt
+*.vhdr
+*.vmrk
+
+# Documentos pessoais
+**/TCLE-*.pdf
+**/anuencias/
+
+# Build artifacts
+*.zip
+*.tar.gz
+*.tgz
+
+# Ambientes virtuais
+venv/
+env/
+.venv/
+renv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.tmp
+*.bak
+
+# Testes / cache
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+__pycache__/
+*.pyc
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Documentação interna
+**/.internal/
