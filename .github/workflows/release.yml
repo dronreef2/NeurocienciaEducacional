@@ -1,0 +1,68 @@
+# ============================================
+# .github/workflows/release.yml
+# Cria release automaticamente quando uma tag é pushed
+# ============================================
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "v${{ steps.get_version.outputs.VERSION }}"
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(steps.get_version.outputs.VERSION, '-') }}
+          body: |
+            ## 🎉 Release v${{ steps.get_version.outputs.VERSION }}
+
+            Veja o [CHANGELOG.md](../../blob/main/CHANGELOG.md) para detalhes completos.
+
+            ### Como citar
+
+            ```bibtex
+            @software{neurociencia_edu_${{ steps.get_version.outputs.VERSION }},
+              title = {Programa de Pesquisa em Neurociência Educacional},
+              author = {{Programa de Pesquisa em Neurociência Educacional} and Naschold, Angela Maria Chuvas},
+              year = {2026},
+              version = {${{ steps.get_version.outputs.VERSION }}},
+              url = {https://github.com/dronreef2/NeurocienciaEducacional}
+            }
+            ```
+
+            ### Como instalar
+
+            ```bash
+            # Python
+            pip install neurociencia-edu
+
+            # R
+            install.packages("neurocienciasedu")
+            ```
+
+      - name: Notify Zenodo
+        if: success()
+        run: |
+          echo "🆔 Zenodo DOI will be generated automatically"
+          echo "Configure at: https://zenodo.org/account/settings/github/"
+          echo "Repository: dronreef2/NeurocienciaEducacional"

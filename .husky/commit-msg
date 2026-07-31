@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+# Husky commit-msg hook
+# Valida Conventional Commits
+
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Padrão Conventional Commits
+PATTERN="^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert|protocolo|analise|instrumento|paper)(\([a-z0-9-]+\))?: .{1,100}$"
+
+commit_msg=$(cat "$1")
+
+if ! echo "$commit_msg" | grep -qE "$PATTERN"; then
+  echo "❌ Commit message não segue Conventional Commits!"
+  echo ""
+  echo "Formato esperado: <tipo>: <descrição>"
+  echo ""
+  echo "Tipos válidos:"
+  echo "  feat, fix, docs, style, refactor, perf, test, chore, ci, build, revert"
+  echo "  protocolo, analise, instrumento, paper  (custom PT-BR)"
+  echo ""
+  echo "Exemplos:"
+  echo "  feat: adiciona pipeline de ANCOVA"
+  echo "  fix: corrige cálculo de TF-IDF"
+  echo "  protocolo: finaliza P02"
+  echo "  ci: adiciona Codecov"
+  echo ""
+  echo "Seu commit:"
+  echo "  $commit_msg"
+  exit 1
+fi
+
+echo "✅ Commit message segue Conventional Commits"

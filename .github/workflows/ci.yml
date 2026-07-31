@@ -82,9 +82,9 @@ jobs:
 
   # ============================================
   # Job 4: Test Python
-  # ============================================
+  # ============================================================
   test-python:
-    name: Test Python (pytest)
+    name: Test Python (pytest + coverage)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -99,25 +99,39 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r analise/requirements.txt
+          pip install pytest-cov codecov
 
-      - name: Run tests
+      - name: Run tests with coverage
         run: |
           cd analise/Python
-          pytest tests/ -v --tb=short --maxfail=3
+          pytest tests/ -v --tb=short --maxfail=3 \
+            --cov=neurociencia_edu \
+            --cov-report=xml \
+            --cov-report=html \
+            --cov-report=term
 
-      - name: Upload coverage
+      - name: Upload coverage to Codecov
+        if: success()
+        uses: codecov/codecov-action@v4
+        with:
+          files: analise/Python/coverage.xml
+          flags: python_package
+          name: codecov-python
+          fail_ci_if_error: false
+
+      - name: Upload coverage HTML
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: python-coverage
-          path: analise/Python/.coverage
+          name: python-coverage-html
+          path: analise/Python/htmlcov/
           retention-days: 7
 
   # ============================================
   # Job 5: Test R
   # ============================================
   test-r:
-    name: Test R (testthat)
+    name: Test R (testthat + coverage)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -129,11 +143,21 @@ jobs:
 
       - name: Install dependencies
         run: |
-          R -e "install.packages(c('testthat', 'tidyverse', 'lavaan', 'lavaan', 'psych'))"
+          R -e "install.packages(c('testthat', 'tidyverse', 'lavaan', 'psych', 'covr'))"
 
-      - name: Run tests
+      - name: Run tests with coverage
         run: |
-          R -e "testthat::test_dir('analise/R/tests')" || true
+          cd analise/R
+          R -e "covr::package_coverage(type='none')" || true
+
+      - name: Upload coverage to Codecov
+        if: success()
+        uses: codecov/codecov-action@v4
+        with:
+          files: analise/R/coverage.xml
+          flags: r_package
+          name: codecov-r
+          fail_ci_if_error: false
 
   # ============================================
   # Job 6: Validar estrutura do repo

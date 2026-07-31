@@ -1,0 +1,51 @@
+{
+  "description": "Programa de Pesquisa em Neurociência Educacional (UFRN/CERES) — 5 projetos (2026-2030) com pipelines R+Python, EEG, ANCOVA, SEM, LGCM",
+  "creators": [
+    {
+      "name": "Programa de Pesquisa em Neurociência Educacional",
+      "affiliation": "Universidade Federal do Rio Grande do Norte",
+      "orcid": "0000-0000-0000-0000"
+    },
+    {
+      "name": "Naschold, Angela Maria Chuvas",
+      "affiliation": "UFRN/CERES",
+      "orcid": "0000-0000-0000-0000"
+    }
+  ],
+  "keywords": [
+    "neurociencia",
+    "educacao",
+    "eeg",
+    "gamificacao",
+    "ia-generativa",
+    "funcoes-executivas",
+    "desenvolvimento-infantil",
+    "psicologia-cognitiva",
+    "pesquisa-educacional"
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "publication_date": "2026-07-31",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/dronreef2/NeurocienciaEducacional",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "All contributors",
+      "type": "Other"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "neuroscience"
+    },
+    {
+      "identifier": "education"
+    }
+  ]
+}

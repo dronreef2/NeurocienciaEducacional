@@ -1,0 +1,31 @@
+{
+  "name": "neurociencia-edu-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Husky pre-commit hooks para o repositório",
+  "scripts": {
+    "prepare": "husky install",
+    "pre-commit": "pre-commit run --all-files",
+    "lint": "ruff check analise/Python/",
+    "format": "ruff format analise/Python/",
+    "test:py": "cd analise/Python && pytest",
+    "test:r": "cd analise/R && Rscript -e 'devtools::test()'"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3"
+  },
+  "lint-staged": {
+    "**/*.py": [
+      "ruff check --fix",
+      "ruff format"
+    ],
+    "**/*.md": [
+      "prettier --write"
+    ],
+    "**/*.R": [
+      "echo 'Run R linting via Rscript -e \"lintr::lint_dir()\"'"
+    ]
+  }
+}

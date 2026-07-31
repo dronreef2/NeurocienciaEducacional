@@ -1,0 +1,102 @@
+# ============================================
+# .codecov.yml — Configuração do Codecov
+# ============================================
+codecov:
+  notify:
+    after_n_builds: 3
+    wait_for_ci: true
+  require_ci_to_pass: true
+  status:
+    project:
+      default:
+        target: 80%
+        threshold: 1%
+        if_ci_failed: error
+    patch:
+      default:
+        target: 70%
+        threshold: 5%
+
+# Cobertura por linguagem
+coverage:
+  precision: 2
+  round: down
+  range: "70...90"
+  status:
+    project: yes
+    patch: yes
+    changes: no
+
+# Comentários em PR
+comment:
+  layout: "header, diff, flags, components, files, footer"
+  behavior: default
+  require_changes: false
+  require_base: no
+  require_head: yes
+
+# Flags por projeto
+flag_management:
+  default_rules:
+    carryforward: true
+    statuses:
+      - type: project
+        target: auto
+        threshold: 1%
+      - type: patch
+        target: auto
+
+# Componentes
+component_management:
+  default_rules:
+    paths:
+      - analise/Python/
+      - analise/R/
+
+  individual_components:
+    - component_id: python_package
+      paths:
+        - analise/Python/neurociencia_edu/**
+      name: "Python Package"
+    - component_id: r_package
+      paths:
+        - analise/R/R/**
+      name: "R Package"
+    - component_id: notebooks
+      paths:
+        - analise/Python/notebooks/**
+        - analise/R/notebooks/**
+      name: "Notebooks"
+
+# Parsers
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
+  javascript:
+    enable_partials: no
+  python:
+    enable_partials: no
+    extra_coverage_args:
+      - --rcfile=pyproject.toml
+
+# Ignore (não contar)
+ignore:
+  - "docs/**"
+  - "tests/**"
+  - "**/tests/**"
+  - "**/test_*.py"
+  - "**/__init__.py"
+  - "**/conftest.py"
+  - "scripts/**"
+  - "examples/**"
+  - "**/notebooks/**"
+  - ".github/**"
+
+# Diretórios
+fixes:
+  - "analise/Python/::"
+  - "analise/R/::"

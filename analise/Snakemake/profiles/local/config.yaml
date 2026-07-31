@@ -1,0 +1,27 @@
+# ============================================
+# profiles/local/config.yaml
+# Profile para execução local (laptop/desktop)
+# ============================================
+
+# Número de cores
+cores: 4
+
+# Memória padrão (MB)
+default-resources:
+  mem_mb: 4000
+  time: "01:00:00"
+
+# Usar conda environments
+use-conda: false
+
+# Não rerunar tudo se mudar algo trivial
+rerun-triggers:
+  - mtime
+  - params
+  - input
+
+# Log
+verbose: false
+
+# Relatório
+report: "resultados/snakemake_report.html"

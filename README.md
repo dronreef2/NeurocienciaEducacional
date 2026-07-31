@@ -3,6 +3,10 @@
 <!-- Badges -->
 [![CI](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/ci.yml/badge.svg)](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/ci.yml)
 [![Lint Markdown](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/lint-markdown.yml/badge.svg)](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/lint-markdown.yml)
+[![Pages](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/pages.yml/badge.svg)](https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/pages.yml)
+[![codecov](https://codecov.io/gh/dronreef2/NeurocienciaEducacional/graph/badge.svg)](https://codecov.io/gh/dronreef2/NeurocienciaEducacional)
+[![codecov-python](https://codecov.io/gh/dronreef2/NeurocienciaEducacional/branch/main/graph/badge.svg?flag=python_package)](https://codecov.io/gh/dronreef2/NeurocienciaEducacional?flags[]=python_package)
+[![codecov-r](https://codecov.io/gh/dronreef2/NeurocienciaEducacional/branch/main/graph/badge.svg?flag=r_package)](https://codecov.io/gh/dronreef2/NeurocienciaEducacional?flags[]=r_package)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![R 4.4](https://img.shields.io/badge/R-4.4-blue.svg)](https://www.r-project.org/)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
@@ -10,9 +14,14 @@
 [![Code style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Husky](https://img.shields.io/badge/Husky-enabled-pink?logo=husky)](https://typicode.github.io/husky/)
 [![Open Science](https://img.shields.io/badge/Open%20Science-OSF-blue.svg)](https://osf.io/)
 [![LGPD Compliant](https://img.shields.io/badge/LGPD-compliant-green.svg)](https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd)
 [![UFRN](https://img.shields.io/badge/UFRN-CERES%2FICe-blue.svg)](https://www.ufrn.br/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![PyPI](https://img.shields.io/pypi/v/neurociencia-edu.svg)](https://pypi.org/project/neurociencia-edu/)
+[![CRAN](https://img.shields.io/badge/CRAN-neurocienciasedu-blue.svg)](https://cran.r-project.org/package=neurocienciasedu)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue.svg)](https://dronreef2.github.io/NeurocienciaEducacional/)
 
 > Repositório-mestre do programa de pesquisa de 5 projetos (2026–2030) na interseção entre **Tecnologia Educacional**, **Neurociência Cognitiva** e **Desenvolvimento Infantil**, conduzido em parceria com a Profa. Dra. Ângela Chuvas Naschold (UFRN) e o Instituto do Cérebro da UFRN (ICe).
 

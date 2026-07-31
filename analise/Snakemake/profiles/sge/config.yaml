@@ -1,0 +1,42 @@
+# ============================================
+# profiles/sge/config.yaml
+# Profile para SGE (Sun Grid Engine)
+# ============================================
+
+executor: sge
+
+jobs: 100
+
+default-resources:
+  mem_mb: 8000
+  time: "02:00:00"
+  queue: "all.q"
+
+set-resources:
+  p03_eeg_preprocessing:
+    mem_mb: 16000
+    time: "04:00:00"
+  p03_erp_analysis:
+    mem_mb: 16000
+    time: "02:00:00"
+
+use-conda: false
+
+cluster-log: "logs/sge-$JOB_ID.out"
+cluster-status: "qstat -j {jobid}"
+cluster-submit: |
+  qsub
+    -N {rule}
+    -l h_vmem={resources.mem_mb}M
+    -l h_rt={resources.time}
+    -q {resources.queue}
+    -o logs/sge-$JOB_ID.out
+    -e logs/sge-$JOB_ID.err
+    -V
+    -S /bin/bash
+    <<EOF
+{exec_cmd}
+EOF
+
+report: "resultados/snakemake_report.html"
+verbose: true

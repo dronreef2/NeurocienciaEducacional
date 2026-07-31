@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# Husky pre-commit hook
+# Combina lint-staged + pre-commit
+
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🦊 Husky pre-commit hook"
+
+# Rodar pre-commit (Python, Markdown, R, etc.)
+poetry run pre-commit run --files $(git diff --cached --name-only --diff-filter=ACMR | tr '\n' ' ') || exit 1
+
+# Rodar lint-staged
+npx lint-staged || exit 1
+
+echo "✅ Husky pre-commit passou"

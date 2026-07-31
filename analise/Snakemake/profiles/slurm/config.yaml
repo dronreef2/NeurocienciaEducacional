@@ -1,0 +1,54 @@
+# ============================================
+# profiles/slurm/config.yaml
+# Profile para cluster SLURM
+# ============================================
+
+executor: slurm
+
+# Max jobs simultâneos
+jobs: 100
+
+# Recursos padrão
+default-resources:
+  mem_mb: 8000
+  time: "02:00:00"
+  partition: "default"
+  account: ""       # Preencher com sua conta SLURM
+
+# Memória por tipo de regra
+set-resources:
+  p03_eeg_preprocessing:
+    mem_mb: 16000
+    time: "04:00:00"
+  p03_erp_analysis:
+    mem_mb: 16000
+    time: "02:00:00"
+  p05_lgcm:
+    mem_mb: 8000
+    time: "01:00:00"
+
+# Usar conda
+use-conda: false
+
+# Logs
+cluster-log: "logs/slurm-%j.out"
+
+# Status, cancel, submit
+cluster-status: "sacct -j {jobid} --format=State --noheader | head -1 | awk '{print $1}'"
+cluster-cancel: "scancel {jobid}"
+cluster-submit: |
+  sbatch
+    --job-name={rule}
+    --mem={resources.mem_mb}M
+    --time={resources.time}
+    --partition={resources.partition}
+    --account={resources.account}
+    --output=logs/slurm-%j.out
+    --error=logs/slurm-%j.err
+    --wrap="{exec_cmd}"
+
+# Relatório
+report: "resultados/snakemake_report.html"
+
+# Verbose
+verbose: true

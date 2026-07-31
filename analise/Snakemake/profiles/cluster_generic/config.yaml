@@ -1,0 +1,53 @@
+# ============================================
+# profiles/cluster_generic/config.yaml
+# Profile genérico para cluster customizado
+# ============================================
+
+# Tipo de executor (escolha um):
+# - slurm
+# - sge
+# - pbs
+# - torque
+# - kubernetes
+executor: slurm
+
+# Max jobs simultâneos
+jobs: 100
+
+# Recursos padrão
+default-resources:
+  mem_mb: 8000
+  time: "02:00:00"
+  partition: "default"
+  account: ""
+
+# Customize por regra
+set-resources:
+  p03_eeg_preprocessing:
+    mem_mb: 16000
+    time: "04:00:00"
+
+# Conda
+use-conda: false
+
+# Como submeter (template)
+cluster-submit: |
+  sbatch
+    --job-name={rule}
+    --mem={resources.mem_mb}M
+    --time={resources.time}
+    --wrap="{exec_cmd}"
+
+# Como cancelar
+cluster-cancel: "scancel {jobid}"
+
+# Como checar status
+cluster-status: "squeue -j {jobid} --format='%T' --noheader | head -1"
+
+# Logs
+cluster-log: "logs/cluster-%j.out"
+
+# Relatório
+report: "resultados/snakemake_report.html"
+
+verbose: true
