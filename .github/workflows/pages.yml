@@ -53,6 +53,8 @@ jobs:
           sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/
           cd docs/sphinx
           sphinx-build -b html . _build/html
+          # Necessário para que GH Pages não tente processar via Jekyll
+          touch _build/html/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
