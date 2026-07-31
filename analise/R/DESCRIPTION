@@ -1,0 +1,55 @@
+Package: neurocienciasedu
+Type: Package
+Title: Pipeline de Análise para o Programa de Pesquisa em Neurociência Educacional
+Version: 0.1.0
+Authors@R:
+    person(given = "Pesquisador", family = "Principal",
+           role = c("aut", "cre"),
+           email = "pesquisa@neurociencia.edu")
+    person(given = "Ângela Maria Chuvas", family = "Naschold",
+           role = "ths",
+           email = "angela.naschold@ufrn.br")
+Description:
+    Pipeline R para análise de dados do programa de pesquisa de 5 projetos
+    (2026-2030) em neurociência educacional, conduzido em parceria com a
+    UFRN/CERES. Inclui análise temática, ANCOVA, SEM, LGCM e visualizações.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 4.4.0)
+Imports:
+    tidyverse (>= 2.0.0),
+    tidytext,
+    quanteda,
+    readxl,
+    janitor,
+    patchwork,
+    lavaan,
+    semTools,
+    semPlot,
+    psych,
+    afex,
+    emmeans,
+    effectsize,
+    car,
+    multcomp,
+    broom,
+    flextable,
+    OpenMx,
+    tidySEM,
+    here,
+    rlang
+Suggests:
+    testthat (>= 3.0.0),
+    lintr,
+    styler,
+    knitr,
+    rmarkdown,
+    roxygen2
+VignetteBuilder: knitr
+URL: https://github.com/dronreef2/NeurocienciaEducacional
+BugReports: https://github.com/dronreef2/NeurocienciaEducacional/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Config/testthat/edition: 3
