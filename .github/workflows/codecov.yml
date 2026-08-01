@@ -1,0 +1,126 @@
+# ============================================
+# .github/workflows/codecov.yml
+# Workflow dedicado para upload ao Codecov
+# Roda após os testes principais
+# ============================================
+
+name: Codecov
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  codecov:
+    name: Upload coverage to Codecov
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.4.1"
+
+      # ============================================================
+      # Python coverage
+      # ============================================================
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r analise/requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Run Python tests with coverage
+        run: |
+          cd analise/Python
+          pytest tests/ -v --tb=short --maxfail=3 \
+            --cov=neurociencia_edu \
+            --cov-report=xml:coverage-python.xml \
+            --cov-report=term
+
+      # ============================================================
+      # R coverage
+      # ============================================================
+      - name: Install R dependencies
+        run: |
+          R -e "install.packages(c('testthat', 'tidyverse', 'lavaan', 'psych', 'covr', 'xml2'))"
+
+      - name: Run R tests with coverage
+        run: |
+          cd analise/R
+          # Gera cobertura em formato Cobertura (XML)
+          R -e "
+            coverage <- covr::package_coverage(type='none')
+            covr::to_cobertura(coverage, 'coverage-r.xml')
+            cat('Cobertura XML gerado: coverage-r.xml\n')
+          "
+
+      # ============================================================
+      # Upload para Codecov
+      # ============================================================
+      - name: Upload Python coverage
+        if: success() || failure()
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: analise/Python/coverage-python.xml
+          flags: python_package
+          name: codecov-python
+          fail_ci_if_error: false
+          verbose: true
+
+      - name: Upload R coverage
+        if: success() || failure()
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: analise/R/coverage-r.xml
+          flags: r_package
+          name: codecov-r
+          fail_ci_if_error: false
+          verbose: true
+
+      # ============================================================
+      # Sumário
+      # ============================================================
+      - name: Coverage summary
+        if: always()
+        run: |
+          echo "## 📊 Coverage Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Language | File | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "| --- | --- | --- |" >> $GITHUB_STEP_SUMMARY
+          if [ -f analise/Python/coverage-python.xml ]; then
+            PY_COV=$(grep -oP 'line-rate="[0-9.]+"' analise/Python/coverage-python.xml | head -1 | grep -oP '[0-9.]+')
+            PY_PCT=$(echo "$PY_COV * 100" | bc -l | awk '{printf "%.1f", $1}')
+            echo "| Python | coverage-python.xml | ${PY_PCT}% |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Python | coverage-python.xml | ❌ não gerado |" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f analise/R/coverage-r.xml ]; then
+            R_COV=$(grep -oP 'line-rate="[0-9.]+"' analise/R/coverage-r.xml | head -1 | grep -oP '[0-9.]+')
+            R_PCT=$(echo "$R_COV * 100" | bc -l | awk '{printf "%.1f", $1}')
+            echo "| R | coverage-r.xml | ${R_PCT}% |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| R | coverage-r.xml | ❌ não gerado |" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 [Ver dashboard completo](https://codecov.io/gh/dronreef2/NeurocienciaEducacional)" >> $GITHUB_STEP_SUMMARY

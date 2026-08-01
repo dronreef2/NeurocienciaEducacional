@@ -112,12 +112,14 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: success()
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: analise/Python/coverage.xml
           flags: python_package
           name: codecov-python
           fail_ci_if_error: false
+          verbose: true
 
       - name: Upload coverage HTML
         if: always()
@@ -148,16 +150,31 @@ jobs:
       - name: Run tests with coverage
         run: |
           cd analise/R
-          R -e "covr::package_coverage(type='none')" || true
+          # Gera XML de cobertura em formato Cobertura (compatível com Codecov)
+          R -e "covr::package_coverage(type='none') |> covr::to_cobertura('coverage.xml')" || true
+          # Backup: gera cobertura em diferentes formatos
+          R -e "covr::package_coverage(type='none') |> covr::cobertura() |> jsonlite::toJSON(auto_unbox=TRUE) |> writeLines('coverage.json')" || true
+
+      - name: Verificar coverage file
+        run: |
+          if [ -f analise/R/coverage.xml ]; then
+            echo "✅ analise/R/coverage.xml gerado"
+            head -3 analise/R/coverage.xml
+          else
+            echo "⚠️  coverage.xml não gerado — tentando cobertura..."
+            R -e "covr::package_coverage(type='none') |> covr::cobertura() |> xml2::write_xml('analise/R/coverage.xml')" || true
+          fi
 
       - name: Upload coverage to Codecov
         if: success()
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: analise/R/coverage.xml
           flags: r_package
           name: codecov-r
           fail_ci_if_error: false
+          verbose: true
 
   # ============================================
   # Job 6: Validar estrutura do repo
