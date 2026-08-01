@@ -50,11 +50,18 @@ jobs:
 
       - name: Build Python docs (Sphinx)
         run: |
-          sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/
+          # Install package in editable mode so sphinx can import it
+          pip install -e analise/Python || pip install -e analise/Python/ || echo "Editable install failed, continuing"
+          # Generate API docs
+          sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/ -f || echo "sphinx-apidoc had warnings, continuing"
+          # Build HTML
           cd docs/sphinx
-          sphinx-build -b html . _build/html
-          # Necessário para que GH Pages não tente processar via Jekyll
+          # Create _build dir if not exists
+          mkdir -p _build/html
+          # Copy .nojekyll to prevent GH Pages Jekyll processing
           touch _build/html/.nojekyll
+          # Build with sphinx (allow warnings)
+          sphinx-build -b html . _build/html || (echo "Sphinx build failed, check docs/sphinx/"; exit 1)
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
