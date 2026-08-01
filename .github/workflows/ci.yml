@@ -29,7 +29,7 @@ jobs:
     name: Lint Markdown
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: markdownlint-cli2
         uses: DavidAnson/markdownlint-cli2-action@v24
@@ -44,7 +44,7 @@ jobs:
     name: Lint Python (Ruff)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup Python
         uses: actions/setup-python@v7
@@ -66,7 +66,7 @@ jobs:
     name: Lint R (lintr)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
@@ -87,7 +87,7 @@ jobs:
     name: Test Python (pytest + coverage)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup Python
         uses: actions/setup-python@v7
@@ -137,7 +137,7 @@ jobs:
     name: Test R (testthat + coverage)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
@@ -184,7 +184,7 @@ jobs:
     name: Validate Repository Structure
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check required files
         run: |
@@ -252,7 +252,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     continue-on-error: true  # Não bloqueia merge se Docker falhar
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build
         run: docker build -t neurociencia-edu:${{ github.sha }} .
