@@ -14,32 +14,32 @@
 #' - LGCM/LGMM longitudinal (P05)
 #'
 #' @section Funções principais:
-#' - [at_pipeline()] para Análise Temática
-#' - [ancova_p02()] para ANCOVA
-#' - [sem_p04()] para SEM
-#' - [lgcm_p05()] para LGCM
+#' - [at.pipeline_internal()] para Análise Temática
+#' - [ancova.\1_internal\22()] para ANCOVA
+#' - [sem.\1_internal\24()] para SEM
+#' - [lgcm.\1_internal\25()] para LGCM
 #'
 #' @section Funções utilitárias:
-#' - [limpar_texto()] normalização de texto
+#' - [limpar.texto_internal()] normalização de texto
 #' - [tokenizar()] tokenização
-#' - [calcular_frequencia()] frequência de palavras
-#' - [calcular_tfidf()] TF-IDF
-#' - [gerar_codebook()] codebook inicial
-#' - [cohens_d()] tamanho de efeito
-#' - [log_msg()] log estruturado
+#' - [calcular.frequencia_internal()] frequência de palavras
+#' - [calcular.tfidf_internal()] TF-IDF
+#' - [gerar.codebook_internal()] codebook inicial
+#' - [cohens.d_internal()] tamanho de efeito
+#' - [log.msg_internal()] log estruturado
 #'
 #' @docType package
 #' @name neurocienciasedu-package
 #' @aliases neurocienciasedu
 #' @keywords internal
-"_PACKAGE"
+".\1_internal\2
 
 # Suppress R CMD check NOTEs
 utils::globalVariables(c(
-  "palabra", "participante", "n", "freq_relativa",
-  "tf", "idf", "tf_idf", "p1", "p2", "grupo", "sexo",
-  "idade", "ses", "stroop", "backward_digit", "dccs",
-  "pre_stroop", "pre_bds", "pre_dccs",
-  "post_stroop", "post_bds", "post_dccs",
-  "onda", "fe_score", "id", "tempo"
+  "palabra", "participante", "n", "freq.\1_internal\2,
+  "tf", "idf", "tf.\1_internal\2, "p1", "p2", "grupo", "sexo",
+  "idade", "ses", "stroop", "backward.\1_internal\2, "dccs",
+  "pre.\1_internal\2, "pre.\1_internal\2, "pre.\1_internal\2,
+  "post.\1_internal\2, "post.\1_internal\2, "post.\1_internal\2,
+  "onda", "fe.\1_internal\2, "id", "tempo"
 ))

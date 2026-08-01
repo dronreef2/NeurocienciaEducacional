@@ -46,7 +46,7 @@ tokenizar <- function(tibble_doc, stop_words_pt = NULL) {
   tokens <- tibble_doc |>
     tidytext::unnest_tokens(palavra, texto_limpo) |>
     dplyr::anti_join(tidytext::stop_words, by = "palabra") |>
-    dplyr::anti_join(stop_words_pt, by = "palavra")
+    dplyr::anti_join(stop_words_pt, by = "palabra")
 
   tokens
 }
@@ -82,7 +82,7 @@ obter_stop_words_pt <- function() {
 #' @export
 calcular_frequencia <- function(tokens) {
   tokens |>
-    dplyr::count(palabra, sort = TRUE) |>
+    dplyr::count(palavra, sort = TRUE) |>
     dplyr::mutate(freq_relativa = n / sum(n) * 100)
 }
 
@@ -95,7 +95,7 @@ calcular_frequencia <- function(tokens) {
 calcular_tfidf <- function(tokens) {
   tokens |>
     dplyr::count(participante, palabra) |>
-    tidytext::bind_tf_idf(palavra, participante, n) |>
+    tidytext::bind_tf_idf(palabra, participante, n) |>
     dplyr::arrange(participante, dplyr::desc(tf_idf))
 }
 
@@ -200,13 +200,12 @@ log_msg <- function(msg, level = "INFO") {
 verificar_setup <- function() {
   log_msg("Verificando setup do projeto...")
 
-  # Pacotes essenciais
   pacotes <- c("tidyverse", "tidytext", "lavaan", "emmeans", "here")
   for (pkg in pacotes) {
     if (requireNamespace(pkg, quietly = TRUE)) {
-      log_msg(sprintf("  ✅ %s: disponível", pkg))
+      log_msg(sprintf("  %s %s: disponível", "+", pkg))
     } else {
-      log_msg(sprintf("  ❌ %s: NÃO instalado", pkg), level = "WARN")
+      log_msg(sprintf("  %s %s: NAO instalado", "!", pkg), level = "WARN")
     }
   }
 
