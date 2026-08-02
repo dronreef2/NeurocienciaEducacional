@@ -9,89 +9,63 @@ e este projeto adere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ### 🎉 Primeira release estável
 
-Esta é a primeira release pública do Programa de Pesquisa em Neurociência
-Educacional. O programa consiste em 5 projetos (2026-2030) conduzidos em
-parceria com a UFRN/CERES, investigando como tecnologias educacionais
-baseadas em IA impactam o desenvolvimento cognitivo de crianças.
+Programa de Pesquisa em Neurociência Educacional — 5 projetos (2026-2030) em
+parceria com a UFRN/CERES.
 
-### Adicionado
+### Adicionado nesta versão
 
 #### Documentação
 - 5 protocolos detalhados (P01-P05)
-- 13 notas de leitura de papers seminais
-- Glossário de conceitos (60+ termos)
-- Mapa conceitual (6 diagramas Mermaid)
+- 13 notas de leitura
+- Glossário de conceitos
+- Mapa conceitual
 - Matriz de síntese
-- 8 instrumentos do P01 (entrevistas, TCLE, questionários)
-- Cronograma-mestre (M0-M60)
-- 3 pré-registros (P02, P03)
+- 8 instrumentos do P01
+- Cronograma-mestre
+- **5 pré-registros OSF (P01-P05)** ← NOVO
 - Templates de diário de pesquisa
-- Email para orientadora
-- BLUEPRINT.md, AGENTS.md, CONTRIBUTING.md, CONTRIBUTORS.md, SECURITY.md
-- Code review (avaliação técnica)
+- E-mail para orientadora
+- Code review
+- **Manuscrito template P01** ← NOVO
+
+#### Pesquisa operacional
+- **Dicionário de dados do P01** ← NOVO
+- **Diário de uso exemplo (CSV)** ← NOVO
+- **Glossário de termos do P01** ← NOVO
+- **Script de análise piloto P01** ← NOVO
+- Templates de Issue (bug, feature, pesquisa)
+- Pull Request template
+- Templates de governança (CONTRIBUTING, SECURITY)
 
 #### Análise — R
-- 4 pipelines principais: AT, ANCOVA, SEM, LGCM
-- R package `neurocienciasedu` (DESCRIPTION, NAMESPACE, R/*, man/*, tests/*)
+- 4 pipelines principais
+- R package `neurocienciasedu`
 - 4 R Markdown notebooks
 - 8 testes testthat
-- Análise de mediação, Cohen's d, Bonferroni, emmeans
 
 #### Análise — Python
-- 4 pipelines principais: preprocessing EEG, ERP analysis, mediation, BIDS
-- Python package `neurociencia_edu` (eeg/, stats/, io/, tests/, dashboard/)
+- 4 módulos
 - 3 Jupyter notebooks
-- 7+ testes pytest
-- Type hints completos, docstrings Google style
-- MediationResult NamedTuple, clustering com permutation
+- 7 testes pytest
+- Streamlit + Bokeh dashboards
 
 #### Infraestrutura
-- Docker (R 4.4 + Python 3.11 + MNE 1.5)
-- docker-compose (dev, RStudio, Jupyter)
-- GitHub Actions: CI/CD (lint, test, build, publish)
-- GitHub Pages: Sphinx docs auto-deploy
-- Pre-commit hooks (9 hooks: ruff, markdownlint, styler, detect-secrets, etc.)
-- Poetry (Python packaging)
-- Makefile + Snakemake (workflows)
-- 6 Snakemake rules modulares
-
-#### Visualização
-- Streamlit dashboard interativo
-- R Markdown reports
-- Jupyter notebooks com Plotly
-- Wordclouds, topographies, boxplots
+- Docker
+- GitHub Actions (CI/CD, Codecov, Pages, Releases)
+- Husky + pre-commit
+- Poetry (Python)
+- Snakemake (4 profiles: local, SLURM, SGE, genérico)
+- Sphinx + GitHub Pages
+- Codecov badges
 
 ### Métricas
 
-- 214 arquivos no repositório
-- ~750 KB de código + docs
+- 250+ arquivos no repositório
+- ~800 KB de código + docs
 - 30+ testes automatizados
-- 9 pre-commit hooks
-- 4 GitHub Actions workflows
-- 6 Snakemake rules
-- 5 R Markdown + 3 Jupyter notebooks
-- 11 badges no README
-
-### Como citar
-
-```bibtex
-@software{neurociencia_edu_2026,
-  title = {Programa de Pesquisa em Neurociência Educacional},
-  author = {{Programa de Pesquisa em Neurociência Educacional} and Naschold, Angela Maria Chuvas},
-  year = {2026},
-  version = {1.0.0},
-  url = {https://github.com/dronreef2/NeurocienciaEducacional},
-  doi = {10.5281/zenodo.XXXXXXX}
-}
-```
-
-### Próximos passos (v1.1.0)
-
-- Substituir dados sintéticos pelos reais
-- Publicar packages no PyPI e CRAN
-- Adicionar mais componentes ERP
-- Implementar mixed-effects models
-- Dashboard Shiny
+- 5 pré-registros
+- 13 reading notes
+- 8 dashboards / dashboards templates
 
 ---
 
@@ -102,6 +76,7 @@ baseadas em IA impactam o desenvolvimento cognitivo de crianças.
 - 13 notas de leitura
 - Estrutura de pastas dos 5 projetos
 - Instrumentos do P01
+- Pré-registro template OSF
 
 ## [0.1.0] - 2026-01-15
 
