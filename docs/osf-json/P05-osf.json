@@ -1,0 +1,32 @@
+{
+  "data": {
+    "type": "preregistration",
+    "attributes": {
+      "title": "COORTE-INF: Desenvolvimento cognitivo e neural de crianças dos 7 aos 11 anos — estudo longitudinal com EEG",
+      "description": "Pré-registro do projeto P05. Coorte longitudinal prospectiva com 5 ondas anuais (T1=7 anos, T5=11 anos), N=200 crianças, com LGCM/LGMM, cross-lagged panel models, e sub-estudo EEG (N170, P300). Investigação das trajetórias de funções executivas, letramento e uso de tecnologia, e como se influenciam mutuamente.",
+      "category": "project",
+      "license": {
+        "name": "CC0 1.0 Universal",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "tags": [
+        "longitudinal",
+        "coorte",
+        "desenvolvimento infantil",
+        "funções executivas",
+        "EEG",
+        "LGCM",
+        "LGMM",
+        "cross-lagged",
+        "letramento",
+        "tecnologia"
+      ],
+      "subjects": [
+        "Developmental Psychology",
+        "Educational Psychology",
+        "Cognitive Neuroscience",
+        "Longitudinal Studies"
+      ]
+    }
+  }
+}

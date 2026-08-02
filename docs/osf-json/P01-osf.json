@@ -1,0 +1,38 @@
+{
+  "data": {
+    "type": "preregistration",
+    "attributes": {
+      "title": "Vozes das crianças sobre tutores de IA: um estudo qualitativo com crianças do 2º ano do ensino fundamental",
+      "description": "Pré-registro do projeto P01 do Programa de Pesquisa em Neurociência Educacional. Estudo qualitativo com Análise Temática Reflexiva (Braun & Clarke 2022) sobre como crianças do 2º ano interpretam, vivenciam e confiam no tutor de IA Khanmigo após 8 semanas de uso.",
+      "category": "project",
+      "license": {
+        "name": "CC0 1.0 Universal",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "tags": [
+        "inteligência artificial",
+        "educação",
+        "crianças",
+        "análise temática",
+        "metacognição",
+        "Khanmigo",
+        "qualitativo",
+        "funções executivas"
+      ],
+      "subjects": [
+        "Education",
+        "Developmental Psychology",
+        "Cognitive Psychology",
+        "Human-Computer Interaction"
+      ]
+    },
+    "relationships": {
+      "license": {
+        "data": {
+          "type": "licenses",
+          "id": "cc0-1.0"
+        }
+      }
+    }
+  }
+}

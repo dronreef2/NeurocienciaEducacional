@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurociência Educacional — Programa de Pesquisa</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            background: #f7fafc;
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px 80px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero .tagline { font-size: 1.4em; opacity: 0.95; max-width: 700px; margin: 0 auto 30px; }
+        .badges { margin-top: 20px; }
+        .badges a { text-decoration: none; margin: 0 4px; }
+        .badges img { height: 22px; vertical-align: middle; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 60px 0; }
+        .section h2 { font-size: 2.2em; margin-bottom: 30px; text-align: center; }
+        .section h2 .emoji { font-size: 1em; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #667eea;
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+        .card h3 { font-size: 1.4em; margin-bottom: 12px; color: #2d3748; }
+        .card p { color: #4a5568; font-size: 0.95em; }
+        .card .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+        .status.green { background: #d1fae5; color: #065f46; }
+        .status.yellow { background: #fef3c7; color: #92400e; }
+        .status.orange { background: #fed7aa; color: #9a3412; }
+        .status.red { background: #fecaca; color: #991b1b; }
+        .quickstart {
+            background: #1a202c;
+            color: white;
+            padding: 60px 0;
+        }
+        .quickstart pre {
+            background: #2d3748;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #e2e8f0;
+        }
+        .quickstart .filename {
+            color: #a0aec0;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+        .cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 8px;
+            transition: all 0.3s;
+        }
+        .cta-button:hover { background: #5568d3; transform: translateY(-2px); }
+        .cta-button.outline { background: white; color: #667eea; border: 2px solid #667eea; }
+        footer {
+            background: #1a202c;
+            color: #cbd5e0;
+            padding: 40px 0;
+            text-align: center;
+        }
+        footer a { color: #90cdf4; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>🧠 Neurociência Educacional</h1>
+            <p class="tagline">Programa de Pesquisa de 5 anos (2026-2030) investigando como
+            diferentes tecnologias educacionais baseadas em IA impactam o desenvolvimento
+            cognitivo de crianças.</p>
+            <div class="badges">
+                <a href="https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/ci.yml">
+                    <img src="https://github.com/dronreef2/NeurocienciaEducacional/actions/workflows/ci.yml/badge.svg" alt="CI">
+                </a>
+                <a href="https://codecov.io/gh/dronreef2/NeurocienciaEducacional">
+                    <img src="https://codecov.io/gh/dronreef2/NeurocienciaEducacional/branch/main/graph/badge.svg" alt="Coverage">
+                </a>
+                <a href="https://github.com/dronreef2/NeurocienciaEducacional/blob/main/LICENSE">
+                    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+                </a>
+                <a href="https://www.python.org/">
+                    <img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python">
+                </a>
+                <a href="https://www.r-project.org/">
+                    <img src="https://img.shields.io/badge/R-4.4-blue.svg" alt="R">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2><span class="emoji">📚</span> Os 5 Projetos</h2>
+            <div class="grid">
+                <div class="card" style="border-top-color: #27ae60;">
+                    <h3>P01 — Vozes das Crianças</h3>
+                    <p>Análise qualitativa com crianças do 2º ano sobre tutores de IA (Khanmigo). Entrevistas + think-aloud + questionários.</p>
+                    <span class="status green">Em andamento</span>
+                </div>
+                <div class="card" style="border-top-color: #f39c12;">
+                    <h3>P02 — Gamificação & FE</h3>
+                    <p>ECR 2×4 fatorial testando gamificação adaptativa sobre funções executivas. N=200.</p>
+                    <span class="status yellow">Em andamento</span>
+                </div>
+                <div class="card" style="border-top-color: #e67e22;">
+                    <h3>P03 — EEG / Leitura</h3>
+                    <p>Marcadores neurais (N170, P300) de leitura digital vs. papel. Paradigma EEG com N=60.</p>
+                    <span class="status orange">Setup</span>
+                </div>
+                <div class="card" style="border-top-color: #9b59b6;">
+                    <h3>P04 — IA Generativa × FE</h3>
+                    <p>Estudo transversal correlacional com SEM testando mediação de engajamento. N=300-500.</p>
+                    <span class="status orange">Em andamento</span>
+                </div>
+                <div class="card" style="border-top-color: #e74c3c;">
+                    <h3>P05 — Coorte Longitudinal</h3>
+                    <p>Acompanhamento de 5 anos (5 ondas anuais) com EEG + neuropsi. N=200 inicial.</p>
+                    <span class="status red">Planejado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2><span class="emoji">🔬</span> Stack Tecnológico</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🐍 Python</h3>
+                    <p>MNE-Python para EEG/ERP, scikit-learn, scikit-image, statsmodels, pytest, Poetry, Ruff.</p>
+                </div>
+                <div class="card">
+                    <h3>📊 R</h3>
+                    <p>tidyverse, lavaan, emmeans, OpenMx, tidySEM, testthat, devtools.</p>
+                </div>
+                <div class="card">
+                    <h3>📓 Notebooks</h3>
+                    <p>4 R Markdown + 3 Jupyter (AT, ANCOVA, LGCM, SEM, EEG/ERP, Bayesian, ML).</p>
+                </div>
+                <div class="card">
+                    <h3>📈 Dashboards</h3>
+                    <p>Streamlit + Shiny + Bokeh para visualização interativa dos resultados.</p>
+                </div>
+                <div class="card">
+                    <h3>🛠️ DevOps</h3>
+                    <p>Docker, GitHub Actions (CI/CD), Codecov, Husky, pre-commit, Snakemake, Sphinx.</p>
+                </div>
+                <div class="card">
+                    <h3>📦 Reprodutibilidade</h3>
+                    <p>renv (R), Poetry (Python), seeds fixos, dados sintéticos, Docker reproduzível.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section quickstart">
+        <div class="container">
+            <h2 style="color: white;"><span class="emoji">🚀</span> Quick Start</h2>
+            <p style="text-align: center; color: #cbd5e0; margin-bottom: 30px;">
+                Comece a usar o programa em 3 comandos:
+            </p>
+            <div class="filename">📥 Clone o repositório</div>
+            <pre>git clone https://github.com/dronreef2/NeurocienciaEducacional.git
+cd NeurocienciaEducacional</pre>
+
+            <div class="filename" style="margin-top: 30px;">🐍 Instale dependências Python</div>
+            <pre>poetry install
+poetry run python analise/Python/00_setup.py</pre>
+
+            <div class="filename" style="margin-top: 30px;">📊 Rode uma análise</div>
+            <pre>poetry run neurociencia-eeg-erp --input dados/processed/P03/ --batch</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2><span class="emoji">📊</span> Estatísticas do Programa</h2>
+            <div class="grid">
+                <div class="card" style="text-align: center;">
+                    <h3 style="font-size: 2.5em; color: #667eea;">250+</h3>
+                    <p>Arquivos no repositório</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h3 style="font-size: 2.5em; color: #667eea;">5</h3>
+                    <p>Pré-registros OSF</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h3 style="font-size: 2.5em; color: #667eea;">13</h3>
+                    <p>Papers seminais (notas de leitura)</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h3 style="font-size: 2.5em; color: #667eea;">30+</h3>
+                    <p>Testes automatizados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2><span class="emoji">🤝</span> Como Contribuir</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
+                Este é um projeto de pesquisa aberto. Contribuições são bem-vindas!
+                Veja o <a href="https://github.com/dronreef2/NeurocienciaEducacional/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+                para mais detalhes.
+            </p>
+            <div class="grid">
+                <div class="card">
+                    <h3>🐛 Reportar Bug</h3>
+                    <p>Encontrou um erro? Abra uma issue com steps para reproduzir.</p>
+                </div>
+                <div class="card">
+                    <h3>💡 Sugerir Feature</h3>
+                    <p>Tem uma ideia para análise ou visualização? Compartilhe!</p>
+                </div>
+                <div class="card">
+                    <h3>🔬 Questão de Pesquisa</h3>
+                    <p>Discussão metodológica ou científica? Use a issue template específica.</p>
+                </div>
+                <div class="card">
+                    <h3>📚 Melhorar Docs</h3>
+                    <p>Corrija typos, adicione exemplos, traduza conteúdo (PT/EN).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Comece a explorar</h2>
+            <p style="margin-bottom: 30px;">Veja a documentação completa, rode as análises, ou contribua com o projeto.</p>
+            <a href="https://dronreef2.github.io/NeurocienciaEducacional/" class="cta-button">📚 Documentação</a>
+            <a href="https://github.com/dronreef2/NeurocienciaEducacional" class="cta-button outline">⭐ GitHub</a>
+            <a href="mailto:pesquisa@neurociencia.edu" class="cta-button outline">📧 Contato</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>Programa de Pesquisa em Neurociência Educacional</strong></p>
+            <p>UFRN/CERES (Caicó/RN) &middot; ICe (Natal/RN)</p>
+            <p>Orientadora: Profa. Dra. Ângela Maria Chuvas Naschold</p>
+            <p style="margin-top: 20px;">
+                <a href="https://github.com/dronreef2/NeurocienciaEducacional">GitHub</a> &middot;
+                <a href="https://dronreef2.github.io/NeurocienciaEducacional/">Documentação</a> &middot;
+                <a href="https://github.com/dronreef2/NeurocienciaEducacional/blob/main/CHANGELOG.md">Changelog</a> &middot;
+                <a href="https://github.com/dronreef2/NeurocienciaEducacional/blob/main/LICENSE">Licença</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em; opacity: 0.7;">
+                © 2026 — Feito com 💜 pela equipe de pesquisa
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

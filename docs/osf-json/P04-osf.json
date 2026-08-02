@@ -1,0 +1,31 @@
+{
+  "data": {
+    "type": "preregistration",
+    "attributes": {
+      "title": "Uso de IA generativa e funções executivas em crianças do 2º ao 5º ano: estudo transversal correlacional com SEM",
+      "description": "Pré-registro do projeto P04. Estudo transversal correlacional com modelagem de equações estruturais (SEM) testando se o uso de IA generativa (X) afeta funções executivas (Y) através da mediação do engajamento (M) e moderação do letramento digital (W). N=300-500 crianças do 2º ao 5º ano de escolas públicas e privadas de Natal/RN.",
+      "category": "project",
+      "license": {
+        "name": "CC0 1.0 Universal",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "tags": [
+        "inteligência artificial",
+        "funções executivas",
+        "crianças",
+        "SEM",
+        "mediação",
+        "moderação",
+        "engajamento",
+        "letramento digital",
+        "transversal"
+      ],
+      "subjects": [
+        "Education",
+        "Cognitive Psychology",
+        "Educational Psychology",
+        "Quantitative Psychology"
+      ]
+    }
+  }
+}
