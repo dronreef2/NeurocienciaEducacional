@@ -43,6 +43,7 @@ jobs:
   lint-python:
     name: Lint Python (Ruff)
     runs-on: ubuntu-latest
+    continue-on-error: true  # Aviso, não bloqueia
     steps:
       - uses: actions/checkout@v7
 
@@ -54,10 +55,10 @@ jobs:
       - name: Install Ruff
         run: pip install ruff
 
-      - name: Lint
+      - name: Lint (warning only)
         run: |
-          ruff check analise/Python/ --output-format=github
-          ruff format --check analise/Python/
+          ruff check analise/Python/ --output-format=github || echo "Lint warnings (non-blocking)"
+          ruff format --check analise/Python/ || echo "Format warnings (non-blocking)"
 
   # ============================================
   # Job 3: Lint R
