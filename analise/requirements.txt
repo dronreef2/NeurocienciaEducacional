@@ -34,7 +34,7 @@ h5py>=3.16.0           # HDF5 for EEG storage
 # Desenvolvimento
 pytest>=9.1.1          # Testing
 black>=26.5.1          # Formatting
-ruff>=0.16.0        # Linting
+ruff>=0.16.1        # Linting
 mypy>=2.3.0            # Type checking
 jupyter>=1.1.1         # Notebooks
 
