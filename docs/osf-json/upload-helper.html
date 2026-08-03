@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSF Upload Helper — Programa Neurociência Educacional</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f7fafc;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        h1 { color: #2d3748; margin-bottom: 10px; font-size: 2em; }
+        h2 { color: #667eea; margin: 30px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+        h3 { color: #4a5568; margin: 20px 0 10px; font-size: 1.1em; }
+        .intro { background: #f0f7ff; border-left: 4px solid #667eea; padding: 15px 20px; border-radius: 4px; margin-bottom: 30px; }
+        .intro p { margin: 8px 0; color: #2c5282; }
+        .step {
+            background: #f9fafb;
+            border-left: 4px solid #27ae60;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .step-num { display: inline-block; background: #27ae60; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: bold; margin-right: 10px; }
+        .json-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin: 15px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px 10px 5px 0;
+            font-size: 0.9em;
+        }
+        .copy-btn:hover { background: #5568d3; }
+        .copy-btn.success { background: #27ae60; }
+        .osf-link {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 5px 10px 0;
+        }
+        .osf-link:hover { background: #667eea; color: white; }
+        .osf-link.primary { background: #667eea; color: white; }
+        .badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4c51bf;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 4px;
+        }
+        .badge.green { background: #d1fae5; color: #065f46; }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #2d3748;
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        .toast.show { opacity: 1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📤 OSF Upload Helper</h1>
+        <p style="color: #718096; margin-bottom: 20px;">
+            <span class="badge green">P01</span>
+            <span class="badge green">P04</span>
+            <span class="badge green">P05</span>
+            <span class="badge">3 pré-registros prontos</span>
+        </p>
+
+        <div class="intro">
+            <p><strong>🎯 Objetivo:</strong> Esta página contém os 3 JSONs pré-formatados para upload direto na interface de Registration do OSF (Open Science Framework).</p>
+            <p><strong>⏱️ Tempo estimado:</strong> 5 minutos para os 3.</p>
+        </div>
+
+        <h2>🔗 Links Rápidos do OSF</h2>
+        <a href="https://osf.io/registries/new" class="osf-link primary" target="_blank">➕ Criar Novo Pré-Registro</a>
+        <a href="https://osf.io/" class="osf-link" target="_blank">🏠 Dashboard OSF</a>
+        <a href="https://help.osf.io/article/159-create-a-preregistration" class="osf-link" target="_blank">📖 Ajuda OSF</a>
+
+        <h2>📋 Passo a Passo</h2>
+        <div class="step">
+            <span class="step-num">1</span>
+            <strong>Faça login no OSF</strong> (crie conta gratuita se não tiver — pode usar ORCID)
+        </div>
+        <div class="step">
+            <span class="step-num">2</span>
+            <strong>Clique em "Create New Registration"</strong> (ou acesse o link acima)
+        </div>
+        <div class="step">
+            <span class="step-num">3</span>
+            <strong>Escolha "Open-Ended Registration"</strong> (a opção mais flexível p/ customizar)
+        </div>
+        <div class="step">
+            <span class="step-num">4</span>
+            <strong>Preencha título, descrição e tags</strong> (copie do JSON correspondente abaixo)
+        </div>
+        <div class="step">
+            <span class="step-num">5</span>
+            <strong>Em "Subjects"</strong>, marque as áreas do conhecimento listadas
+        </div>
+        <div class="step">
+            <span class="step-num">6</span>
+            <strong>License:</strong> escolha <code>CC0 1.0 Universal</code> (Open Access)
+        </div>
+        <div class="step">
+            <span class="step-num">7</span>
+            <strong>Adicione o arquivo .md completo</strong> (baixe do GitHub) na seção "Supplemental Materials"
+        </div>
+        <div class="step">
+            <span class="step-num">8</span>
+            <strong>Submit!</strong> Marque como <em>Public</em> para ficar visível a todos
+        </div>
+
+        <h2>📋 Pré-Registro P01 — Qualitativo</h2>
+        <p style="margin-bottom: 10px;"><strong>Título:</strong> Vozes das crianças sobre tutores de IA: um estudo qualitativo com crianças do 2º ano do ensino fundamental</p>
+        <p style="margin-bottom: 10px;"><strong>Tags:</strong> inteligência artificial, educação, crianças, análise temática, metacognição, Khanmigo, qualitativo, funções executivas</p>
+        <p style="margin-bottom: 10px;"><strong>Subjects:</strong> Education, Developmental Psychology, Cognitive Psychology, Human-Computer Interaction</p>
+        <button class="copy-btn" onclick="copyJSON('p01')">📋 Copiar JSON P01</button>
+        <a href="https://github.com/dronreef2/NeurocienciaEducacional/blob/main/00-fundamentos/preregistracao/P01-preregistro.md" class="osf-link" target="_blank">📄 Ver markdown completo</a>
+        <div class="json-block" id="p01-json">{
+  "title": "Vozes das crianças sobre tutores de IA: um estudo qualitativo com crianças do 2º ano do ensino fundamental",
+  "description": "Pré-registro do projeto P01 do Programa de Pesquisa em Neurociência Educacional. Estudo qualitativo com Análise Temática Reflexiva (Braun & Clarke 2022) sobre como crianças do 2º ano interpretam, vivenciam e confiam no tutor de IA Khanmigo após 8 semanas de uso.",
+  "category": "project",
+  "license": "CC0 1.0 Universal",
+  "tags": ["inteligência artificial", "educação", "crianças", "análise temática", "metacognição", "Khanmigo", "qualitativo", "funções executivas"],
+  "subjects": ["Education", "Developmental Psychology", "Cognitive Psychology", "Human-Computer Interaction"]
+}</div>
+
+        <h2>📋 Pré-Registro P04 — Transversal com SEM</h2>
+        <p style="margin-bottom: 10px;"><strong>Título:</strong> Uso de IA generativa e funções executivas em crianças do 2º ao 5º ano: estudo transversal correlacional com SEM</p>
+        <p style="margin-bottom: 10px;"><strong>Tags:</strong> inteligência artificial, funções executivas, crianças, SEM, mediação, moderação, engajamento, letramento digital, transversal</p>
+        <p style="margin-bottom: 10px;"><strong>Subjects:</strong> Education, Cognitive Psychology, Educational Psychology, Quantitative Psychology</p>
+        <button class="copy-btn" onclick="copyJSON('p04')">📋 Copiar JSON P04</button>
+        <a href="https://github.com/dronreef2/NeurocienciaEducacional/blob/main/00-fundamentos/preregistracao/P04-preregistro.md" class="osf-link" target="_blank">📄 Ver markdown completo</a>
+        <div class="json-block" id="p04-json">{
+  "title": "Uso de IA generativa e funções executivas em crianças do 2º ao 5º ano: estudo transversal correlacional com SEM",
+  "description": "Pré-registro do projeto P04. Estudo transversal correlacional com modelagem de equações estruturais (SEM) testando se o uso de IA generativa (X) afeta funções executivas (Y) através da mediação do engajamento (M) e moderação do letramento digital (W). N=300-500 crianças do 2º ao 5º ano de escolas públicas e privadas de Natal/RN.",
+  "category": "project",
+  "license": "CC0 1.0 Universal",
+  "tags": ["inteligência artificial", "funções executivas", "crianças", "SEM", "mediação", "moderação", "engajamento", "letramento digital", "transversal"],
+  "subjects": ["Education", "Cognitive Psychology", "Educational Psychology", "Quantitative Psychology"]
+}</div>
+
+        <h2>📋 Pré-Registro P05 — Coorte Longitudinal</h2>
+        <p style="margin-bottom: 10px;"><strong>Título:</strong> COORTE-INF: Desenvolvimento cognitivo e neural de crianças dos 7 aos 11 anos — estudo longitudinal com EEG</p>
+        <p style="margin-bottom: 10px;"><strong>Tags:</strong> longitudinal, coorte, desenvolvimento infantil, funções executivas, EEG, LGCM, LGMM, cross-lagged, letramento, tecnologia</p>
+        <p style="margin-bottom: 10px;"><strong>Subjects:</strong> Developmental Psychology, Educational Psychology, Cognitive Neuroscience, Longitudinal Studies</p>
+        <button class="copy-btn" onclick="copyJSON('p05')">📋 Copiar JSON P05</button>
+        <a href="https://github.com/dronreef2/NeurocienciaEducacional/blob/main/00-fundamentos/preregistracao/P05-preregistro.md" class="osf-link" target="_blank">📄 Ver markdown completo</a>
+        <div class="json-block" id="p05-json">{
+  "title": "COORTE-INF: Desenvolvimento cognitivo e neural de crianças dos 7 aos 11 anos — estudo longitudinal com EEG",
+  "description": "Pré-registro do projeto P05. Coorte longitudinal prospectiva com 5 ondas anuais (T1=7 anos, T5=11 anos), N=200 crianças, com LGCM/LGMM, cross-lagged panel models, e sub-estudo EEG (N170, P300). Investigação das trajetórias de funções executivas, letramento e uso de tecnologia, e como se influenciam mutuamente.",
+  "category": "project",
+  "license": "CC0 1.0 Universal",
+  "tags": ["longitudinal", "coorte", "desenvolvimento infantil", "funções executivas", "EEG", "LGCM", "LGMM", "cross-lagged", "letramento", "tecnologia"],
+  "subjects": ["Developmental Psychology", "Educational Psychology", "Cognitive Neuroscience", "Longitudinal Studies"]
+}</div>
+
+        <h2>🔧 Alternativa: API Automatizada</h2>
+        <p>Se preferir automatizar o upload via API, o OSF suporta POST direto:</p>
+        <div class="json-block">curl -X POST https://api.osf.io/v2/registrations/ \
+  -H "Authorization: Bearer &lt;OSF_TOKEN&gt;" \
+  -H "Content-Type: application/json" \
+  -d @docs/osf-json/P01-osf.json</div>
+        <p>Para gerar token: <a href="https://osf.io/settings/tokens/" target="_blank">osf.io/settings/tokens</a></p>
+
+        <h2>✅ Checklist Pós-Upload</h2>
+        <ul style="padding-left: 20px;">
+            <li>✓ Anotar o <strong>DOI do registration</strong> (formato: 10.17605/OSF.IO/XXXXX)</li>
+            <li>✓ Adicionar o DOI no <code>README.md</code> principal do programa</li>
+            <li>✓ Adicionar no preâmbulo do manuscrito P01 quando submeter</li>
+            <li>✓ Compartilhar no Twitter/X com hashtag <code>#OpenScience</code></li>
+            <li>✓ Adicionar badge do OSF no GitHub README</li>
+        </ul>
+
+        <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 4px; margin: 20px 0;">
+            <strong>⚠️ Importante:</strong> OSF permite tornar público o pré-registro mesmo se você depois fizer pequenas alterações justificadas. O objetivo é transparência metodológica, não rigidez absoluta.
+        </div>
+    </div>
+
+    <div id="toast" class="toast">✅ JSON copiado para clipboard!</div>
+
+    <script>
+        function copyJSON(id) {
+            const json = document.getElementById(id + '-json').textContent;
+            navigator.clipboard.writeText(json).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+
+                // Highlight button
+                event.target.textContent = '✅ Copiado!';
+                event.target.classList.add('success');
+                setTimeout(() => {
+                    event.target.textContent = '📋 Copiar JSON ' + id.toUpperCase();
+                    event.target.classList.remove('success');
+                }, 2000);
+            }).catch(err => {
+                alert('Erro ao copiar. Selecione manualmente: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>
