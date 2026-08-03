@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-08-03T16:54:08.206625",
+  "total_erros": 1,
+  "total_warnings": 0,
+  "results": {
+    "diarios": {
+      "arquivos_encontrados": 0,
+      "arquivos_validos": 0,
+      "erros": [],
+      "warnings": []
+    },
+    "questionarios": {
+      "arquivos_encontrados": 0,
+      "arquivos_validos": 0,
+      "erros": []
+    },
+    "codebook": {
+      "erros": [
+        "codebook-piloto.csv não encontrado"
+      ],
+      "warnings": []
+    },
+    "transcricoes": {
+      "arquivos_encontrados": 0,
+      "arquivos_validos": 0,
+      "erros": []
+    }
+  }
+}
