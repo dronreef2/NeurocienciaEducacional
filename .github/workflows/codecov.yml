@@ -78,7 +78,7 @@ jobs:
       # ============================================================
       - name: Upload Python coverage
         if: success() || failure()
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: analise/Python/coverage-python.xml
@@ -89,7 +89,7 @@ jobs:
 
       - name: Upload R coverage
         if: success() || failure()
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: analise/R/coverage-r.xml
