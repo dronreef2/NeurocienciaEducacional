@@ -65,3 +65,8 @@ if __name__ == "__main__":
         "/workspace/analise/Python/notebooks/09_irt_analysis.ipynb",
         "09. Item Response Theory - Modelo de Rasch (P05)"
     )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/01_tutorial_basico.py",
+        "/workspace/analise/Python/notebooks/01_tutorial_basico.ipynb",
+        "TUTORIAL 1: Introdução ao Programa (P01 Piloto)"
+    )

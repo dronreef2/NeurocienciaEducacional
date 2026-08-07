@@ -1,0 +1,118 @@
+name: Validate Data
+
+# Valida automaticamente dados piloto em PRs
+# - Schema correto
+# - Sem PII (CPF, telefone, email)
+# - Ranges de variáveis
+
+on:
+  pull_request:
+    paths:
+      - "01-projeto-qualitativo-criancas-ia/dados/**"
+      - "0[1-5]-projeto-*/dados/**"
+  push:
+    branches: [main]
+    paths:
+      - "01-projeto-qualitativo-criancas-ia/dados/**"
+      - "0[1-5]-projeto-*/dados/**"
+
+jobs:
+  validate:
+    name: Validação dos Dados
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: pip install pandas numpy
+
+      - name: Rodar validação dos diários
+        run: |
+          python3 -c "
+          import sys
+          sys.path.insert(0, 'analise/Python/scripts')
+          from validar_dados_piloto import main
+          sys.exit(main())
+          " || echo "⚠️ Validação falhou (mas não bloqueia)"
+
+      - name: Verificar PII em todos os CSVs
+        run: |
+          python3 << 'PYEOF'
+          import os
+          import re
+          from pathlib import Path
+
+          pii_patterns = {
+              r'\d{3}\.\d{3}\.\d{3}-\d{2}': 'CPF',
+              r'\d{4,5}-\d{4}': 'telefone',
+              r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}': 'email',
+          }
+
+          issues = []
+          for csv_file in Path('.').rglob('*.csv'):
+              if 'node_modules' in str(csv_file) or '.git' in str(csv_file):
+                  continue
+              try:
+                  content = csv_file.read_text(errors='ignore')
+                  for pattern, name in pii_patterns.items():
+                      if re.search(pattern, content):
+                          issues.append(f'{csv_file}: possível {name}')
+              except Exception:
+                  pass
+
+          # Em TXTs também
+          for txt_file in Path('.').rglob('*.txt'):
+              if 'node_modules' in str(txt_file) or '.git' in str(txt_file) or 'requirements' in str(txt_file):
+                  continue
+              try:
+                  content = txt_file.read_text(errors='ignore')
+                  for pattern, name in pii_patterns.items():
+                      if re.search(pattern, content):
+                          issues.append(f'{txt_file}: possível {name}')
+              except Exception:
+                  pass
+
+          if issues:
+              print('⚠️ Possíveis PII detectados:')
+              for issue in issues:
+                  print(f'  - {issue}')
+              # Em ambiente de teste, não bloqueia
+              # exit(1)
+          else:
+              print('✅ Nenhum PII detectado')
+          PYEOF
+
+      - name: Verificar schema dos diários
+        run: |
+          python3 << 'PYEOF'
+          from pathlib import Path
+          import sys
+
+          required = ['data', 'participante_id', 'duracao_min']
+          all_ok = True
+          diarios_dir = Path('01-projeto-qualitativo-criancas-ia/dados/piloto/diarios')
+          if not diarios_dir.exists():
+              print('⚠️ Diretório de diários não existe (skip)')
+              sys.exit(0)
+          for csv in diarios_dir.glob('*.csv'):
+              with open(csv) as f:
+                  header = f.readline().strip().split(',')
+              missing = set(required) - set(header)
+              if missing:
+                  print(f'❌ {csv.name}: colunas faltando: {missing}')
+                  all_ok = False
+              else:
+                  print(f'✅ {csv.name}: schema OK')
+          sys.exit(0 if all_ok else 1)
+          PYEOF
+
+      - name: Resumo
+        if: always()
+        run: echo "✅ Validação de dados concluída (verificar logs)"

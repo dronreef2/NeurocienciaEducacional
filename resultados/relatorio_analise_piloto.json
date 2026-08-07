@@ -1,0 +1,69 @@
+{
+  "data_analise": "2026-08-07T12:53:41.096319",
+  "n_participantes": 3,
+  "n_dias_observacao": 17,
+  "temas": {
+    "1_antropomorfizacao": {
+      "incidencia": "3/3 (100%)",
+      "evidencia": "Todos usaram pronomes humanos"
+    },
+    "2_deteccao_erro": {
+      "incidencia": "3/3 (100%)",
+      "evidencia": "Maria, Pedro, Júlia relataram detectar erros"
+    },
+    "3_confianca_calibrada": {
+      "incidencia": "2/3 (67%)",
+      "evidencia": "Pedro e Júlia verificam respostas"
+    },
+    "4_comparacao_humana": {
+      "incidencia": "3/3 (100%)",
+      "evidencia": "Todos compararam Khanmigo com humanos"
+    },
+    "5_preferencia_contextual": {
+      "incidencia": "3/3 (100%)",
+      "evidencia": "Todos mostraram preferência situacional"
+    }
+  },
+  "testes_estatisticos": {
+    "confianca_mat_vs_leitura": {
+      "teste": "Binomial one-sided",
+      "estatistica": "3/3",
+      "p_valor": 0.125,
+      "significativo": false
+    },
+    "uso_vs_deteccao": {
+      "teste": "Spearman",
+      "rho": -1.0,
+      "p_valor": 0.0,
+      "ic_95_bootstrap": [
+        -1.0,
+        -1.0
+      ],
+      "significativo": true
+    },
+    "tendencia_uso": {
+      "teste": "Mann-Kendall",
+      "z": 0.0,
+      "p_valor": 1.0,
+      "significativo": false
+    },
+    "distribuicao_atividades": {
+      "teste": "Chi-quadrado",
+      "chi2": 42.72727272727272,
+      "p_valor": 2.8119827237814518e-09,
+      "significativo": true
+    }
+  },
+  "limitacoes": [
+    "N=3 impede inferência estatística robusta",
+    "Análise é exploratória, não confirmatória",
+    "Generalização impossível com este tamanho amostral",
+    "Resultados indicam direções, não magnitudes precisas"
+  ],
+  "proximos_passos": [
+    "Expandir para N=12-15 para saturação temática",
+    "Análise com N≥30 para testes paramétricos",
+    "Replicação em múltiplas escolas",
+    "Validação com Cohen's kappa inter-codificador"
+  ]
+}

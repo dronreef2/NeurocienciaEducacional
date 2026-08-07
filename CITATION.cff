@@ -1,0 +1,98 @@
+cff-version: 1.2.0
+message: |
+  If you use this program in your research, please cite both the
+  pre-registrations on OSF and the GitHub repository. See the README
+  for full bibliographic information.
+type: software
+title: "Programa de Pesquisa em Neurociência Educacional"
+title-en: "Educational Neuroscience Research Program"
+title-pt: "Programa de Pesquisa em Neurociência Educacional"
+version: 1.0.8
+date-released: 2026-08-06
+license: MIT
+license-url: https://github.com/dronreef2/NeurocienciaEducacional/blob/main/LICENSE
+
+# Authors
+authors:
+  - family-names: [Seu sobrenome]
+    given-names: [Seu nome]
+    orcid: https://orcid.org/0000-0000-0000-0000
+    affiliation: Universidade Federal do Rio Grande do Norte
+  - family-names: Naschold
+    given-names: Ângela Maria Chuvas
+    orcid: https://orcid.org/0000-0000-0000-0000
+    affiliation: Universidade Federal do Rio Grande do Norte - CERES
+
+# Identifiers
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.XXXXXXX
+    description: Zenodo DOI (pending)
+  - type: url
+    value: https://github.com/dronreef2/NeurocienciaEducacional
+    description: GitHub Repository
+
+# Keywords
+keywords:
+  - educational neuroscience
+  - cognitive development
+  - executive functions
+  - artificial intelligence
+  - children
+  - longitudinal study
+  - EEG
+  - SEM
+  - Khanmigo
+  - BNCC
+
+# Abstract
+abstract: |
+  Five-year research program (2026-2030) investigating how different
+  educational technologies based on artificial intelligence impact
+  cognitive development of children. Includes five studies: qualitative
+  analysis with children (P01), randomized controlled trial on
+  gamification (P02), EEG study on reading (P03), cross-sectional SEM
+  study (P04), and longitudinal cohort (P05). Partnership between
+  UFRN/CERES and ICe.
+abstract-pt: |
+  Programa de pesquisa de 5 anos (2026-2030) investigando como diferentes
+  tecnologias educacionais baseadas em inteligência artificial impactam
+  o desenvolvimento cognitivo de crianças. Inclui cinco estudos: análise
+  qualitativa com crianças (P01), ensaio controlado randomizado sobre
+  gamificação (P02), estudo EEG sobre leitura (P03), estudo transversal
+  com SEM (P04), e coorte longitudinal (P05). Parceria entre UFRN/CERES
+  e ICe.
+
+# References
+references:
+  - type: article
+    title: "Vozes das crianças sobre tutores de IA"
+    authors:
+      - family-names: [Seu sobrenome]
+        given-names: [Seu nome]
+    year: 2026
+    journal: "Computers & Education"
+    status: "in preparation"
+
+# Funding
+funding:
+  - agency: "Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (CAPES)"
+    type: "scholarship"
+    reference: "Bolsa de mestrado"
+    country: "Brazil"
+
+# Related research
+related-identifiers:
+  - type: url
+    value: https://github.com/dronreef2/NeurocienciaEducacional
+    relation: isSupplementTo
+  - type: url
+    value: https://osf.io/
+    relation: isReferencedBy
+    description: "OSF pre-registrations"
+
+# Contact
+contact:
+  - family-names: [Seu sobrenome]
+    email: [seu-email]@ufrn.br
+    affiliation: PPGED/UFRN

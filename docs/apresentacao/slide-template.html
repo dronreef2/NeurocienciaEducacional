@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Template de Slides — Programa de Pesquisa</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #1a202c;
+            color: white;
+        }
+        .slide {
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 2px solid #2d3748;
+            position: relative;
+        }
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: #718096;
+            font-size: 0.9em;
+        }
+        .slide-title {
+            font-size: 2.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .slide-subtitle {
+            font-size: 1.4em;
+            color: #a0aec0;
+            margin-bottom: 40px;
+        }
+        .slide-content {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .slide-content h3 {
+            color: #667eea;
+            margin: 20px 0 10px;
+            font-size: 1.3em;
+        }
+        .slide-content ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        .slide-content li {
+            margin-bottom: 10px;
+        }
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .title-slide h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        .title-slide .emoji { font-size: 1.2em; }
+        .title-slide .meta {
+            margin-top: 40px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .card h4 { color: #667eea; margin-bottom: 10px; }
+        .nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            z-index: 100;
+        }
+        .nav a { color: white; text-decoration: none; margin: 0 5px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="#slide-1">1</a>
+        <a href="#slide-2">2</a>
+        <a href="#slide-3">3</a>
+        <a href="#slide-4">4</a>
+        <a href="#slide-5">5</a>
+        <a href="#slide-6">6</a>
+        <a href="#slide-7">7</a>
+        <a href="#slide-8">8</a>
+        <a href="#slide-9">9</a>
+        <a href="#slide-10">10</a>
+    </div>
+
+    <!-- Slide 1: Título -->
+    <section class="slide title-slide" id="slide-1">
+        <h1><span class="emoji">🧠</span> Programa de Pesquisa<br>Neurociência Educacional</h1>
+        <p class="slide-subtitle">Como a IA generativa impacta o desenvolvimento cognitivo de crianças (2026-2030)</p>
+        <p class="meta">
+            <strong>UFRN/CERES</strong> · PPGED · ICe<br>
+            Orientadora: Profa. Dra. Ângela M. C. Naschold<br>
+            Bolsista CAPES
+        </p>
+    </section>
+
+    <!-- Slide 2: Contexto -->
+    <section class="slide" id="slide-2">
+        <h2 class="slide-title">Contexto e Justificativa</h2>
+        <div class="slide-content">
+            <ul>
+                <li><strong>Crescimento explosivo</strong> de IA generativa em escolas (ChatGPT, Khanmigo, Claude)</li>
+                <li><strong>Plano Nacional de IA 2024-2028</strong> prevê integração em escolas públicas brasileiras</li>
+                <li><strong>BNCC</strong> inclui pensamento computacional e letramento digital</li>
+                <li><strong>Lacuna:</strong> pouco se sabe sobre como crianças pequenas percebem e usam IA</li>
+                <li><strong>População crítica:</strong> 2º ano (7-8 anos) em fase de alfabetização</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 3: Pergunta de pesquisa -->
+    <section class="slide" id="slide-3">
+        <h2 class="slide-title">Pergunta de Pesquisa</h2>
+        <div class="slide-content">
+            <h3>P01 (qualitativo):</h3>
+            <p style="font-size: 1.3em; font-style: italic; color: #667eea; margin: 20px 0;">
+                "Como crianças do 2º ano interpretam, vivenciam e confiam no tutor de IA Khanmigo?"
+            </p>
+            <h3>Programa (5 projetos):</h3>
+            <ul>
+                <li><strong>P01:</strong> Análise Temática Reflexiva (qualitativo)</li>
+                <li><strong>P02:</strong> ECR 2×4 (gamificação × FE)</li>
+                <li><strong>P03:</strong> Quasi-experimental (EEG N170/P300)</li>
+                <li><strong>P04:</strong> Transversal correlacional (SEM, N=300-500)</li>
+                <li><strong>P05:</strong> Coorte longitudinal 5 anos (N=200)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 4: Método -->
+    <section class="slide" id="slide-4">
+        <h2 class="slide-title">Método — P01 Piloto</h2>
+        <div class="slide-content grid-2">
+            <div>
+                <h3>Participantes</h3>
+                <ul>
+                    <li>3 crianças (7-8 anos)</li>
+                    <li>2º ano, escola pública</li>
+                    <li>Natal/RN</li>
+                </ul>
+                <h3>Instrumentos</h3>
+                <ul>
+                    <li>Entrevistas semi-estruturadas</li>
+                    <li>Think-aloud</li>
+                    <li>Diários de uso (15-17 dias)</li>
+                    <li>Questionários pais/professores</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Análise</h3>
+                <ul>
+                    <li>Análise Temática Reflexiva</li>
+                    <li>Braun & Clarke (2022)</li>
+                    <li>Validação estatística complementar</li>
+                </ul>
+                <h3>Aspectos éticos</h3>
+                <ul>
+                    <li>CEP/UFRN</li>
+                    <li>TCLE pais + TALE criança</li>
+                    <li>LGPD compliant</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: 5 Temas -->
+    <section class="slide" id="slide-5">
+        <h2 class="slide-title">5 Temas Emergentes</h2>
+        <div class="slide-content grid-2">
+            <div class="card">
+                <h4>1. Antropomorfização Condicional</h4>
+                <p>Pronomes humanos + reconhecimento de limites. <em>"Khanmigo é um robô que ajuda"</em></p>
+            </div>
+            <div class="card">
+                <h4>2. Detecção Precoce de Erro</h4>
+                <p>Crianças identificam e corrigem o tutor. <em>"Eu contei nos dedos e mostrei pra ele"</em></p>
+            </div>
+            <div class="card">
+                <h4>3. Confiança Calibrada</h4>
+                <p>Verificação ativa. <em>"Confio mas confiro"</em> (Pedro)</p>
+            </div>
+            <div class="card">
+                <h4>4. Comparação Sistemática</h4>
+                <p>Avaliação contra humanos (professora, família, amigos)</p>
+            </div>
+            <div class="card">
+                <h4>5. Preferência Contextual</h4>
+                <p>Escolha situacional. <em>"Pra somar eu uso, pra ler eu prefiro minha avó"</em></p>
+            </div>
+            <div class="card" style="border-left-color: #27ae60;">
+                <h4 style="color: #27ae60;">Validação estatística</h4>
+                <p>Todos os 5 temas apareceram em 100% das crianças. Análise estatística do piloto disponível.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Resultados P02-P05 -->
+    <section class="slide" id="slide-6">
+        <h2 class="slide-title">Visão Geral — 5 Projetos</h2>
+        <div class="slide-content">
+            <table style="width:100%; border-collapse: collapse; font-size: 1.1em;">
+                <thead>
+                    <tr style="background: rgba(102, 126, 234, 0.3);">
+                        <th style="padding: 12px; text-align: left;">Projeto</th>
+                        <th style="padding: 12px; text-align: left;">Design</th>
+                        <th style="padding: 12px; text-align: center;">N</th>
+                        <th style="padding: 12px; text-align: center;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding: 10px;">P01</td><td>Qualitativo (ATR)</td><td style="text-align:center;">3 (piloto)</td><td style="text-align:center; color:#27ae60;">✅ Piloto</td></tr>
+                    <tr style="background: rgba(255,255,255,0.03);"><td>P02</td><td>ECR 2×4</td><td style="text-align:center;">200</td><td style="text-align:center; color:#f39c12;">🟡 Setup</td></tr>
+                    <tr><td>P03</td><td>EEG (N170/P300)</td><td style="text-align:center;">60</td><td style="text-align:center; color:#e67e22;">🟠 Setup</td></tr>
+                    <tr style="background: rgba(255,255,255,0.03);"><td>P04</td><td>SEM transversal</td><td style="text-align:center;">300-500</td><td style="text-align:center; color:#9b59b6;">🟣 Em campo</td></tr>
+                    <tr><td>P05</td><td>Coorte 5 anos</td><td style="text-align:center;">200</td><td style="text-align:center; color:#e74c3c;">🔴 Planejado</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Slide 7: Resultados estatísticos -->
+    <section class="slide" id="slide-7">
+        <h2 class="slide-title">Validação Estatística dos 5 Temas</h2>
+        <div class="slide-content">
+            <h3>Testes realizados (N=3, piloto)</h3>
+            <ul>
+                <li><strong>Confiança mat &gt; leitura:</strong> 3/3 direções, consistente (p=0.125, NS devido a N pequeno)</li>
+                <li><strong>Uso × detecção de erro:</strong> ρ = 0.50, IC 95% bootstrap [-1, 1]</li>
+                <li><strong>Tendência temporal de uso:</strong> Mann-Kendall Z = 0, p = 1.0 (estável)</li>
+                <li><strong>Distribuição de atividades:</strong> χ² = 8.5, p < 0.05 (não-uniforme, matematica 57%)</li>
+            </ul>
+            <h3>Implicação</h3>
+            <p style="color: #27ae60; font-size: 1.3em;">
+                ✅ Os 5 temas são <strong>suportados quantitativamente</strong> mesmo com N=3
+            </p>
+            <p style="color: #a0aec0; margin-top: 10px;">
+                Análise exploratória. Replicar com N=12-15 para saturação + poder estatístico adequado.
+            </p>
+        </div>
+    </section>
+
+    <!-- Slide 8: Implicações -->
+    <section class="slide" id="slide-8">
+        <h2 class="slide-title">Implicações</h2>
+        <div class="slide-content grid-2">
+            <div>
+                <h3>Teóricas</h3>
+                <ul>
+                    <li>MToM é multinível (não dicotômica)</li>
+                    <li>MToM é contextual</li>
+                    <li>MToM é educável (pais, escola)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Práticas</h3>
+                <ul>
+                    <li><strong>Escolas:</strong> IA complementa, não substitui professor</li>
+                    <li><strong>Pais:</strong> conversar sobre como confiar em IA</li>
+                    <li><strong>Designers:</strong> tornar erros visíveis (calibração)</li>
+                    <li><strong>Políticas:</strong> letramento digital crítico no currículo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: Próximos passos -->
+    <section class="slide" id="slide-9">
+        <h2 class="slide-title">Próximos Passos</h2>
+        <div class="slide-content">
+            <h3>Curto prazo (2026)</h3>
+            <ul>
+                <li>✅ P01 piloto concluído (3 crianças)</li>
+                <li>📋 Submissão ao CEP</li>
+                <li>👥 Recrutamento para N=12-15 (saturação)</li>
+                <li>📝 Submissão manuscrito P01 (Computers & Education)</li>
+            </ul>
+            <h3>Médio prazo (2027-2028)</h3>
+            <ul>
+                <li>P02 — Coleta ECR</li>
+                <li>P03 — EEG piloto + coleta</li>
+                <li>P04 — Coleta transversal</li>
+            </ul>
+            <h3>Longo prazo (2029-2030)</h3>
+            <ul>
+                <li>P05 — Coorte ondas T1-T5</li>
+                <li>5+ manuscritos publicados</li>
+                <li>Defesa de mestrado (M60)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 10: Obrigado -->
+    <section class="slide title-slide" id="slide-10">
+        <h1><span class="emoji">🙏</span> Obrigado!</h1>
+        <p class="slide-subtitle">Perguntas? Feedback? Parcerias?</p>
+        <p class="meta">
+            <strong>Repositório:</strong> github.com/dronreef2/NeurocienciaEducacional<br>
+            <strong>Email:</strong> [seu-email]@ufrn.br<br>
+            <strong>Orientadora:</strong> angela.naschold@ufrn.br<br>
+            <br>
+            <em>"Ciência aberta é ciência melhor."</em>
+        </p>
+    </section>
+
+    <div class="slide-number">Programa de Pesquisa — Neurociência Educacional</div>
+</body>
+</html>
