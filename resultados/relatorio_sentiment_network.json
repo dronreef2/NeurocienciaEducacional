@@ -1,0 +1,218 @@
+{
+  "data_analise": "2026-08-07T14:19:52.688242",
+  "sentimento": {
+    "C01_piloto": {
+      "positivo": 15,
+      "negativo": 6,
+      "score": 0.42857142857142855
+    },
+    "C02_piloto": {
+      "positivo": 17,
+      "negativo": 2,
+      "score": 0.7894736842105263
+    },
+    "C03_piloto": {
+      "positivo": 5,
+      "negativo": 11,
+      "score": -0.375
+    }
+  },
+  "rede": {
+    "n_nos": 17,
+    "n_arestas": 114,
+    "densidade": 0.8382352941176471,
+    "n_componentes": 1,
+    "n_comunidades": 2
+  },
+  "centralidade": {
+    "confianca_alta": {
+      "grau": 0.75,
+      "betweenness": 0.05357142857142857,
+      "closeness": 0.8,
+      "autovetor": 0.20068588270035265
+    },
+    "confianca_baixa": {
+      "grau": 0.875,
+      "betweenness": 0.005555555555555555,
+      "closeness": 0.8888888888888888,
+      "autovetor": 0.26661576574195295
+    },
+    "confianca_calibrada": {
+      "grau": 0.4375,
+      "betweenness": 0.024206349206349204,
+      "closeness": 0.64,
+      "autovetor": 0.08426817118878499
+    },
+    "deteccao_erro_imediata": {
+      "grau": 0.875,
+      "betweenness": 0.005555555555555555,
+      "closeness": 0.8888888888888888,
+      "autovetor": 0.26661576574195295
+    },
+    "deteccao_erro_diferida": {
+      "grau": 0.8125,
+      "betweenness": 0.05833333333333333,
+      "closeness": 0.8421052631578947,
+      "autovetor": 0.1530762134913429
+    },
+    "correcao_tutor": {
+      "grau": 0.875,
+      "betweenness": 0.005555555555555555,
+      "closeness": 0.8888888888888888,
+      "autovetor": 0.26661576574195295
+    },
+    "reporta_erro_professor": {
+      "grau": 0.8125,
+      "betweenness": 0.05833333333333333,
+      "closeness": 0.8421052631578947,
+      "autovetor": 0.1530762134913429
+    },
+    "usa_pronome_pessoal": {
+      "grau": 1.0,
+      "betweenness": 0.013333333333333332,
+      "closeness": 1.0,
+      "autovetor": 0.33341250158814767
+    },
+    "atribui_inteligencia": {
+      "grau": 1.0,
+      "betweenness": 0.013333333333333332,
+      "closeness": 1.0,
+      "autovetor": 0.33341250158814767
+    },
+    "atribui_emocoes": {
+      "grau": 0.8125,
+      "betweenness": 0.05833333333333333,
+      "closeness": 0.8421052631578947,
+      "autovetor": 0.1530762134913429
+    },
+    "compara_humano": {
+      "grau": 1.0,
+      "betweenness": 0.013333333333333332,
+      "closeness": 1.0,
+      "autovetor": 0.33341250158814767
+    },
+    "atribuicao_amizade": {
+      "grau": 0.4375,
+      "betweenness": 0.024206349206349204,
+      "closeness": 0.64,
+      "autovetor": 0.08426817118878499
+    },
+    "distincao_robot": {
+      "grau": 0.8125,
+      "betweenness": 0.05833333333333333,
+      "closeness": 0.8421052631578947,
+      "autovetor": 0.1530762134913429
+    },
+    "uso_estrategico": {
+      "grau": 1.0,
+      "betweenness": 0.013333333333333332,
+      "closeness": 1.0,
+      "autovetor": 0.33341250158814767
+    },
+    "limitacao_percebida": {
+      "grau": 0.875,
+      "betweenness": 0.005555555555555555,
+      "closeness": 0.8888888888888888,
+      "autovetor": 0.266615765741953
+    },
+    "preferencia_professor": {
+      "grau": 0.875,
+      "betweenness": 0.005555555555555555,
+      "closeness": 0.8888888888888888,
+      "autovetor": 0.266615765741953
+    },
+    "comparacao_continua": {
+      "grau": 1.0,
+      "betweenness": 0.07246031746031745,
+      "closeness": 1.0,
+      "autovetor": 0.22741636048112487
+    }
+  },
+  "top_grau": [
+    {
+      "codigo": "usa_pronome_pessoal",
+      "centralidade": 1.0
+    },
+    {
+      "codigo": "atribui_inteligencia",
+      "centralidade": 1.0
+    },
+    {
+      "codigo": "compara_humano",
+      "centralidade": 1.0
+    },
+    {
+      "codigo": "uso_estrategico",
+      "centralidade": 1.0
+    },
+    {
+      "codigo": "comparacao_continua",
+      "centralidade": 1.0
+    },
+    {
+      "codigo": "confianca_baixa",
+      "centralidade": 0.875
+    },
+    {
+      "codigo": "deteccao_erro_imediata",
+      "centralidade": 0.875
+    },
+    {
+      "codigo": "correcao_tutor",
+      "centralidade": 0.875
+    },
+    {
+      "codigo": "limitacao_percebida",
+      "centralidade": 0.875
+    },
+    {
+      "codigo": "preferencia_professor",
+      "centralidade": 0.875
+    }
+  ],
+  "top_betweenness": [
+    {
+      "codigo": "comparacao_continua",
+      "centralidade": 0.07246031746031745
+    },
+    {
+      "codigo": "deteccao_erro_diferida",
+      "centralidade": 0.05833333333333333
+    },
+    {
+      "codigo": "reporta_erro_professor",
+      "centralidade": 0.05833333333333333
+    },
+    {
+      "codigo": "atribui_emocoes",
+      "centralidade": 0.05833333333333333
+    },
+    {
+      "codigo": "distincao_robot",
+      "centralidade": 0.05833333333333333
+    }
+  ],
+  "comunidades": [
+    [
+      "atribui_emocoes",
+      "distincao_robot",
+      "limitacao_percebida",
+      "preferencia_professor",
+      "deteccao_erro_imediata",
+      "confianca_baixa",
+      "reporta_erro_professor",
+      "deteccao_erro_diferida",
+      "correcao_tutor"
+    ],
+    [
+      "compara_humano",
+      "confianca_calibrada",
+      "uso_estrategico",
+      "usa_pronome_pessoal",
+      "atribui_inteligencia",
+      "comparacao_continua",
+      "atribuicao_amizade",
+      "confianca_alta"
+    ]
+  ]
+}

@@ -85,3 +85,13 @@ if __name__ == "__main__":
         "/workspace/analise/Python/notebooks/04_tutorial_sem.ipynb",
         "TUTORIAL 4: SEM - Modelagem de Equações Estruturais (P04)"
     )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/10_p02_ecr_simulacao.py",
+        "/workspace/analise/Python/notebooks/10_p02_ecr_simulacao.ipynb",
+        "10. P02 - ECR 2x4 Simulação (Gamificação)"
+    )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/11_p03_eeg_realista.py",
+        "/workspace/analise/Python/notebooks/11_p03_eeg_realista.ipynb",
+        "11. P03 - EEG Realista (Tela vs Papel)"
+    )
