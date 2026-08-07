@@ -1,0 +1,81 @@
+name: Auto-deploy Dashboard Status
+
+# Este workflow verifica o status do deploy e notifica mudanças
+# O deploy em si é feito pelo Streamlit Community Cloud (auto-deploy on push)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "streamlit_app.py"
+      - "requirements.txt"
+      - ".streamlit/**"
+      - "analise/Python/dashboard/**"
+      - "01-projeto-qualitativo-criancas-ia/dados/**"
+
+jobs:
+  verify-deploy:
+    name: Verificar Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validar entry point
+        run: |
+          python3 -c "
+          from pathlib import Path
+          assert Path('streamlit_app.py').exists(), 'streamlit_app.py não encontrado'
+          assert Path('requirements.txt').exists(), 'requirements.txt não encontrado'
+          assert Path('.streamlit/config.toml').exists(), '.streamlit/config.toml não encontrado'
+          print('✅ Todos os arquivos de deploy presentes')
+          "
+
+      - name: Validar sintaxe Python
+        run: |
+          python3 -m py_compile streamlit_app.py && echo "✅ streamlit_app.py: sintaxe OK"
+          python3 -m py_compile analise/Python/dashboard/piloto/app.py && echo "✅ dashboard app.py: sintaxe OK"
+
+      - name: Validar requirements
+        run: |
+          python3 -c "
+          reqs = Path('requirements.txt').read_text().splitlines()
+          reqs = [r for r in reqs if r and not r.startswith('#')]
+          print(f'Pacotes em requirements.txt: {len(reqs)}')
+          for r in reqs:
+              print(f'  - {r}')
+          mandatory = ['streamlit', 'pandas', 'numpy']
+          for m in mandatory:
+              assert any(m in r for r in reqs), f'Faltando: {m}'
+          print('✅ Pacotes obrigatórios presentes')
+          "
+
+      - name: Testar import do dashboard
+        run: |
+          pip install --quiet streamlit pandas numpy plotly
+          python3 -c "
+          import sys
+          sys.path.insert(0, 'analise/Python/dashboard/piloto')
+          import app
+          print('✅ Dashboard importa sem erro')
+          "
+
+      - name: Resumo do deploy
+        if: always()
+        run: |
+          echo "============================================"
+          echo "  DEPLOY STATUS"
+          echo "============================================"
+          echo ""
+          echo "📦 Repositório: dronreef2/NeurocienciaEducacional"
+          echo "🌐 Plataforma: Streamlit Community Cloud"
+          echo "🔄 Auto-deploy: ATIVO (push no main)"
+          echo ""
+          echo "Próximos passos para verificar deploy:"
+          echo "  1. Acesse https://share.streamlit.io/"
+          echo "  2. Vá em seu app"
+          echo "  3. Verifique os logs (Manage app → Logs)"
+          echo ""
+          echo "URL esperada: https://neurociencia-educacional.streamlit.app"
+          echo "============================================"

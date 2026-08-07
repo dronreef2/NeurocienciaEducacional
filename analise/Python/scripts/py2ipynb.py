@@ -70,3 +70,18 @@ if __name__ == "__main__":
         "/workspace/analise/Python/notebooks/01_tutorial_basico.ipynb",
         "TUTORIAL 1: Introdução ao Programa (P01 Piloto)"
     )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/02_tutorial_eeg.py",
+        "/workspace/analise/Python/notebooks/02_tutorial_eeg.ipynb",
+        "TUTORIAL 2: Análise EEG/ERP (P03)"
+    )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/03_tutorial_irt.py",
+        "/workspace/analise/Python/notebooks/03_tutorial_irt.ipynb",
+        "TUTORIAL 3: IRT - Modelo de Rasch (P05)"
+    )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/04_tutorial_sem.py",
+        "/workspace/analise/Python/notebooks/04_tutorial_sem.ipynb",
+        "TUTORIAL 4: SEM - Modelagem de Equações Estruturais (P04)"
+    )

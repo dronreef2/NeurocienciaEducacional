@@ -1,0 +1,36 @@
+{
+  "data_analise": "2026-08-07T13:01:29.998853",
+  "n_obs": 51,
+  "n_criancas": 3,
+  "modelos": {
+    "ols": {
+      "aic": 350.74025177584934,
+      "r2": 0.6015003222713959,
+      "formula": "duracao_min ~ dia_num + e_matematica + e_leitura + fim_de_semana"
+    },
+    "mixed_intercept_only": {
+      "sd_intercept": 4.6189216755196245,
+      "coefs": {
+        "Intercept": 1.9013230913632064,
+        "dia_num": 0.22415434585290336,
+        "e_matematica": 17.967028022701495,
+        "e_leitura": 11.231073643361674,
+        "fim_de_semana": 3.7355664007004195,
+        "crianca Var": 0.5708891135857305
+      },
+      "pvalues": {
+        "Intercept": 0.6178502585516451,
+        "dia_num": 0.2048250350528339,
+        "e_matematica": 1.5629756664161224e-14,
+        "e_leitura": 4.993873743610316e-06,
+        "fim_de_semana": 0.07709026513425209,
+        "crianca Var": 0.3798399696265279
+      }
+    }
+  },
+  "efeitos_aleatorios": {
+    "C01": -1.1845443977709549,
+    "C02": 4.841576407476484,
+    "C03": -3.657032009705509
+  }
+}
