@@ -1,0 +1,18 @@
+[theme]
+# Cores principais (baseado na identidade visual do programa)
+primaryColor = "#667eea"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f7ff"
+textColor = "#2d3748"
+font = "sans serif"
+
+[server]
+# Headless mode (necessário para deploy)
+headless = true
+# CORS desabilitado (apenas para apps públicos)
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+# Não mostrar "Made with Streamlit" no canto inferior
+gatherUsageStats = false
