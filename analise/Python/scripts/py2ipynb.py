@@ -61,12 +61,7 @@ def py_to_ipynb(py_path, ipynb_path, title):
 
 if __name__ == "__main__":
     py_to_ipynb(
-        "/workspace/analise/Python/notebooks/07_cross_lagged.py",
-        "/workspace/analise/Python/notebooks/07_cross_lagged.ipynb",
-        "07. Cross-Lagged Panel Model (P05)"
-    )
-    py_to_ipynb(
-        "/workspace/analise/Python/notebooks/08_power_analysis.py",
-        "/workspace/analise/Python/notebooks/08_power_analysis.ipynb",
-        "08. Análise de Poder Estatístico"
+        "/workspace/analise/Python/notebooks/09_irt_analysis.py",
+        "/workspace/analise/Python/notebooks/09_irt_analysis.ipynb",
+        "09. Item Response Theory - Modelo de Rasch (P05)"
     )
