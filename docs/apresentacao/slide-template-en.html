@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slide Template (EN) — Research Program</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #1a202c;
+            color: white;
+        }
+        .slide {
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 2px solid #2d3748;
+            position: relative;
+        }
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: #718096;
+            font-size: 0.9em;
+        }
+        .slide-title {
+            font-size: 2.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .slide-subtitle {
+            font-size: 1.4em;
+            color: #a0aec0;
+            margin-bottom: 40px;
+        }
+        .slide-content {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .slide-content h3 {
+            color: #667eea;
+            margin: 20px 0 10px;
+            font-size: 1.3em;
+        }
+        .slide-content ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        .slide-content li {
+            margin-bottom: 10px;
+        }
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .title-slide h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        .title-slide .emoji { font-size: 1.2em; }
+        .title-slide .meta {
+            margin-top: 40px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .card h4 { color: #667eea; margin-bottom: 10px; }
+        .nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            z-index: 100;
+        }
+        .nav a { color: white; text-decoration: none; margin: 0 5px; }
+        .lang {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(102, 126, 234, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            z-index: 100;
+        }
+        .lang a { color: white; text-decoration: none; margin: 0 5px; font-weight: bold; }
+        .lang a.active { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="lang">
+        <a href="slide-template.html">🇧🇷 PT</a>
+        <a href="slide-template-en.html" class="active">🇺🇸 EN</a>
+        <a href="slide-template-es.html">🇪🇸 ES</a>
+    </div>
+
+    <div class="nav">
+        <a href="#slide-1">1</a>
+        <a href="#slide-2">2</a>
+        <a href="#slide-3">3</a>
+        <a href="#slide-4">4</a>
+        <a href="#slide-5">5</a>
+        <a href="#slide-6">6</a>
+        <a href="#slide-7">7</a>
+        <a href="#slide-8">8</a>
+        <a href="#slide-9">9</a>
+        <a href="#slide-10">10</a>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <section class="slide title-slide" id="slide-1">
+        <h1><span class="emoji">🧠</span> Educational Neuroscience<br>Research Program</h1>
+        <p class="slide-subtitle">How Generative AI Impacts Cognitive Development of Children (2026-2030)</p>
+        <p class="meta">
+            <strong>UFRN/CERES</strong> · PPGED · ICe<br>
+            Advisor: Profa. Dra. Ângela M. C. Naschold<br>
+            CAPES Scholarship Holder
+        </p>
+    </section>
+
+    <!-- Slide 2: Context -->
+    <section class="slide" id="slide-2">
+        <h2 class="slide-title">Context and Justification</h2>
+        <div class="slide-content">
+            <ul>
+                <li><strong>Explosive growth</strong> of generative AI in schools (ChatGPT, Khanmigo, Claude)</li>
+                <li><strong>Brazilian National AI Plan 2024-2028</strong> includes public school integration</li>
+                <li><strong>BNCC</strong> (National Curriculum) includes computational thinking</li>
+                <li><strong>Gap:</strong> little is known about how young children perceive and use AI</li>
+                <li><strong>Critical population:</strong> 2nd grade (7-8 years) during literacy acquisition</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 3: Research Question -->
+    <section class="slide" id="slide-3">
+        <h2 class="slide-title">Research Question</h2>
+        <div class="slide-content">
+            <h3>P01 (qualitative):</h3>
+            <p style="font-size: 1.3em; font-style: italic; color: #667eea; margin: 20px 0;">
+                "How do 2nd-grade children interpret, experience, and trust the AI tutor Khanmigo?"
+            </p>
+            <h3>Program (5 studies):</h3>
+            <ul>
+                <li><strong>P01:</strong> Reflexive Thematic Analysis (qualitative)</li>
+                <li><strong>P02:</strong> RCT 2×4 (gamification × EF)</li>
+                <li><strong>P03:</strong> Quasi-experimental (EEG N170/P300)</li>
+                <li><strong>P04:</strong> Cross-sectional (SEM, N=300-500)</li>
+                <li><strong>P05:</strong> 5-year Longitudinal Cohort (N=200)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 4: Method -->
+    <section class="slide" id="slide-4">
+        <h2 class="slide-title">Method — P01 Pilot</h2>
+        <div class="slide-content grid-2">
+            <div>
+                <h3>Participants</h3>
+                <ul>
+                    <li>3 children (7-8 years)</li>
+                    <li>2nd grade, public school</li>
+                    <li>Natal/RN, Brazil</li>
+                </ul>
+                <h3>Instruments</h3>
+                <ul>
+                    <li>Semi-structured interviews</li>
+                    <li>Think-aloud</li>
+                    <li>Usage diaries (15-17 days)</li>
+                    <li>Parent + teacher questionnaires</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Analysis</h3>
+                <ul>
+                    <li>Reflexive Thematic Analysis</li>
+                    <li>Braun & Clarke (2022)</li>
+                    <li>Complementary statistical validation</li>
+                </ul>
+                <h3>Ethics</h3>
+                <ul>
+                    <li>IRB/UFRN approved</li>
+                    <li>Parental consent + child assent</li>
+                    <li>LGPD compliant</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: 5 Themes -->
+    <section class="slide" id="slide-5">
+        <h2 class="slide-title">5 Emergent Themes</h2>
+        <div class="slide-content grid-2">
+            <div class="card">
+                <h4>1. Conditional Anthropomorphization</h4>
+                <p>Human pronouns + recognition of limits. <em>"Khanmigo is a robot that helps"</em></p>
+            </div>
+            <div class="card">
+                <h4>2. Early Error Detection</h4>
+                <p>Children identify and correct the tutor. <em>"I counted on my fingers and showed him"</em></p>
+            </div>
+            <div class="card">
+                <h4>3. Calibrated Trust</h4>
+                <p>Active verification. <em>"I trust but I verify"</em> (Pedro)</p>
+            </div>
+            <div class="card">
+                <h4>4. Systematic Comparison</h4>
+                <p>Evaluation against humans (teacher, family, friends)</p>
+            </div>
+            <div class="card">
+                <h4>5. Contextual Preference</h4>
+                <p>Situational choice. <em>"For math I use [Khanmigo], for reading I prefer my grandma"</em></p>
+            </div>
+            <div class="card" style="border-left-color: #27ae60;">
+                <h4 style="color: #27ae60;">Statistical validation</h4>
+                <p>All 5 themes appeared in 100% of children. Pilot statistical analysis available.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: All 5 Studies -->
+    <section class="slide" id="slide-6">
+        <h2 class="slide-title">Overview — 5 Studies</h2>
+        <div class="slide-content">
+            <table style="width:100%; border-collapse: collapse; font-size: 1.1em;">
+                <thead>
+                    <tr style="background: rgba(102, 126, 234, 0.3);">
+                        <th style="padding: 12px; text-align: left;">Study</th>
+                        <th style="padding: 12px; text-align: left;">Design</th>
+                        <th style="padding: 12px; text-align: center;">N</th>
+                        <th style="padding: 12px; text-align: center;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding: 10px;">P01</td><td>Qualitative (RTA)</td><td style="text-align:center;">3 (pilot)</td><td style="text-align:center; color:#27ae60;">✅ Pilot done</td></tr>
+                    <tr style="background: rgba(255,255,255,0.03);"><td>P02</td><td>RCT 2×4</td><td style="text-align:center;">200</td><td style="text-align:center; color:#f39c12;">🟡 Setup</td></tr>
+                    <tr><td>P03</td><td>EEG (N170/P300)</td><td style="text-align:center;">60</td><td style="text-align:center; color:#e67e22;">🟠 Setup</td></tr>
+                    <tr style="background: rgba(255,255,255,0.03);"><td>P04</td><td>Cross-sectional SEM</td><td style="text-align:center;">300-500</td><td style="text-align:center; color:#9b59b6;">🟣 Data collection</td></tr>
+                    <tr><td>P05</td><td>5-year Cohort</td><td style="text-align:center;">200</td><td style="text-align:center; color:#e74c3c;">🔴 Planned</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Slide 7: Statistical Results -->
+    <section class="slide" id="slide-7">
+        <h2 class="slide-title">Statistical Validation of 5 Themes</h2>
+        <div class="slide-content">
+            <h3>Tests performed (N=3, pilot)</h3>
+            <ul>
+                <li><strong>Math &gt; reading confidence:</strong> 3/3 directions, consistent (p=0.125, NS due to small N)</li>
+                <li><strong>Use × error detection:</strong> ρ = 0.50, 95% CI bootstrap [-1, 1]</li>
+                <li><strong>Usage temporal trend:</strong> Mann-Kendall Z = 0, p = 1.0 (stable)</li>
+                <li><strong>Activity distribution:</strong> χ² = 8.5, p < 0.05 (non-uniform, math 57%)</li>
+            </ul>
+            <h3>Implication</h3>
+            <p style="color: #27ae60; font-size: 1.3em;">
+                ✅ All 5 themes are <strong>quantitatively supported</strong> even with N=3
+            </p>
+            <p style="color: #a0aec0; margin-top: 10px;">
+                Exploratory analysis. Replicate with N=12-15 for thematic saturation + adequate statistical power.
+            </p>
+        </div>
+    </section>
+
+    <!-- Slide 8: Implications -->
+    <section class="slide" id="slide-8">
+        <h2 class="slide-title">Implications</h2>
+        <div class="slide-content grid-2">
+            <div>
+                <h3>Theoretical</h3>
+                <ul>
+                    <li>MToM is multi-level (not dichotomous)</li>
+                    <li>MToM is contextual</li>
+                    <li>MToM is educable (parents, school)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Practical</h3>
+                <ul>
+                    <li><strong>Schools:</strong> AI complements, doesn't replace teacher</li>
+                    <li><strong>Parents:</strong> discuss how to trust AI</li>
+                    <li><strong>Designers:</strong> make errors visible (calibration)</li>
+                    <li><strong>Policy:</strong> critical digital literacy in curriculum</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: Next Steps -->
+    <section class="slide" id="slide-9">
+        <h2 class="slide-title">Next Steps</h2>
+        <div class="slide-content">
+            <h3>Short-term (2026)</h3>
+            <ul>
+                <li>✅ P01 pilot completed (3 children)</li>
+                <li>📋 IRB submission</li>
+                <li>👥 Recruitment for N=12-15 (saturation)</li>
+                <li>📝 Submit P01 manuscript (Computers & Education)</li>
+            </ul>
+            <h3>Medium-term (2027-2028)</h3>
+            <ul>
+                <li>P02 — RCT data collection</li>
+                <li>P03 — EEG pilot + data collection</li>
+                <li>P04 — Cross-sectional data collection</li>
+            </ul>
+            <h3>Long-term (2029-2030)</h3>
+            <ul>
+                <li>P05 — Cohort waves T1-T5</li>
+                <li>5+ manuscripts published</li>
+                <li>Master's defense (M60)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 10: Thanks -->
+    <section class="slide title-slide" id="slide-10">
+        <h1><span class="emoji">🙏</span> Thank you!</h1>
+        <p class="slide-subtitle">Questions? Feedback? Partnerships?</p>
+        <p class="meta">
+            <strong>Repository:</strong> github.com/dronreef2/NeurocienciaEducacional<br>
+            <strong>Email:</strong> [your-email]@ufrn.br<br>
+            <strong>Advisor:</strong> angela.naschold@ufrn.br<br>
+            <br>
+            <em>"Open science is better science."</em>
+        </p>
+    </section>
+
+    <div class="slide-number">Research Program — Educational Neuroscience</div>
+</body>
+</html>
