@@ -95,3 +95,13 @@ if __name__ == "__main__":
         "/workspace/analise/Python/notebooks/11_p03_eeg_realista.ipynb",
         "11. P03 - EEG Realista (Tela vs Papel)"
     )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/12_sobrevivencia.py",
+        "/workspace/analise/Python/notebooks/12_sobrevivencia.ipynb",
+        "12. Análise de Sobrevivência (P05)"
+    )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/13_item_analysis.py",
+        "/workspace/analise/Python/notebooks/13_item_analysis.ipynb",
+        "13. Análise Clássica de Itens - CTT (P05)"
+    )
