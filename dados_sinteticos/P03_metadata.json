@@ -1,0 +1,57 @@
+{
+  "n_subjects": 60,
+  "n_channels": 32,
+  "n_samples": 500,
+  "sfreq": 500,
+  "channel_names": [
+    "Fp1",
+    "Fp2",
+    "F3",
+    "Fz",
+    "F4",
+    "C3",
+    "Cz",
+    "C4",
+    "P3",
+    "Pz",
+    "P4",
+    "P7",
+    "P8",
+    "PO7",
+    "PO8",
+    "O1",
+    "Oz",
+    "O2",
+    "T7",
+    "T8",
+    "TP9",
+    "TP10",
+    "FT9",
+    "FT10",
+    "Fpz",
+    "AF7",
+    "AF8",
+    "F1",
+    "F2",
+    "P1",
+    "P2",
+    "POz"
+  ],
+  "conditions": [
+    "papel",
+    "tela"
+  ],
+  "ROIs": {
+    "N170": [
+      "PO7",
+      "PO8",
+      "O1",
+      "O2"
+    ],
+    "P300": [
+      "P3",
+      "Pz",
+      "P4"
+    ]
+  }
+}
