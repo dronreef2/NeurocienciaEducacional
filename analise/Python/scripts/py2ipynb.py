@@ -105,3 +105,8 @@ if __name__ == "__main__":
         "/workspace/analise/Python/notebooks/13_item_analysis.ipynb",
         "13. Análise Clássica de Itens - CTT (P05)"
     )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/14_bibliometria.py",
+        "/workspace/analise/Python/notebooks/14_bibliometria.ipynb",
+        "14. Análise Bibliométrica dos Papers Seminais"
+    )

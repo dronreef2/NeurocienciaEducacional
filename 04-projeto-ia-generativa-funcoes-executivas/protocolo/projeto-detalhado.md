@@ -1,204 +1,285 @@
-# 📄 Projeto Detalhado — P04 (IA Generativa × Funções Executivas)
+# 📋 P04 — Protocolo Detalhado
 
-> **Status:** v0.1 — piloto
-> **Projeto:** Uso de IA generativa (ChatGPT, Claude, Gemini) e suas relações com funções executivas em adolescentes
-> **Pesquisadora:** [Seu nome]
-> **Orientadora:** Profa. Dra. Ângela Maria Chuvas Naschold (UFRN)
-> **Linha:** Cognição + tecnologia (transversal ao Leitura + Neurociências)
-
----
-
-## 1. RESUMO
-
-Este estudo transversal correlacional investiga a relação entre o **padrão de uso de IA generativa** (frequência, tipo de tarefa, tempo de uso) e o **desempenho em funções executivas (FE)** — memória de trabalho, controle inibitório, flexibilidade cognitiva — em **adolescentes de 12–16 anos** (N=150–300). As FE são avaliadas por **bateria computadorizada** (N-back, Stroop, WCST, Keeping Track). A qualidade de escrita é avaliada por **comparação de redações com e sem IA**. Análise por **equações estruturais (SEM)** com o modelo de 3 FE de Miyake. Resultados esperados: contribuir com a literatura sobre **cognitive offloading** (Risko & Gilbert, 2016) e informar políticas de letramento digital em escolas.
-
-**Palavras-chave:** IA generativa, funções executivas, adolescentes, offloading cognitivo, equações estruturais, letramento digital.
+> **Título:** Uso de IA generativa e funções executivas em crianças do 2º ao 5º ano: estudo transversal correlacional com Modelagem de Equações Estruturais (SEM)
+> **Versão:** 2.0 (2026-08-09)
+> **Pesquisador principal:** [Seu nome]
+> **Orientadora:** Profa. Dra. Ângela M. C. Naschold
+> **Status:** Aguardando submissão CEP
 
 ---
 
-## 2. INTRODUÇÃO E JUSTIFICATIVA
+## 1. Resumo
 
-A **IA generativa** (ChatGPT, Claude, Gemini) está profundamente presente na vida de adolescentes brasileiros. Pesquisa do **TIC Kids Online Brasil 2024** indica que **70% dos adolescentes de 12–17 anos** usam IA generativa para tarefas escolares. Porém, **quase não há evidência** sobre os efeitos cognitivos desse uso.
+### 1.1. Pergunta de pesquisa
+> O uso de IA generativa (X) afeta funções executivas (Y) em crianças do 2º ao 5º ano, mediado por engajamento escolar (M) e moderado pelo letramento digital dos pais (W)?
 
-A literatura internacional começa a abordar o tema. Trabalhos recentes (Anthropic, OpenAI) documentam o fenômeno de **"cognitive offloading"** (Risko & Gilbert, 2016) — o uso de ferramentas externas para reduzir demanda cognitiva. O impacto de longo prazo sobre **funções executivas** (memória de trabalho, inibição, flexibilidade) é uma **preocupação teórica central**, mas há **poucos dados empíricos com adolescentes**.
+### 1.2. Hipóteses
 
-Este projeto preenche essa lacuna, com foco em:
-- **Padrões de uso** (frequência, tipo de tarefa, contexto)
-- **FE específicas** (não FE global) — distinguindo os 3 fatores de Miyake
-- **Análise SEM** para modelar relações complexas
-- **Contexto brasileiro** — com adolescentes de escola pública
+- **H1:** Uso de IA → Engajamento (efeito direto positivo, β ≈ 0.30)
+- **H2:** Engajamento → FE (efeito direto positivo, β ≈ 0.40)
+- **H3:** Uso de IA → FE (efeito direto positivo, menor, β ≈ 0.10-0.20)
+- **H4:** Efeito indireto significativo (β × b), IC 95% exclui zero
+- **H5:** Letramento digital dos pais modera X → Y (W × X significativo)
 
----
+### 1.3. Modelo conceitual
 
-## 3. OBJETIVOS
-
-### 3.1. Objetivo geral
-Investigar a relação entre padrões de uso de IA generativa e o desempenho em funções executivas em adolescentes de 12–16 anos.
-
-### 3.2. Objetivos específicos
-1. Caracterizar o **uso de IA generativa** na amostra (frequência, tipo de tarefa, contexto)
-2. Medir o **desempenho em FE** (memória de trabalho, inibição, flexibilidade) com bateria computadorizada
-3. Testar o **modelo de 3 FE de Miyake** (shifting, updating, inhibition) com análise fatorial confirmatória
-4. Examinar a **relação** entre uso de IA e FE (correlações, regressões, SEM)
-5. Investigar **moderação** por sexo, idade, SES, AI literacy
-6. Comparar **redações com e sem IA** (qualidade textual, esforço percebido)
+```
+   Uso_IA (X) ──a1──> Engajamento (M1) ──b1──> FE (Y)
+       │              │                          ↑
+       │              │                          │
+       c' (direto)────┴──────────────────────────┤
+       │                                         │
+       └──d (W×X)──> Engajamento (moderação)
+```
 
 ---
 
-## 4. MÉTODO
+## 2. Background
 
-### 4.1. Delineamento
-**Estudo transversal correlacional** com componente qualitativo (análise de redações).
+### 2.1. Estado da arte
 
-### 4.2. Participantes
-- **N planejado:** 150–300 adolescentes (poder estatístico para SEM com 3 fatores)
-- **Faixa etária:** 12–16 anos (6º ao 9º ano do Ensino Fundamental)
-- **Critérios de inclusão:** matriculados em escola parceira; com consentimento dos pais + assentimento
-- **Critérios de exclusão:** diagnóstico neuropsiquiátrico formal; uso de medicação psicoativa
-- **Recrutamento:** 3–5 escolas (presenciais ou amostragem online com verificação parental)
+- **Hamari et al. (2014):** gamificação → engajamento, r ≈ 0.40
+- **Mollick (2024):** IA generativa aumenta produtividade em adultos
+- **Howard-Jones (2014):** tecnologia em educação tem efeitos complexos
+- **Diamond (2013):** FE são preditores de sucesso acadêmico
+- **Skinner et al. (2009):** engajamento tripartite (comportamental, emocional, cognitivo)
 
-### 4.3. Instrumentos
+**Gap:** Como IA se relaciona com FE em crianças? Mecanismos? Moderadores?
 
-#### 4.3.1. Bateria computadorizada de FE
-Aplicada individualmente ou em pequenos grupos (≤ 10), em sessão de ~45 min.
+### 2.2. Teoria
 
-| FE | Tarefa | Variável dependente |
-|---|---|---|
-| **Memória de trabalho (updating)** | N-back (1, 2, 3-back) | Acurácia por nível, d' |
-| **Controle inibitório** | Stroop computadorizado (palavra-cor) | Tempo de reação incompatível, taxa de erro |
-| **Controle inibitório** | Stop-Signal Task | Stop Signal Reaction Time (SSRT) |
-| **Flexibilidade cognitiva (shifting)** | Wisconsin Card Sorting Test (WCST) computadorizado | % de erros perseverativos, % de acertos |
-| **Flexibilidade cognitiva (shifting)** | Trail Making B (versão digital) | Tempo, erros |
-| **Memória de trabalho (updating)** | Keeping Track | Acurácia |
+**Modelo de mediação-moderação (Baron & Kenny, 1986; Hayes, 2017):**
+- Mediação: M explica parte da relação X → Y
+- Moderação: W muda a força/direção de X → Y
 
-**Software:** PsychoPy 3 (open source) ou Inquisit (licença paga).
+**Engajamento (Skinner et al., 2009):**
+- Comportamental: frequência, intensidade
+- Emocional: interesse, entusiasmo
+- Cognitivo: estratégia, auto-regulação
 
-#### 4.3.2. Tarefa de escrita (com e sem IA)
-- **Tema da redação:** definido a partir de temas de ENEM (ex: "O impacto da inteligência artificial na educação")
-- **Condição 1:** escrever SEM IA, 30 min
-- **Condição 2:** escrever COM ChatGPT disponível, 30 min
-- **Ordem contrabalanceada**
-- **Variáveis dependentes:** qualidade textual (rubrica ENEM), originalidade (TTCT), esforço percebido (escala Likert), número de prompts usados
-
-#### 4.3.3. Questionários
-- **Questionário de uso de IA** (a validar): frequência, tipo de tarefa, contexto, percepção de dependência
-- **AI literacy scale** (a adaptar de Ng et al. 2024 ou similar)
-- **Escala de autoeficácia acadêmica** (adaptação de Bandura)
-- **Questionário sociodemográfico**
-
-### 4.4. Procedimentos
-1. **Mês 1–2:** Adaptação de instrumentos + desenvolvimento da bateria
-2. **Mês 3:** Submissão ao CEP
-3. **Mês 4:** Piloto (n=20) — ajustes
-4. **Mês 5–7:** Coleta principal (em sala, com tablets)
-5. **Mês 8:** Análise quantitativa (R + lavaan)
-6. **Mês 9:** Análise qualitativa das redações
-7. **Mês 10–12:** Escrita e submissão do paper
-
-### 4.5. Análise dos dados
-
-#### Análise primária
-- **Análise fatorial confirmatória** do modelo de 3 FE (lavaan, R)
-- **Índices de ajuste:** CFI, TLI, RMSEA, χ²/df
-- **Correlações** entre uso de IA e FE
-- **Regressão múltipla** com controles (sexo, idade, SES, AI literacy)
-- **Modelos de equações estruturais (SEM):** uso de IA → offloading → FE
-
-#### Análise secundária
-- **Análise de mediação:** offloading como mediador entre uso e FE
-- **Análise de moderação:** sexo, idade, SES
-- **Análise qualitativa** das redações: comparação de qualidade entre condições
-
-### 4.6. Aspectos éticos
-- CEP/UFRN
-- TCLE dos pais
-- TALE dos adolescentes (linguagem acessível)
-- **Cuidado especial:** tópico sensível — adolescentes podem revelar uso problemático
-- **Plano de encaminhamento:** se algum adolescente reportar uso problemático, oferecer encaminhamento para apoio psicológico escolar
-- **Debriefing** sobre uso equilibrado de IA
-- **Anonimização rigorosa** (adolescentes podem ter receio de ser identificados)
+**Letramento digital:**
+- Capacidade de usar, entender e avaliar tecnologias
+- Inclui aspectos técnicos, cognitivos, críticos
 
 ---
 
-## 5. ORÇAMENTO
+## 3. Método
 
-| Item | Qtd | Unitário | Total |
-|---|---|---|---|
-| Tablets (15) | 15 | R$ 800 | R$ 12.000 |
-| Licença Inquisit (alternativa) | 1 | R$ 3.000 | R$ 3.000 |
-| Psicóloga (40h) | 1 | R$ 100/h | R$ 4.000 |
-| Assistente de pesquisa (200h) | 1 | R$ 50/h | R$ 10.000 |
-| Transporte | 30 visitas | R$ 80 | R$ 2.400 |
-| Material de escritório | 1 | R$ 300 | R$ 300 |
-| Lanche | 200 × 2 | R$ 5 | R$ 2.000 |
-| Inscrição congresso (SRCD, ICOMVE) | 2 | R$ 800 | R$ 1.600 |
-| **TOTAL** | | | **R$ 35.300** |
+### 3.1. Design
+
+**Transversal correlacional com modelagem SEM.**
+
+- Variável independente (X): uso de IA generativa
+- Mediador (M): engajamento escolar
+- Variável dependente (Y): funções executivas
+- Moderador (W): letramento digital dos pais
+- Controles: idade, sexo, SES, escola
+
+### 3.2. Participantes
+
+**N = 300-500** crianças
+
+**Cálculo de poder (Notebook 08):**
+- Detectar r ≥ 0.20 com power = 0.80
+- 200 + para análise robusta
+- 300-500 com margem para subgrupos
+
+**Critérios:**
+- 2º ao 5º ano, 7-11 anos
+- Escolas públicas e privadas de Natal/RN
+- Estratificação: tipo de escola (pública/privada), série (2º-5º)
+
+**Recrutamento:**
+- 5-8 escolas (3 públicas + 2-5 privadas)
+- Amostra por conveniência + estratificação
+- Compensação: certificado + devolutiva
+
+### 3.3. Instrumentos
+
+| Constructo | Instrumento | Respondente | Itens | Tempo |
+|---|---|---|---|---|
+| **Uso de IA (X)** | Questionário de uso (autorrelato) | Criança | 10 | 10 min |
+| **Uso de IA (X)** | Questionário parental | Pais | 12 | 10 min |
+| **Engajamento (M)** | Engagement vs. Disaffection Scale (EvsD) | Criança | 20 | 15 min |
+| **FE (Y)** | BRIEF-2 (comportamental) | Pais | 86 | 15 min |
+| **FE (Y)** | BRIEF-2 (comportamental) | Professores | 86 | 15 min |
+| **FE (Y)** | Stroop Test (inibição) | Criança | — | 8 min |
+| **FE (Y)** | Trail Making Test B | Criança | — | 5 min |
+| **FE (Y)** | Digit Span (memória) | Criança | — | 10 min |
+| **Letramento digital (W)** | Digital Literacy Scale | Pais | 15 | 10 min |
+| **Controles** | Questionário demográfico | Pais | 10 | 10 min |
+
+**Total por criança:** ~40 min (online + presencial)
+**Total por família:** ~50 min (online)
+
+### 3.4. Procedimento
+
+```
+Fase 1: Recrutamento (M1-M2)
+  - Contato com escolas
+  - Consentimento dos pais
+
+Fase 2: Coleta Online (M3-M4)
+  - Questionários pais (LimeSurvey/RedCap)
+  - Questionários professores (LimeSurvey)
+  - Link enviado por e-mail
+
+Fase 3: Coleta Presencial (M5-M7)
+  - Aplicação individual (40 min)
+  - Aplicação coletiva (escola, para engajamento)
+
+Fase 4: Análise (M8-M10)
+  - Limpeza de dados
+  - CFA → SEM
+  - Sub-análises
+```
+
+### 3.5. Análise
+
+**Etapa 1: Análise Fatorial Confirmatória (CFA)**
+- Validar constructos latentes
+- 3 indicadores por constructo
+- Ajustar modelo (modificações justificadas)
+
+**Etapa 2: Modelagem de Equações Estruturais (SEM)**
+- Software: lavaan (R) ou semopy (Python)
+- Estimador: ML robusto (MLM)
+- Índices de ajuste: CFI > 0.95, TLI > 0.95, RMSEA < 0.06, SRMR < 0.08
+
+**Etapa 3: Análise de Mediação**
+- Indirect effect = a × b
+- Bootstrap (5000 amostras) para IC 95%
+- Teste de Sobel (complementar)
+
+**Etapa 4: Análise de Moderação**
+- Interação W × X
+- Simple slopes (Hayes PROCESS Model 1)
+- Visualização (Johnson-Neyman)
+
+**Etapa 5: Análise de Subgrupos**
+- Tipo de escola (pública vs privada)
+- Série (2º/3º vs 4º/5º)
+- Sexo
+
+**Etapa 6: Análise de Robustez**
+- Modelos com diferentes estimadores
+- Análise de dados faltantes (FIML)
+- Sensitivity analysis (outliers)
+
+### 3.6. Análise de poder (simulação Monte Carlo)
+
+- N = 500, 5000 replicações
+- Detectar r = 0.20 com power = 0.95
+- Detectar β = 0.15 com power = 0.80
 
 ---
 
-## 6. CRONOGRAMA (12 meses)
+## 4. Aspectos Éticos
+
+- **CEP/UFRN** (submissão M0)
+- **TCLE pais + TALE criança** (com pictogramas)
+- **Sigilo:** códigos C001-C500
+- **Direito de retirada** sem prejuízo
+- **Devolutiva:** individual (relatório) + coletiva (palestra)
+- **Comitê independente:** monitorar uso ético de dados de crianças
+
+---
+
+## 5. Limitações e Considerações
+
+**Limitações:**
+- **Transversal:** não permite inferência causal
+- **Autorrelato:** viés de desejabilidade social
+- **Amostra de conveniência:** limita generalização
+- **Variabilidade no uso de IA:** medido por autorrelato
+
+**Mitigações:**
+- Múltiplos respondentes (pais + criança)
+- Incluir medidas comportamentais (além de questionário)
+- Análise estratificada por tipo de escola
+- Triangulação de dados
+
+---
+
+## 6. Timeline
 
 | Mês | Atividade |
 |---|---|
-| M1 | Adaptação de instrumentos; adaptação de AI literacy scale |
-| M2 | Desenvolvimento da bateria computadorizada (PsychoPy) |
-| M3 | Submissão ao CEP; pilotagem da bateria (n=5) |
-| M4 | Piloto ampliado (n=20); ajustes |
-| M5 | Coleta — bateria FE (escola 1) |
-| M6 | Coleta — bateria FE (escolas 2 e 3) |
-| M7 | Coleta — tarefa de escrita + questionários |
-| M8 | Análise quantitativa (R + lavaan) |
-| M9 | Análise qualitativa das redações |
-| M10 | Submissão do paper (Computers in Human Behavior) |
-| M11 | Resposta a revisores (se houver) |
-| M12 | Apresentação (SRCD ou EARLI) |
+| M0 | Submissão CEP |
+| M1-M2 | Adaptação de instrumentos + tradução |
+| M3-M5 | Coleta online (pais + professores) |
+| M6-M7 | Coleta presencial (criança) |
+| M8 | Limpeza + codificação |
+| M9-M10 | CFA + SEM |
+| M11 | Análise de subgrupos |
+| M12-M14 | Manuscrito |
+| M15 | Submissão Computers in Human Behavior |
 
 ---
 
-## 7. REFERÊNCIAS (preliminares)
+## 7. Orçamento
 
-- Bender, E. M. et al. (2021). On the dangers of stochastic parrots. *FAccT '21*.
-- Diamond, A. (2013). Executive functions. *Annual Review of Psychology*, 64, 135–168.
-- Howard-Jones, P. (2014). *Neurociência e Educação*. Artmed.
-- Miyake, A. et al. (2000). The unity and diversity of executive functions. *Cognitive Psychology*, 41, 49–100.
-- Mollick, E. (2024). *Co-Intelligence*. Portfolio.
-- Risko, E. F. & Gilbert, S. J. (2016). Cognitive offloading. *Trends in Cognitive Sciences*, 20(9), 676–688.
-- Zelazo, P. D. (2020). Executive function and psychopathology. *Annual Review of Clinical Psychology*, 16, 139–164.
-
----
-
-## 8. PRÉ-REGISTRO
-
-Será pré-registrado no OSF antes da coleta. Template em `00-fundamentos/preregistracao/template-osf.md`.
+| Item | Custo (R$) |
+|---|---|
+| Bolsista (15 meses) | 22.500 |
+| Material participantes | 5.000 |
+| Plataformas online (LimeSurvey Pro) | 2.000 |
+| Tablets/cronômetros (testes) | 4.000 |
+| Análise estatística (consultor SEM) | 5.000 |
+| Tradução de instrumentos | 2.000 |
+| Congresso | 5.000 |
+| **Total** | **45.500** |
 
 ---
 
-## 9. RISCOS E LIMITAÇÕES
+## 8. Resultados Esperados
 
-### Riscos
-- **Tópico sensível:** adolescentes podem ter receio de ser identificados como "usuários" ou "não usuários"
-- **Causalidade reversa:** não dá para saber se uso de IA causa mudança em FE, ou se adolescentes com FE mais baixas usam IA mais
-- **Viés de auto-relato:** adolescentes podem subnotificar uso
-- **Variação da tecnologia:** a IA de 2028 será diferente da IA de 2024 — generalização temporal limitada
+**Baseado em simulação (Notebook 04):**
 
-### Limitações
-- Transversal → não permite inferência causal
-- Amostra específica (escolas do Seridó/RN) → generalização limitada
-- Bateria de FE em português — poucos estudos normativos
-- Idade restrita (12–16) — não cobre início da exposição
+| Caminho | Estimativa | IC 95% |
+|---|---|---|
+| a (X→M) | 0.30 | [0.20, 0.40] |
+| b (M→Y) | 0.40 | [0.30, 0.50] |
+| c' (X→Y direto) | 0.10 | [0.00, 0.20] |
+| Indireto (a×b) | 0.12 | [0.06, 0.18] |
+| Total | 0.22 | [0.10, 0.34] |
+| W×X | 0.15 | [0.05, 0.25] |
 
----
-
-## 10. ANEXOS (a criar)
-
-- [ ] Adaptação da AI literacy scale
-- [ ] Tarefa de escrita (rubrica ENEM)
-- [ ] TCLE específico para adolescentes
-- [ ] TALE específico para adolescentes
-- [ ] Roteiro de coleta
-- [ ] Dicionário de variáveis
-- [ ] Script R de análise SEM
+**Hipotetizados:**
+- Mediação significativa
+- Moderação por letramento digital dos pais
+- Efeitos mais fortes em crianças mais velhas (4º/5º)
 
 ---
 
-> **Próximo passo:** revisar com a Angela; alinhar com a rede de escolas parceiras; submeter pré-registro.
+## 9. Plano de Disseminação
+
+- **Manuscrito principal:** Computers in Human Behavior (A1, IF ~9.0)
+- **Conferência:** SBP, ICIS
+- **Devolutiva:** escolas + famílias
+- **Dados:** OSF (CC0) + GitHub
+- **Policy brief:** para Secretaria de Educação
+
+---
+
+## 10. Análise de Impacto
+
+**Científico:**
+- Primeiro estudo brasileiro com SEM + IA + FE em crianças
+- Avanço no MToM (Machine Theory of Mind)
+- Base para P05 (longitudinal)
+
+**Social:**
+- Subsídio para políticas educacionais
+- Orientação para pais e professores
+- Letramento digital crítico
+
+**Educacional:**
+- Design de plataformas de IA para crianças
+- Treinamento de professores
+- Currículo escolar
+
+---
+
+**Próxima revisão:** Após piloto N=20
+**Status:** Aguardando CEP
