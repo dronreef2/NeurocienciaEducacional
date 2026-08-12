@@ -110,3 +110,8 @@ if __name__ == "__main__":
         "/workspace/analise/Python/notebooks/14_bibliometria.ipynb",
         "14. Análise Bibliométrica dos Papers Seminais"
     )
+    py_to_ipynb(
+        "/workspace/analise/Python/notebooks/15_ppt_simulacao_piloto.py",
+        "/workspace/analise/Python/notebooks/15_ppt_simulacao_piloto.ipynb",
+        "15. Simulação Completa do Piloto P01 (N=30, T=14)"
+    )

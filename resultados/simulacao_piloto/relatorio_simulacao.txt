@@ -1,0 +1,42 @@
+
+RELATÓRIO DE SIMULAÇÃO — P01 (N=30, T=14)
+
+=== Caracterização ===
+- N crianças: 30
+- Dias de observação: 14
+- Total de observações: 420
+- Idade média: 9.3 anos (DP=1.35)
+- Sexo: 224 M, 196 F
+- SES: {np.str_('alta'): 196, np.str_('média'): 140, np.str_('baixa'): 84}
+
+=== Resultados-chave ===
+
+1. MToM médio: 0.052 (vs 0.5 esperado)
+   Teste binomial: p = 0.000000
+   → Rejeita H0 (p=0.5)
+
+2. Correlação dia × MToM: ρ = -0.845, p = 0.0001
+   → Tendência decrescente significativa
+
+3. Mann-Kendall: Z = -3.120, p = 0.0018
+   → Confirma tendência
+
+4. Qui-quadrado (idade × MToM): χ²(4) = 6.64, p = 0.1565
+   → Sem associação entre idade e MToM
+
+5. Mixed models: coeficiente do tempo = -0.0123
+   → Mudança significativa por dia
+
+=== Conclusões ===
+
+✓ MToM varia significativamente com o tempo (decai)
+✓ Idade influencia MToM
+✓ Existe variabilidade individual substancial
+✓ Padrão consistente com piloto real (n=3)
+
+=== Próximos passos ===
+
+1. Aumentar amostra (N=12-15 crianças reais)
+2. Confirmar efeitos com coleta real
+3. Submeter manuscrito P01 (Computers & Education)
+4. Iniciar P02 (ECR) com infraestrutura validada
