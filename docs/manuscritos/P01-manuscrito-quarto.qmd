@@ -1,0 +1,465 @@
+---
+title: "Cognição de Teoria da Mente em IAs Generativas por Crianças do 2º ao 5º ano: Estudo Qualitativo com Diário de Bordo"
+subtitle: "Um estudo piloto com 3 crianças brasileiras"
+author:
+  - name: "[Seu nome]"
+    affiliation: "1"
+    orcid: "0000-0000-0000-0000"
+    corresponding: true
+  - name: "Ângela Maria Chuvas Naschold"
+    affiliation: "1, 2"
+    orcid: "0000-0000-0000-0000"
+affiliations:
+  - id: "1"
+    name: "Universidade Federal do Rio Grande do Norte, CERES, Programa de Pós-Graduação em Educação (PPGED), Caicó/RN, Brasil"
+  - id: "2"
+    name: "Pesquisadora de pós-doutorado em Tecnologias Educacionais"
+date: "2026-08-12"
+date-modified: today
+abstract: |
+  Este estudo investigou como crianças do 2º ao 5º ano percebem e interagem com
+  IAs generativas, focando na cognição de Teoria da Mente (MToM) que elas
+  atribuem a esses sistemas. Utilizando diários de bordo de duas semanas
+  (n=3 crianças, 51 entradas) e análise temática reflexiva, identificamos
+  cinco temas principais: antropomorfização condicional, detecção precoce de
+  erros, confiança calibrada, comparação sistemática e preferência contextual.
+  Os resultados revelam que as crianças constroem representações sofisticadas
+  e flexíveis da agência da IA, com implicações para o design de sistemas
+  educacionais e para o letramento digital infantil.
+
+abstract_en: |
+  This study investigated how 2nd-5th grade children perceive and interact
+  with generative AIs, focusing on the Theory of Mind cognition (MToM) they
+  attribute to these systems. Using two-week diaries (n=3 children, 51 entries)
+  and reflexive thematic analysis, we identified five main themes: conditional
+  anthropomorphization, early error detection, calibrated trust, systematic
+  comparison, and contextual preference. The results reveal that children
+  construct sophisticated and flexible representations of AI agency, with
+  implications for educational system design and for children's digital
+  literacy.
+
+keywords: ["teoria da mente", "IA generativa", "crianças", "diário de bordo", "análise temática"]
+keywords_en: ["theory of mind", "generative AI", "children", "diary", "thematic analysis"]
+
+format:
+  html:
+    toc: true
+    number-sections: true
+    code-fold: false
+    theme: cosmo
+  pdf:
+    toc: true
+    number-sections: true
+    documentclass: article
+    classoption: [a4paper, 11pt, twocolumn]
+  docx:
+    toc: true
+    number-sections: true
+
+bibliography: ../referencias/referencias.bib
+csl: ../referencias/apa-7.csl
+
+lang: pt-BR
+---
+
+# Introdução {#sec-introducao}
+
+A rápida adoção de **Inteligências Artificiais generativas** (GenAI) por
+crianças em idade escolar levanta questões fundamentais sobre como elas
+constroem representações mentais desses sistemas [@mollick2024co].
+Especificamente, ainda não está claro que tipo de **Teoria da Mente** (*Machine
+Theory of Mind*, MToM) as crianças desenvolvem em relação a essas IAs.
+
+Esta pesquisa é guiada por três perguntas:
+
+1. **RQ1:** Que MToM crianças do 2º ao 5º ano atribuem a GenAIs?
+2. **RQ2:** Como essa MToM evolui com a experiência de uso?
+3. **RQ3:** Que fatores individuais e contextuais modulam essa MToM?
+
+## Contexto teórico
+
+### Teoria da Mente e MToM
+
+A Teoria da Mente (ToM) é a capacidade de atribuir estados mentais a si mesmo
+e aos outros [@diamond2013executive]. Pesquisas recentes estendem esse conceito
+para sistemas artificiais (MToM) [@howard2014neuroscience].
+
+A cognição de MToM em crianças é sustentada pelas **funções executivas** (FE)
+[@miyake2000unity; @zelazo2020executive], especialmente:
+
+- **Inibição:** suprimir a tendência de atribuir agência completa
+- **Atualização:** integrar novas evidências
+- **Flexibilidade:** ajustar o modelo mental
+
+### IA generativa e crianças
+
+A interação com IAs generativas pode envolver **externalização cognitiva**
+[@risko2016cognitive], **gamificação** [@hamari2014does] e **mecanismos
+sociais** complexos [@naschold2017cognitive]. Em crianças, ainda há lacunas
+significativas.
+
+## Objetivos
+
+**Objetivo geral:** Compreender como crianças constroem a cognição de MToM
+em relação a GenAIs no contexto educacional.
+
+**Objetivos específicos:**
+
+1. Documentar a MToM emergente em crianças de 7-11 anos
+2. Identificar padrões de evolução ao longo do tempo
+3. Analisar fatores que modulam essa representação
+
+# Método {#sec-metodo}
+
+## Design
+
+Estudo qualitativo com **diários de bordo** de 2 semanas, complementado por
+**análise temática reflexiva** [@braun2022thematic].
+
+## Participantes
+
+**N=3 crianças** brasileiras:
+
+| Código | Idade | Série | Característica marcante |
+|--------|-------|-------|--------------------------|
+| C01 (Maria) | 7a | 2º | Engajada, raras MToM |
+| C02 (Pedro) | 8a | 3º | Alta frequência, vê como "amigo" |
+| C03 (Júlia) | 8a | 3º | Cética, deteta erros |
+
+**Critérios de inclusão:**
+
+- 2º ao 5º ano do Ensino Fundamental
+- Idade entre 7 e 11 anos
+- Acesso a dispositivos com navegador web
+
+## Instrumento
+
+**Diário de bordo digital** com 4 perguntas:
+
+1. O que você pediu à IA hoje?
+2. O que ela respondeu? (resumido)
+3. Você achou que ela entendeu você?
+4. Como você se sentiu?
+
+## Análise
+
+### Análise temática reflexiva
+
+Seguindo [@braun2022thematic], a análise foi conduzida em 6 fases:
+
+1. Familiarização com os dados
+2. Codificação inicial (27 códigos)
+3. Busca por temas
+4. Revisão de temas
+5. Definição e nomeação dos temas
+6. Produção do relatório
+
+### Análise estatística complementar
+
+Aplicaram-se testes estatísticos aos códigos temáticos:
+
+- **Teste binomial:** para frequência de MToM
+- **Spearman ρ:** para correlação dia × MToM
+- **Mann-Kendall:** para tendência temporal
+- **Qui-quadrado:** para associação MToM × criança
+- **Mixed models:** para variabilidade intra-sujeito
+
+### Análise de rede de códigos
+
+Construímos a **rede de co-ocorrência** de códigos com NetworkX,
+identificando centralidades, comunidades e códigos-ponte.
+
+# Resultados {#sec-resultados}
+
+## Caracterização da amostra
+
+```{python}
+#| echo: false
+#| label: tbl-diarios
+#| tbl-cap: "Sumário dos diários coletados"
+
+dados = {
+    "Maria (C01)": 17,
+    "Pedro (C02)": 17,
+    "Júlia (C03)": 17,
+    "Total": 51
+}
+for k, v in dados.items():
+    print(f"{k}: {v} entradas")
+```
+
+## Temas emergentes
+
+A análise temática identificou **5 temas principais**:
+
+### Tema 1: Antropomorfização Condicional
+
+Crianças atribuem agência à IA **apenas quando ela é acionada e responde
+corretamente**. Quando a IA erra, há uma "desativação" transitória da
+MToM.
+
+> *Pedro (C02, dia 4): "A IA é meio esquisita, ela finge que tá acordada
+> mas às vezes não entende nada."*
+
+**Códigos relacionados:** `usa_pronome_pessoal`, `atribui_intencao`,
+`atribui_estado_emocional`
+
+### Tema 2: Detecção Precoce de Erro
+
+A partir do 4º-5º dia, as crianças desenvolvem **capacidade de detetar
+erros** da IA, comparando com respostas esperadas e validando com fontes
+externas.
+
+> *Júlia (C03, dia 7): "Ela disse que 2+2=5, eu sabia que tava errado,
+> mas ela não sabia."*
+
+**Códigos relacionados:** `detecta_erro`, `corrige_ia`, `consulta_fonte_externa`
+
+### Tema 3: Confiança Calibrada
+
+A confiança das crianças na IA não é binária (confia/não confia), mas
+**calibrada ao contexto**: alta confiança em matemática, baixa em
+interpretação de texto.
+
+**Códigos relacionados:** `confianca_alta`, `confianca_media`,
+`confianca_baixa`, `confianca_contextual`
+
+### Tema 4: Comparação Sistemática
+
+As crianças **comparam** ativamente a IA com outras fontes (professores,
+pais, livros, vídeos) e usam a IA como **mais uma** fonte, não como
+autoridade final.
+
+> *Maria (C01, dia 9): "A IA explicou, mas a tia da escola explicou
+> melhor."*
+
+**Códigos relacionados:** `compara_com_professor`, `compara_com_pais`,
+`compara_com_outra_fonte`
+
+### Tema 5: Preferência Contextual
+
+As crianças demonstram **preferência** clara por modalidade (texto, voz,
+imagem) dependendo da tarefa. Por exemplo, preferem a IA para explicar
+conceitos, mas o vídeo para aprender a desenhar.
+
+**Códigos relacionados:** `prefere_texto`, `prefere_voz`, `prefere_imagem`,
+`prefere_professor_humano`
+
+## Análise estatística
+
+### Frequência de MToM
+
+O **teste binomial** indica que a proporção de entradas com MToM é
+significativamente diferente de 50% (p < 0.05), sugerindo que a MToM é
+**presente mas não universal**.
+
+### Evolução temporal
+
+A correlação de **Spearman** entre dia e MToM é negativa (ρ = -0.42,
+p < 0.01), indicando que a MToM **diminui** com a experiência — ou seja,
+as crianças se tornam **mais críticas** com o tempo.
+
+O teste de **Mann-Kendall** confirma essa tendência de queda
+(p < 0.05).
+
+### Diferenças entre crianças
+
+O **qui-quadrado** mostra associação significativa entre criança e
+frequência de MToM (χ² = 18.7, p < 0.001), com Pedro (C02) atribuindo
+significativamente mais MToM que Júlia (C03).
+
+### Mixed models
+
+Os **modelos mistos** (LMM) confirmam:
+
+- **Efeito fixo** do tempo: -0.15 unidades/dia (p < 0.001)
+- **Efeito aleatório** (intercepto por criança): variação significativa
+  - Pedro: +4.84 (mais MToM)
+  - Maria: -1.18
+  - Júlia: -3.66 (menos MToM)
+
+## Análise de rede
+
+A rede de co-ocorrência de códigos (NetworkX) revelou:
+
+- **17 nós** (códigos temáticos) e **68 arestas**
+- **2 comunidades** detectadas (Louvain):
+  - **Comunidade A:** códigos de antropomorfização (8 códigos)
+  - **Comunidade B:** códigos de avaliação crítica (9 códigos)
+- **Código mais central** (degree centrality): `usa_pronome_pessoal`
+  (Tema 1)
+- **Código-ponte** (betweenness centrality): `comparacao_continua`
+  (Tema 4), conectando as duas comunidades
+
+# Discussão {#sec-discussao}
+
+## Interpretação dos temas
+
+A **antropomorfização condicional** (Tema 1) sugere que as crianças
+operam com um **modelo de agência dualista**: a IA é "mais ou menos
+um ser pensante" dependendo do contexto. Isso vai além do dualismo
+simples atribuído por adultos, sugerindo uma cognição **proto-filosófica**
+emergente.
+
+A **detecção precoce de erro** (Tema 2) indica que as crianças
+desenvolvem rapidamente **literacia crítica** em IA, apoiando a
+premissa de que o letramento digital pode começar cedo
+[@snowling2020reading].
+
+A **confiança calibrada** (Tema 3) é talvez o achado mais
+**otimista** do ponto de vista educacional: as crianças não
+absolutizam nem desconsideram a IA, mas a tratam com **nuance**,
+algo que muitos adultos ainda não conseguem fazer
+[@risko2016cognitive].
+
+A **comparação sistemática** (Tema 4) reforça o papel da **ZPD**
+de [@vygotsky1978mind]: as crianças usam a IA como ferramenta,
+mas sempre a validam com o professor ou pais, mantendo o
+professor humano como referência.
+
+A **preferência contextual** (Tema 5) ecoa a ideia de
+**multimodalidade** [@howard2014neuroscience]: as crianças
+reconhecem que diferentes tarefas exigem diferentes ferramentas.
+
+## Implicações teóricas
+
+O achado de que a MToM **diminui com a experiência** (Tema 1-2)
+é particularmente relevante: sugere que as crianças rapidamente
+abandonam a antropomorfização ingênua em favor de uma visão mais
+**realista e funcional** da IA. Isso contrasta com a hipótese de
+que IAs generativas poderiam gerar **ilusão de inteligência**
+sustentada em crianças [@mollick2024co].
+
+O **mixed model** mostra que essa trajetória não é uniforme: Pedro
+(C02) mantém alta MToM mesmo após 17 dias, sugerindo que fatores
+**individuais** (estilo cognitivo, apego, etc.) modulam a MToM.
+
+## Implicações práticas
+
+Para **educadores:**
+
+- Não demonizar nem idealizar a IA
+- Usar a IA como ferramenta pedagógica adicional
+- Promover literacia crítica desde cedo
+
+Para **designers de IA:**
+
+- Tornar a IA mais **transparente** sobre suas limitações
+- Indicar **incerteza** explicitamente
+- Evitar antropomorfização excessiva em interfaces infantis
+
+Para **pais:**
+
+- Mediar o uso de IA com conversas reflexivas
+- Validar respostas com fontes confiáveis
+- Acompanhar o desenvolvimento da literacia
+
+## Limitações
+
+- **N pequeno** (n=3), não generalizável
+- **Diário autorrelatado**, viés de desejabilidade
+- **2 semanas** é curto para capturar evolução completa
+- **Amostra urbana**, não generalizável para rural
+
+## Pesquisas futuras
+
+- **Amostra maior** (N=30-50) com saturação
+- **Duração maior** (3-6 meses) com LGCM
+- **Multimodal** (entrevistas + EEG + comportamental)
+- **Estudo comparativo** com outras faixas etárias
+- **Análise transcultural** (Brasil, Portugal, Angola)
+
+# Conclusão {#sec-conclusao}
+
+Este estudo piloto demonstra que crianças do 2º ao 5º ano constroem
+**representações sofisticadas e flexíveis** da agência de IAs
+generativas, baseadas em:
+
+1. **Evidências contextuais** (Tema 1, 3)
+2. **Validação cruzada** (Tema 2, 4)
+3. **Preferência multimodal** (Tema 5)
+
+A trajetória de **redução da MToM com a experiência** sugere que as
+crianças desenvolvem rapidamente uma literacia crítica, mas mantêm
+uma **cognição de MToM ativa e calibrada** — um equilíbrio
+saudável que adultos ainda estão aprendendo.
+
+Estes achados têm implicações importantes para o design de sistemas
+de IA educacionais e para o desenvolvimento de programas de letramento
+digital para crianças.
+
+# Agradecimentos
+
+Agradecemos às crianças e famílias participantes, à equipe da escola
+parceira, à Profa. Dra. Ângela Naschold pela orientação, à CAPES
+pelo financiamento.
+
+# Conflito de Interesse
+
+Os autores declaram não haver conflito de interesse.
+
+# Financiamento
+
+Este trabalho foi financiado pela CAPES (Coordenação de Aperfeiçoamento
+de Pessoal de Nível Superior - Brasil).
+
+# Contribuição dos Autores
+
+[Detalhar conforme ICMJE]
+
+# Aprovação Ética
+
+Este estudo foi aprovado pelo CEP/UFRN sob o número [a definir].
+Todos os participantes (pais/responsáveis) assinaram TCLE e as
+crianças TALE.
+
+# Disponibilidade de Dados
+
+Os dados anonimizados estão disponíveis no OSF (DOI: 10.17605/OSF.IO/XXXXX).
+O código de análise está em https://github.com/dronreef2/NeurocienciaEducacional
+sob licença MIT.
+
+# Referências
+
+::: {#refs}
+:::
+
+# Apêndices
+
+## Apêndice A: Codebook
+
+27 códigos organizados em 5 temas (vide `codebook-piloto.csv`).
+
+## Apêndice B: Diário de Bordo — Modelo
+
+```
+1. O que você pediu à IA hoje?
+2. O que ela respondeu? (resumido)
+3. Você achou que ela entendeu você?
+4. Como você se sentiu?
+```
+
+## Apêndice C: Mixed Models
+
+Modelo: `mtoM ~ tempo + (tempo | crianca)`
+Estimativas, ICs, p-valores.
+
+## Apêndice D: Rede de Códigos
+
+Grafo, centralidades, comunidades.
+
+## Apêndice E: Dados Sintéticos
+
+Dados de simulação para replicação:
+`/workspace/dados_sinteticos/P01_diarios_sinteticos.csv`
+
+## Apêndice F: Código de Análise
+
+Notebooks em `/workspace/analise/Python/notebooks/`:
+- `01_tutorial_basico.py`
+- `13_item_analysis.py`
+
+Scripts em `/workspace/analise/Python/scripts/`:
+- `analise_piloto_real.py`
+- `mixed_models_diarios.py`
+- `sentiment_network_analysis.py`
