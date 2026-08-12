@@ -119,3 +119,5 @@ push-to-github.sh
 **/id_*
 **/*.pem
 **/*.key
+docs/sphinx/_build/
+docs/sphinx/api_python/
