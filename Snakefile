@@ -1,243 +1,203 @@
-# ============================================================
-# Snakefile — workflow alternativo ao Makefile
-#
-# Snakemake é mais poderoso que Make para pipelines de análise:
-# - Detecta dependências automaticamente
-# - Paralelização nativa
-# - Suporte a conda/envs
-# - Relatórios HTML automáticos
-# - Integração com clusters (SLURM, SGE)
-#
-# Uso:
-#   snakemake --cores 4           # rodar tudo com 4 cores
-#   snakemake -n                  # dry run
-#   snakemake --dag | dot -Tpng > dag.png  # visualizar DAG
-#   snakemake --report report.html  # relatório HTML
-# ============================================================
+"""
+Snakefile principal para o Programa de Pesquisa em Neurociência Educacional
+Orquestra toda a pipeline: dados → validação → análise → relatórios
 
-import yaml
+Uso:
+  snakemake --cores 4                    # Roda tudo
+  snakemake --cores 4 resultados/P01_report.html   # Alvo específico
+  snakemake --cores 4 --use-conda         # Com conda envs
+"""
+
+import os
 from pathlib import Path
 
-# Carregar configuração
-configfile: "analise/config/config.yaml"
+# ============================================================
+# Configuração
+# ============================================================
+WORKDIR = Path("/workspace")
+SCRIPTS = WORKDIR / "analise" / "Python" / "scripts"
+NOTEBOOKS = WORKDIR / "analise" / "Python" / "notebooks"
+RESULTS = WORKDIR / "resultados"
+DATA = WORKDIR / "01-projeto-qualitativo-criancas-ia" / "dados" / "piloto"
+SYNTHETIC = WORKDIR / "dados_sinteticos"
 
-# Incluir regras de outros Snakefiles (modular)
-include: "analise/rules/preprocessing.smk" if Path("analise/rules/preprocessing.smk").exists() else None
+# Criar diretórios
+RESULTS.mkdir(parents=True, exist_ok=True)
+SYNTHETIC.mkdir(parents=True, exist_ok=True)
 
 # ============================================================
-# Targets finais (outputs que o usuário quer)
+# Regra principal
 # ============================================================
+
 rule all:
     input:
-        # P01 — Análise Temática
-        "resultados/P01/relatorio.txt",
-        "resultados/P01/05_wordcloud.png",
-
-        # P02 — ANCOVA
-        "resultados/P02/relatorio.txt",
-        "resultados/P02/13_tabela_resultados.csv",
-
-        # P03 — EEG
-        "resultados/P03/relatorio.txt",
-        "resultados/P03/02_erp_N170.png",
-        "resultados/P03/03_topografia_N170.png",
-
-        # P04 — SEM
-        "resultados/P04/relatorio.txt",
-        "resultados/P04/05_modelo_sem.png",
-
-        # P05 — LGCM
-        "resultados/P05/relatorio.txt",
-        "resultados/P05/05_trajetorias_preditas.png",
-
-        # Relatório global
-        "resultados/relatorio_global.html",
+        # Dados sintéticos
+        f"{SYNTHETIC}/P01_diarios_sinteticos.csv",
+        f"{SYNTHETIC}/P02_dados_sinteticos.csv",
+        f"{SYNTHETIC}/P04_dados_sinteticos.csv",
+        f"{SYNTHETIC}/P05_dados_longitudinais_sinteticos.csv",
+        # Validação
+        f"{RESULTS}/validacao_dados.json",
+        # Análises
+        f"{RESULTS}/relatorio_analise_piloto.json",
+        f"{RESULTS}/relatorio_mixed_models.json",
+        f"{RESULTS}/relatorio_sentiment_network.json",
+        # Figuras principais
+        f"{RESULTS}/figura12_analise_piloto.png",
+        f"{RESULTS}/figura13_mixed_models_diarios.png",
+        f"{RESULTS}/figura17_sentiment_network.png",
+        f"{RESULTS}/figura20_bibliometria.png",
+    output:
+        f"{RESULTS}/pipeline_report.txt"
+    shell:
+        "echo 'Pipeline completa: {{input}}' > {{output}}"
+        "date >> {RESULTS}/pipeline_report.txt"
 
 # ============================================================
-# Regras
+# Etapa 1: Dados sintéticos
 # ============================================================
 
-# --- P01: Análise Temática -----------------------------------
-rule p01_at_pipeline:
-    """Pipeline completo de Análise Temática do P01."""
-    input:
-        transcricoes = "dados/raw/P01/"
+rule synthetic_data:
     output:
-        relatorio = "resultados/P01/relatorio.txt",
-        wordcloud = "resultados/P01/05_wordcloud.png",
-        codebook = "resultados/P01/07_codebook_inicial.csv"
-    log:
-        "logs/p01_at_pipeline.log"
-    threads: 1
-    resources:
-        mem_mb = 4000
+        p01 = f"{SYNTHETIC}/P01_diarios_sinteticos.csv",
+        p02 = f"{SYNTHETIC}/P02_dados_sinteticos.csv",
+        p04 = f"{SYNTHETIC}/P04_dados_sinteticos.csv",
+        p05 = f"{SYNTHETIC}/P05_dados_longitudinais_sinteticos.csv",
+        p03_papel = f"{SYNTHETIC}/P03_eeg_papel.npy",
+        p03_tela = f"{SYNTHETIC}/P03_eeg_tela.npy",
     script:
-        "analise/R/01_at_pipeline.R"
+        f"{SCRIPTS}/gerar_dados_sinteticos.py"
 
-# --- P02: ANCOVA ---------------------------------------------
-rule p02_ancova:
-    """ANCOVA 2x4 do P02 com post-hoc e tamanho de efeito."""
+# ============================================================
+# Etapa 2: Validação
+# ============================================================
+
+rule validate_pilot:
     input:
-        dados = "dados/processed/P02/p02_clean.csv"
+        diarios = f"{DATA}/diarios",
     output:
-        relatorio = "resultados/P02/relatorio.txt",
-        tabela = "resultados/P02/13_tabela_resultados.csv",
-        plot = "resultados/P02/10_emmeans_stroop.png"
-    log:
-        "logs/p02_ancova.log"
-    threads: 1
-    resources:
-        mem_mb = 4000
+        f"{RESULTS}/validacao_dados.json"
     script:
-        "analise/R/02_anova_p02.R"
+        f"{SCRIPTS}/validar_dados_piloto.py"
 
-# --- P03: EEG Pré-processamento ------------------------------
-rule p03_eeg_preprocessing:
-    """Pré-processamento de EEG do P03 (batch)."""
+# ============================================================
+# Etapa 3: Análise estatística do piloto
+# ============================================================
+
+rule analyze_pilot:
     input:
-        raw = "dados/raw/P03/"
+        codebook = f"{DATA}/codebook/codebook-piloto.csv",
+        diarios = f"{DATA}/diarios",
     output:
-        epochs = expand(
-            "dados/processed/P03/subj{i:02d}/subj{i:02d}_epo.fif",
-            i=range(1, config["p03_n_subjects"] + 1)
-        )
-    log:
-        "logs/p03_preprocessing.log"
-    threads: config["threads"]
-    resources:
-        mem_mb = 8000
+        json = f"{RESULTS}/relatorio_analise_piloto.json",
+        fig = f"{RESULTS}/figura12_analise_piloto.png",
     script:
-        "analise/Python/01_eeg_preprocessing.py"
+        f"{SCRIPTS}/analise_piloto_real.py"
 
-# --- P03: ERP Analysis ---------------------------------------
-rule p03_erp_analysis:
-    """Análise de ERPs do P03 (grand average, topografia, permutation)."""
+# ============================================================
+# Etapa 4: Mixed models
+# ============================================================
+
+rule mixed_models:
     input:
-        epochs = "dados/processed/P03/"
+        diarios = f"{DATA}/diarios"
     output:
-        relatorio = "resultados/P03/relatorio.txt",
-        metrics = "resultados/P03/00_metricas_componentes.csv",
-        plot_n170 = "resultados/P03/02_erp_N170.png",
-        plot_topo_n170 = "resultados/P03/03_topografia_N170.png"
-    log:
-        "logs/p03_erp.log"
-    threads: config["threads"]
-    resources:
-        mem_mb = 8000
+        json = f"{RESULTS}/relatorio_mixed_models.json",
+        fig = f"{RESULTS}/figura13_mixed_models_diarios.png",
     script:
-        "analise/Python/02_eeg_erp_analysis.py"
+        f"{SCRIPTS}/mixed_models_diarios.py"
 
-# --- P04: SEM -----------------------------------------------
-rule p04_sem:
-    """SEM com mediação do P04."""
+# ============================================================
+# Etapa 5: Sentimento + rede
+# ============================================================
+
+rule sentiment_network:
     input:
-        dados = "dados/processed/P04/p04_clean.csv"
+        transcricoes = f"{DATA}/transcricoes",
+        codebook = f"{DATA}/codebook/codebook-piloto.csv",
     output:
-        relatorio = "resultados/P04/relatorio.txt",
-        plot = "resultados/P04/05_modelo_sem.png"
-    log:
-        "logs/p04_sem.log"
-    threads: 1
-    resources:
-        mem_mb = 4000
+        json = f"{RESULTS}/relatorio_sentiment_network.json",
+        fig = f"{RESULTS}/figura17_sentiment_network.png",
     script:
-        "analise/R/03_sem_p04.R"
+        f"{SCRIPTS}/sentiment_network_analysis.py"
 
-# --- P05: LGCM ----------------------------------------------
-rule p05_lgcm:
-    """LGCM/LGMM do P05 (coorte longitudinal)."""
-    input:
-        dados = "dados/processed/P05/p05_long.csv"
+# ============================================================
+# Etapa 6: Bibliometria
+# ============================================================
+
+rule bibliometria:
     output:
-        relatorio = "resultados/P05/relatorio.txt",
-        trajetorias = "resultados/P05/05_trajetorias_preditas.png"
-    log:
-        "logs/p05_lgcm.log"
-    threads: 1
-    resources:
-        mem_mb = 4000
+        f"{RESULTS}/figura20_bibliometria.png"
     script:
-        "analise/R/04_lgcm_p05.R"
+        f"{NOTEBOOKS}/14_bibliometria.py"
 
-# --- Relatório global ---------------------------------------
-rule relatorio_global:
-    """Gera relatório HTML agregando resultados de todos os projetos."""
+# ============================================================
+# Etapa 7: Relatório consolidado
+# ============================================================
+
+rule consolidated_report:
     input:
-        p01 = "resultados/P01/relatorio.txt",
-        p02 = "resultados/P02/relatorio.txt",
-        p03 = "resultados/P03/relatorio.txt",
-        p04 = "resultados/P04/relatorio.txt",
-        p05 = "resultados/P05/relatorio.txt"
+        expand(f"{RESULTS}/{f}" for f in [
+            "validacao_dados.json",
+            "relatorio_analise_piloto.json",
+            "relatorio_mixed_models.json",
+            "relatorio_sentiment_network.json",
+        ])
     output:
-        html = "resultados/relatorio_global.html"
-    log:
-        "logs/relatorio_global.log"
+        f"{RESULTS}/relatorio_consolidado.md"
     run:
+        import json
+        from pathlib import Path
         from datetime import datetime
-        html = f"""<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Relatório Global — Programa de Pesquisa</title>
-    <style>
-        body {{ font-family: -apple-system, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }}
-        h1 {{ color: #1f77b4; }}
-        h2 {{ color: #ff7f0e; border-bottom: 2px solid #ff7f0e; padding-bottom: 5px; }}
-        pre {{ background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; }}
-        .timestamp {{ color: #7f7f7f; font-size: 0.9em; }}
-    </style>
-</head>
-<body>
-    <h1>📊 Relatório Global — Programa de Pesquisa</h1>
-    <p class="timestamp">Gerado em: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</p>
 
-    <h2>🟢 P01 — Análise Temática (Khanmigo)</h2>
-    <pre>{Path(input.p01).read_text(encoding='utf-8', errors='ignore')}</pre>
+        lines = ["# Relatório Consolidado\n",
+                f"**Data:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n",
+                "## Sumário Executivo\n"]
 
-    <h2>🟡 P02 — Gamificação (ANCOVA)</h2>
-    <pre>{Path(input.p02).read_text(encoding='utf-8', errors='ignore')}</pre>
+        for f in input:
+            if Path(f).exists():
+                with open(f) as fp:
+                    data = json.load(fp)
+                name = Path(f).stem
+                lines.append(f"### {name}\n")
+                if isinstance(data, dict):
+                    for k, v in list(data.items())[:5]:
+                        lines.append(f"- **{k}:** {v}")
+                lines.append("")
 
-    <h2>🔴 P03 — EEG / ERP (Bandeira)</h2>
-    <pre>{Path(input.p03).read_text(encoding='utf-8', errors='ignore')}</pre>
-
-    <h2>🟣 P04 — IA Generativa × FE (SEM)</h2>
-    <pre>{Path(input.p04).read_text(encoding='utf-8', errors='ignore')}</pre>
-
-    <h2>🔵 P05 — Coorte Longitudinal (LGCM)</h2>
-    <pre>{Path(input.p05).read_text(encoding='utf-8', errors='ignore')}</pre>
-
-    <hr>
-    <p><small>Programa de Pesquisa em Neurociência Educacional — UFRN/CERES</small></p>
-</body>
-</html>"""
-        Path(output.html).write_text(html, encoding="utf-8")
+        Path(output[0]).write_text("\n".join(lines))
 
 # ============================================================
-# Utilitários
+# Limpeza
 # ============================================================
-rule clean:
-    """Limpa todos os resultados (CUIDADO: irreversível)."""
-    shell:
-        "rm -rf resultados/* logs/* dados/processed/*"
 
-rule clean_results:
-    """Limpa apenas resultados (mantém dados processados)."""
+rule clean_all:
     shell:
-        "rm -rf resultados/*"
+        "rm -rf {RESULTS}/* && echo 'Limpo!'"
 
-rule status:
-    """Mostra status dos arquivos."""
-    shell:
-        """
-        echo "=== STATUS DO PROJETO ==="
-        echo "Dados brutos: $(find dados/raw -type f 2>/dev/null | wc -l) arquivos"
-        echo "Dados processados: $(find dados/processed -type f 2>/dev/null | wc -l) arquivos"
-        echo "Resultados: $(find resultados -type f 2>/dev/null | wc -l) arquivos"
-        echo ""
-        echo "Tamanho total: $(du -sh dados resultados 2>/dev/null)"
-        """
+# ============================================================
+# Help
+# ============================================================
 
-rule dag:
-    """Gera visualização do DAG de execução."""
-    shell:
-        "snakemake --dag | dot -Tpng > resultados/dag.png"
+rule help:
+    run:
+        print("""
+Snakemake Pipeline - Programa de Pesquisa em Neurociência Educacional
+
+Regras disponíveis:
+  synthetic_data      Gera dados sintéticos para os 5 projetos
+  validate_pilot       Valida dados reais do piloto
+  analyze_pilot        Análise estatística completa do piloto
+  mixed_models         Mixed-effects nos diários
+  sentiment_network    Análise de sentimento + rede
+  bibliometria         Análise bibliométrica
+  consolidated_report  Relatório consolidado em Markdown
+  clean_all            Limpa todos os resultados
+  all                  Roda tudo
+
+Exemplos:
+  snakemake --cores 4                          # Tudo
+  snakemake --cores 4 analyze_pilot            # Só análise do piloto
+  snakemake --cores 4 consolidated_report       # Só relatório
+  snakemake --cores 4 --dry-run                # Dry run
+        """)
