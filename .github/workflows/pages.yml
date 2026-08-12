@@ -5,79 +5,116 @@ on:
     branches: [main]
     paths:
       - 'docs/**'
-      - 'analise/R/R/**'
       - 'analise/Python/neurociencia_edu/**'
+      - 'analise/Python/README.md'
+      - 'analise/Python/pyproject.toml'
   workflow_dispatch:
 
+# Permite uma única execução por vez (sem cancelamento)
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+# Permissões necessárias para Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
+# Timeout de 30 min (em vez do default 6h)
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: false
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
 
       - name: Setup Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
-      - name: Setup R
-        uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: "4.4.1"
+          cache: "pip"
 
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
-          pip install sphinx sphinx-rtd-theme myst-parser
+          pip install --quiet sphinx sphinx-rtd-theme myst-parser
+          # Tenta instalar pacote em modo editável (opcional, nao bloqueia)
+          cd analise/Python || exit 0
+          pip install -e . || echo "Skipped editable install (nao-bloqueante)"
+          cd ../..
 
-      - name: Install R deps
+      - name: Generate API docs
         run: |
-          R -e "install.packages(c('tidyverse', 'lavaan', 'devtools', 'roxygen2'))"
+          mkdir -p docs/sphinx/api_python
+          # Gera docs Python se o pacote estiver disponível
+          if python -c "import neurociencia_edu" 2>/dev/null; then
+            sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/ -f || true
+            echo "API docs generated"
+          else
+            echo "Pacote não disponível, pulando api docs"
+            # Cria arquivo de fallback
+            cat > docs/sphinx/api_python/_fallback.rst << 'EOF'
+API Reference
+=============
 
-      - name: Build R package docs
-        run: |
-          cd analise/R
-          R -e "roxygen2::roxygenise()" || echo "roxygen2 had warnings (non-blocking)"
+Consulte a documentação em ``analise/Python/neurociencia_edu/``.
 
-      - name: Build Python docs (Sphinx)
+Para gerar a API reference localmente::
+
+    pip install -e analise/Python/
+    sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/ -f
+    cd docs/sphinx && sphinx-build -b html . _build/html
+EOF
+          fi
+
+      - name: Build Sphinx docs
         run: |
-          # Install package in editable mode so sphinx can import it
-          pip install -e analise/Python || pip install -e analise/Python/ || echo "Editable install failed, continuing"
-          # Generate API docs
-          sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/ -f || echo "sphinx-apidoc had warnings, continuing"
-          # Build HTML
           cd docs/sphinx
-          # Create _build dir if not exists
           mkdir -p _build/html
-          # Copy .nojekyll to prevent GH Pages Jekyll processing
           touch _build/html/.nojekyll
-          # Build with sphinx (allow warnings)
-          sphinx-build -b html . _build/html || (echo "Sphinx build failed, check docs/sphinx/"; exit 1)
+          sphinx-build -b html . _build/html || {
+            echo "Sphinx build falhou. Tentando fallback simples..."
+            # Fallback: copia arquivos markdown como páginas simples
+            mkdir -p _build/html
+            cp -r ../../README.md _build/html/index.md || true
+            cp -r ../../USER-GUIDE.md _build/html/user-guide.md || true
+            cp -r ../../docs/QUICKSTART.md _build/html/quickstart.md || true
+            exit 1
+          }
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
+      - name: Verify build output
+        run: |
+          if [ ! -f "docs/sphinx/_build/html/index.html" ]; then
+            echo "ERRO: _build/html/index.html não foi gerado"
+            exit 1
+          fi
+          echo "Build output OK"
+          ls -la docs/sphinx/_build/html/ | head -20
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'docs/sphinx/_build/html'
+          retention-days: 7
 
   deploy:
+    if: needs.build.result == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    timeout-minutes: 10
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4
