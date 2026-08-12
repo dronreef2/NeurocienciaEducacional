@@ -10,18 +10,15 @@ on:
       - 'analise/Python/pyproject.toml'
   workflow_dispatch:
 
-# Permite uma única execução por vez (sem cancelamento)
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
-# Permissões necessárias para Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Timeout de 30 min (em vez do default 6h)
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,7 +28,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          submodules: false
 
       - name: Setup Pages
         id: pages
@@ -41,60 +37,28 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "pip"
 
       - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
           pip install --quiet sphinx sphinx-rtd-theme myst-parser
-          # Tenta instalar pacote em modo editável (opcional, nao bloqueia)
-          cd analise/Python || exit 0
-          pip install -e . || echo "Skipped editable install (nao-bloqueante)"
-          cd ../..
 
       - name: Generate API docs
         run: |
           mkdir -p docs/sphinx/api_python
-          # Gera docs Python se o pacote estiver disponível
-          if python -c "import neurociencia_edu" 2>/dev/null; then
-            sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/ -f || true
-            echo "API docs generated"
-          else
-            echo "Pacote não disponível, pulando api docs"
-            # Cria arquivo de fallback
-            cat > docs/sphinx/api_python/_fallback.rst << 'EOF'
-API Reference
-=============
-
-Consulte a documentação em ``analise/Python/neurociencia_edu/``.
-
-Para gerar a API reference localmente::
-
-    pip install -e analise/Python/
-    sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/ -f
-    cd docs/sphinx && sphinx-build -b html . _build/html
-EOF
-          fi
+          sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/ -f || echo "sphinx-apidoc failed, skipping"
 
       - name: Build Sphinx docs
         run: |
           cd docs/sphinx
           mkdir -p _build/html
           touch _build/html/.nojekyll
-          sphinx-build -b html . _build/html || {
-            echo "Sphinx build falhou. Tentando fallback simples..."
-            # Fallback: copia arquivos markdown como páginas simples
-            mkdir -p _build/html
-            cp -r ../../README.md _build/html/index.md || true
-            cp -r ../../USER-GUIDE.md _build/html/user-guide.md || true
-            cp -r ../../docs/QUICKSTART.md _build/html/quickstart.md || true
-            exit 1
-          }
+          sphinx-build -b html . _build/html
 
       - name: Verify build output
         run: |
           if [ ! -f "docs/sphinx/_build/html/index.html" ]; then
-            echo "ERRO: _build/html/index.html não foi gerado"
+            echo "ERROR: _build/html/index.html not generated"
             exit 1
           fi
           echo "Build output OK"
