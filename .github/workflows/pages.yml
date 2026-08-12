@@ -8,6 +8,7 @@ on:
       - 'analise/Python/neurociencia_edu/**'
       - 'analise/Python/README.md'
       - 'analise/Python/pyproject.toml'
+      - '.github/workflows/pages.yml'
   workflow_dispatch:
 
 concurrency:
