@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python API Reference &mdash; Neurociencia Educacional  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="R API Reference" href="r.html" />
+    <link rel="prev" title="Análise em Python — Introdução" href="../analysis/python_intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Neurociencia Educacional
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Visão geral</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sobre.html">Sobre</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sobre.html#objetivos-especificos">Objetivos específicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sobre.html#pergunta-norteadora">Pergunta norteadora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sobre.html#marco-teorico">Marco teórico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sobre.html#linha-de-pesquisa">Linha de pesquisa</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../projetos.html">Projetos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../projetos.html#conexoes-entre-projetos">Conexões entre projetos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../projetos.html#cronograma-macro">Cronograma macro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../equipe.html">Equipe</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../equipe.html#investigador-principal">Investigador Principal</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../equipe.html#seu-nome">[Seu nome]</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../equipe.html#orientadora">Orientadora</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../equipe.html#profa-dra-angela-maria-chuvas-naschold">Profa. Dra. Ângela Maria Chuvas Naschold</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../equipe.html#possiveis-coorientadores">Possíveis coorientadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../equipe.html#colaboradores">Colaboradores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../equipe.html#instituicoes-parceiras">Instituições parceiras</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Análise</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../analysis/r_intro.html">Análise em R — Introdução</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../analysis/r_intro.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analysis/r_intro.html#estrutura">Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analysis/r_intro.html#funcoes-principais">Funções principais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analysis/r_intro.html#como-usar">Como usar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../analysis/python_intro.html">Análise em Python — Introdução</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../analysis/python_intro.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analysis/python_intro.html#estrutura">Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analysis/python_intro.html#modulos-principais">Módulos principais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analysis/python_intro.html#como-usar">Como usar</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referência</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#neurociencia-edu">neurociencia_edu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodulo-eeg">Submódulo: eeg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-neurociencia_edu.stats.mediation">Submódulo: stats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult"><code class="docutils literal notranslate"><span class="pre">MediationResult</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.a"><code class="docutils literal notranslate"><span class="pre">MediationResult.a</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.b"><code class="docutils literal notranslate"><span class="pre">MediationResult.b</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.c"><code class="docutils literal notranslate"><span class="pre">MediationResult.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.c_prime"><code class="docutils literal notranslate"><span class="pre">MediationResult.c_prime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.ci_lower"><code class="docutils literal notranslate"><span class="pre">MediationResult.ci_lower</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.ci_upper"><code class="docutils literal notranslate"><span class="pre">MediationResult.ci_upper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.indirect"><code class="docutils literal notranslate"><span class="pre">MediationResult.indirect</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.p_indirect"><code class="docutils literal notranslate"><span class="pre">MediationResult.p_indirect</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.proportion_mediated"><code class="docutils literal notranslate"><span class="pre">MediationResult.proportion_mediated</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neurociencia_edu.stats.mediation.MediationResult.total"><code class="docutils literal notranslate"><span class="pre">MediationResult.total</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#neurociencia_edu.stats.mediation.bootstrap_mediation"><code class="docutils literal notranslate"><span class="pre">bootstrap_mediation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neurociencia_edu.stats.mediation.cohens_d"><code class="docutils literal notranslate"><span class="pre">cohens_d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neurociencia_edu.stats.mediation.mediation_analysis"><code class="docutils literal notranslate"><span class="pre">mediation_analysis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-neurociencia_edu.io.bids">Submódulo: io</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#neurociencia_edu.io.bids.create_bids_structure"><code class="docutils literal notranslate"><span class="pre">create_bids_structure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neurociencia_edu.io.bids.load_bids_dataset"><code class="docutils literal notranslate"><span class="pre">load_bids_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neurociencia_edu.io.bids.participant_ids"><code class="docutils literal notranslate"><span class="pre">participant_ids()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">R API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="r.html#funcoes-utilitarias">Funções utilitárias</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Governança</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contribuindo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#codigo-de-conduta">Código de Conduta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#como-contribuir">Como contribuir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#padroes-de-codigo">Padrões de código</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#r">R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing.html#python">Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#commits">Commits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Segurança</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security.html#reportar-vulnerabilidades">Reportar vulnerabilidades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security.html#boas-praticas">Boas práticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security.html#ferramentas-automatizadas">Ferramentas automatizadas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-9-0-2026-07-28">[v0.9.0] - 2026-07-28</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#adicionado">Adicionado</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-8-0-2026-07-27">[v0.8.0] - 2026-07-27</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id1">Adicionado</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#v0-1-0-2026-01-15">[v0.1.0] - 2026-01-15</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id2">Adicionado</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Licença</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Neurociencia Educacional</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Python API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/python.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-api-reference">
+<h1>Python API Reference<a class="headerlink" href="#python-api-reference" title="Link to this heading"></a></h1>
+<section id="neurociencia-edu">
+<span id="module-neurociencia_edu"></span><h2>neurociencia_edu<a class="headerlink" href="#neurociencia-edu" title="Link to this heading"></a></h2>
+<p>Educational Neuroscience Research Program.</p>
+<p>A Python package for analyzing data from research on:
+- Executive functions (BRIEF-2, Stroop, TMT)
+- EEG/ERP (MNE-Python)
+- IRT (Item Response Theory)
+- SEM (Structural Equation Modeling)
+- Mixed-effects models
+- Bayesian analysis
+- Network analysis</p>
+<dl class="simple">
+<dt>Submodules:</dt><dd><p>eeg      — EEG/ERP preprocessing and analysis
+stats    — Statistical models (SEM, IRT, ANCOVA, mediation)
+io       — Data I/O (BIDS-like)
+dashboard — Streamlit dashboards</p>
+</dd>
+</dl>
+</section>
+<section id="submodulo-eeg">
+<h2>Submódulo: eeg<a class="headerlink" href="#submodulo-eeg" title="Link to this heading"></a></h2>
+</section>
+<section id="module-neurociencia_edu.stats.mediation">
+<span id="submodulo-stats"></span><h2>Submódulo: stats<a class="headerlink" href="#module-neurociencia_edu.stats.mediation" title="Link to this heading"></a></h2>
+<p>neurociencia_edu.stats.mediation
+Análise de mediação (Baron &amp; Kenny + bootstrap).</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">neurociencia_edu.stats.mediation.</span></span><span class="sig-name descname"><span class="pre">MediationResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_prime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">indirect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">total</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">proportion_mediated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci_lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci_upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_indirect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurociencia_edu/stats/mediation.html#MediationResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NamedTuple" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></a></p>
+<p>Resultado da análise de mediação.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.a">
+<span class="sig-name descname"><span class="pre">a</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.a" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.b">
+<span class="sig-name descname"><span class="pre">b</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.b" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.c">
+<span class="sig-name descname"><span class="pre">c</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.c" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.c_prime">
+<span class="sig-name descname"><span class="pre">c_prime</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.c_prime" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.ci_lower">
+<span class="sig-name descname"><span class="pre">ci_lower</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.ci_lower" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 7</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.ci_upper">
+<span class="sig-name descname"><span class="pre">ci_upper</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.ci_upper" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 8</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.indirect">
+<span class="sig-name descname"><span class="pre">indirect</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.indirect" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.p_indirect">
+<span class="sig-name descname"><span class="pre">p_indirect</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.p_indirect" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 9</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.proportion_mediated">
+<span class="sig-name descname"><span class="pre">proportion_mediated</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.proportion_mediated" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 6</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.MediationResult.total">
+<span class="sig-name descname"><span class="pre">total</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><a class="headerlink" href="#neurociencia_edu.stats.mediation.MediationResult.total" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.bootstrap_mediation">
+<span class="sig-prename descclassname"><span class="pre">neurociencia_edu.stats.mediation.</span></span><span class="sig-name descname"><span class="pre">bootstrap_mediation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bootstrap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></span><a class="reference internal" href="../_modules/neurociencia_edu/stats/mediation.html#bootstrap_mediation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neurociencia_edu.stats.mediation.bootstrap_mediation" title="Link to this definition"></a></dt>
+<dd><p>Distribuição bootstrap do efeito indireto.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Variáveis.</p></li>
+<li><p><strong>M</strong> – Variáveis.</p></li>
+<li><p><strong>Y</strong> – Variáveis.</p></li>
+<li><p><strong>n_bootstrap</strong> – Número de amostras.</p></li>
+<li><p><strong>seed</strong> – Seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Array com efeito indireto em cada amostra bootstrap.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.cohens_d">
+<span class="sig-prename descclassname"><span class="pre">neurociencia_edu.stats.mediation.</span></span><span class="sig-name descname"><span class="pre">cohens_d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/neurociencia_edu/stats/mediation.html#cohens_d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neurociencia_edu.stats.mediation.cohens_d" title="Link to this definition"></a></dt>
+<dd><p>Calcula Cohen’s d para两组独立.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Amostra 1.</p></li>
+<li><p><strong>y</strong> – Amostra 2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cohen’s d.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="neurociencia_edu.stats.mediation.mediation_analysis">
+<span class="sig-prename descclassname"><span class="pre">neurociencia_edu.stats.mediation.</span></span><span class="sig-name descname"><span class="pre">mediation_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bootstrap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ci_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../api_python/neurociencia_edu.stats.html#neurociencia_edu.stats.mediation.MediationResult" title="neurociencia_edu.stats.mediation.MediationResult"><span class="pre">MediationResult</span></a></span></span><a class="reference internal" href="../_modules/neurociencia_edu/stats/mediation.html#mediation_analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neurociencia_edu.stats.mediation.mediation_analysis" title="Link to this definition"></a></dt>
+<dd><p>Análise de mediação com bootstrap.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – Variável independente (n,).</p></li>
+<li><p><strong>M</strong> – Mediador (n,).</p></li>
+<li><p><strong>Y</strong> – Variável dependente (n,).</p></li>
+<li><p><strong>n_bootstrap</strong> – Número de amostras bootstrap.</p></li>
+<li><p><strong>ci_level</strong> – Nível do IC (default 0.95).</p></li>
+<li><p><strong>seed</strong> – Seed para reprodutibilidade.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MediationResult com todos os coeficientes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-neurociencia_edu.io.bids">
+<span id="submodulo-io"></span><h2>Submódulo: io<a class="headerlink" href="#module-neurociencia_edu.io.bids" title="Link to this heading"></a></h2>
+<p>neurociencia_edu.io.bids
+Funções para trabalhar com datasets BIDS (Brain Imaging Data Structure).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="neurociencia_edu.io.bids.create_bids_structure">
+<span class="sig-prename descclassname"><span class="pre">neurociencia_edu.io.bids.</span></span><span class="sig-name descname"><span class="pre">create_bids_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">Path</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'neurociencia'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">participants</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modalities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">Path</span></a></span></span><a class="reference internal" href="../_modules/neurociencia_edu/io/bids.html#create_bids_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neurociencia_edu.io.bids.create_bids_structure" title="Link to this definition"></a></dt>
+<dd><p>Cria estrutura de diretórios BIDS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_root</strong> – Diretório raiz de saída.</p></li>
+<li><p><strong>project_name</strong> – Nome do projeto.</p></li>
+<li><p><strong>participants</strong> – Lista de IDs (sem prefixo “sub-“).</p></li>
+<li><p><strong>modalities</strong> – Lista de modalidades (e.g. [“eeg”, “anat”]).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Path do diretório criado.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="neurociencia_edu.io.bids.load_bids_dataset">
+<span class="sig-prename descclassname"><span class="pre">neurociencia_edu.io.bids.</span></span><span class="sig-name descname"><span class="pre">load_bids_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bids_root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">Path</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></span><a class="reference internal" href="../_modules/neurociencia_edu/io/bids.html#load_bids_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neurociencia_edu.io.bids.load_bids_dataset" title="Link to this definition"></a></dt>
+<dd><p>Carrega estrutura de um dataset BIDS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bids_root</strong> – Diretório raiz do dataset BIDS.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict com a estrutura do dataset (participants, modalities).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="neurociencia_edu.io.bids.participant_ids">
+<span class="sig-prename descclassname"><span class="pre">neurociencia_edu.io.bids.</span></span><span class="sig-name descname"><span class="pre">participant_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bids_root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">Path</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/neurociencia_edu/io/bids.html#participant_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#neurociencia_edu.io.bids.participant_ids" title="Link to this definition"></a></dt>
+<dd><p>Retorna lista de IDs de participantes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bids_root</strong> – Diretório raiz BIDS.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista ordenada de IDs (e.g. [“sub-01”, “sub-02”, …]).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../analysis/python_intro.html" class="btn btn-neutral float-left" title="Análise em Python — Introdução" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="r.html" class="btn btn-neutral float-right" title="R API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Programa de Pesquisa (UFRN/CERES).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
