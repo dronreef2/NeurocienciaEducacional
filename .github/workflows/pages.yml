@@ -1,9 +1,10 @@
-name: Pages
+name: GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Build Docs (CI)"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -15,39 +16,22 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/configure-pages@v5
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - run: |
-          pip install --quiet sphinx sphinx-rtd-theme myst-parser
-          mkdir -p docs/sphinx/api_python
-          sphinx-apidoc -o docs/sphinx/api_python analise/Python/neurociencia_edu/ -f || true
-          cd docs/sphinx
-          mkdir -p _build/html
-          touch _build/html/.nojekyll
-          sphinx-build -b html . _build/html
-        name: Build docs
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/sphinx/_build/html
-
   deploy:
-    if: needs.build.result == 'success'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
-      - id: deployment
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: sphinx-docs
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
