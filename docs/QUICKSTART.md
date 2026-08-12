@@ -100,3 +100,4 @@ make all             # Tudo
 3. 🌐 Explore o dashboard online
 4. 📖 Veja [protocolos dos 5 projetos](../01-projeto-qualitativo-criancas-ia/protocolo/)
 5. 🤝 Contribua via [CONTRIBUTING.md](../CONTRIBUTING.md)
+<!-- Last updated: Wed Aug 12 14:09:03 UTC 2026 -->
