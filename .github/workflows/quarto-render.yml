@@ -1,0 +1,70 @@
+name: Quarto Render P01
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/manuscritos/P01-manuscrito-quarto.qmd'
+      - 'docs/referencias/**'
+      - '_quarto.yml'
+      - '.github/workflows/quarto-render.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install LaTeX (for PDF)
+        uses: zauguin/install-latex@v1
+        with:
+          packages: >
+            texlive-latex-recommended
+            texlive-fonts-recommended
+            texlive-latex-extra
+            texlive-fonts-extra
+            texlive-xetex
+            texlive-lang-portuguese
+
+      - name: Render Quarto manuscript
+        run: |
+          # Renderiza todos os formatos
+          quarto render docs/manuscritos/P01-manuscrito-quarto.qmd --to html
+          quarto render docs/manuscritos/P01-manuscrito-quarto.qmd --to pdf || echo "PDF render failed (continuing)"
+          quarto render docs/manuscritos/P01-manuscrito-quarto.qmd --to docx || echo "DOCX render failed (continuing)"
+
+      - name: Move outputs
+        run: |
+          mkdir -p docs/manuscritos/renderizados
+          cp docs/manuscritos/P01-manuscrito-quarto.html docs/manuscritos/renderizados/ 2>/dev/null || true
+          cp docs/manuscritos/P01-manuscrito-quarto.pdf docs/manuscritos/renderizados/ 2>/dev/null || true
+          cp docs/manuscritos/P01-manuscrito-quarto.docx docs/manuscritos/renderizados/ 2>/dev/null || true
+          ls -la docs/manuscritos/renderizados/
+
+      - name: Commit rendered files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add docs/manuscritos/renderizados/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "ci: render P01 manuscript (Quarto) [skip ci]"
+            git push
+          fi

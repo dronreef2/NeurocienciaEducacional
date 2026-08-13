@@ -1,0 +1,236 @@
+{
+  "programa": "Neurociência Educacional — 5 Projetos",
+  "versao": "1.0",
+  "data": "2026-08-12",
+  "total_hipoteses": 27,
+  "projetos": {
+    "P01": {
+      "titulo": "IA Generativa e Cognição de Teoria da Mente",
+      "metodo": "Qualitativo (Análise Temática Reflexiva)",
+      "n": "12-15",
+      "revista_alvo": "Computers & Education",
+      "pergunta": "Que MToM crianças de 7-11 anos constroem em relação a GenAIs?",
+      "pre_registro_osf": true,
+      "hipoteses": [
+        {
+          "id": "H1.1",
+          "texto": "A MToM varia com a idade",
+          "variaveis": {"independente": "idade", "dependente": "MToM"},
+          "metodo": "Análise Temática",
+          "efeito_esperado": "Crianças mais velhas = MToM mais baixa",
+          "status": "a_testar"
+        },
+        {
+          "id": "H1.2",
+          "texto": "A MToM decai com a experiência",
+          "variaveis": {"independente": "dia", "dependente": "MToM"},
+          "metodo": "Análise Temática Longitudinal",
+          "efeito_esperado": "Decay significativo (piloto: rho=-0.85)",
+          "resultado_piloto": {"spearman_rho": -0.845, "p_value": 0.0001},
+          "status": "a_testar"
+        },
+        {
+          "id": "H1.3",
+          "texto": "Existem 5+ temas principais",
+          "metodo": "ATR (Braun-Clarke 2022)",
+          "efeito_esperado": "5 temas: Antropomorfização, Detecção, Confiança, Comparação, Preferência",
+          "resultado_piloto": {"n_temas": 5, "temas": [
+            "Antropomorfização Condicional",
+            "Detecção Precoce de Erro",
+            "Confiança Calibrada",
+            "Comparação Sistemática",
+            "Preferência Contextual"
+          ]},
+          "status": "confirmado_piloto"
+        },
+        {
+          "id": "H1.4",
+          "texto": "Há variabilidade individual",
+          "variaveis": {"independente": "crianca", "dependente": "MToM"},
+          "metodo": "Mixed Models",
+          "efeito_esperado": "Efeito aleatório significativo",
+          "resultado_piloto": {"efeito_pedro": 4.84, "efeito_maria": -1.18, "efeito_julia": -3.66},
+          "status": "confirmado_piloto"
+        },
+        {
+          "id": "H1.5",
+          "texto": "Padrões emergem de interações",
+          "variaveis": {"noh": "código", "arestas": "co-ocorrência"},
+          "metodo": "Análise de Rede (NetworkX)",
+          "efeito_esperado": "Clusters temáticos",
+          "resultado_piloto": {"comunidades": 2, "nos": 17, "arestas": 68},
+          "status": "confirmado_piloto"
+        }
+      ]
+    },
+    "P02": {
+      "titulo": "Gamificação e FE (ECR 2x4)",
+      "metodo": "Experimento Controlado Randomizado",
+      "n": 200,
+      "revista_alvo": "Computers in Human Behavior",
+      "pergunta": "A gamificação (pontos + narrativa) melhora FE em crianças?",
+      "design": "Fatorial 2 (Pontos) x 2 (Narrativa)",
+      "pre_registro_osf": true,
+      "hipoteses": [
+        {
+          "id": "H2.1",
+          "texto": "Pontos melhoram atenção sustentada",
+          "variaveis": {"independente": "pontos", "dependente": "Stroop (inibição)"},
+          "efeito_esperado": {"coeficiente": 0.20, "d": 0.20},
+          "status": "a_testar"
+        },
+        {
+          "id": "H2.2",
+          "texto": "Narrativa melhora memória de trabalho",
+          "variaveis": {"independente": "narrativa", "dependente": "Digit Span"},
+          "efeito_esperado": {"coeficiente": 0.25, "d": 0.25},
+          "status": "a_testar"
+        },
+        {
+          "id": "H2.3",
+          "texto": "Combinação (P×N) tem efeito aditivo",
+          "variaveis": {"independente": "P×N", "dependente": "TMT-B (flexibilidade)"},
+          "efeito_esperado": {"coeficiente": 0.35, "d": 0.35},
+          "status": "a_testar"
+        },
+        {
+          "id": "H2.4",
+          "texto": "Efeitos mediados por engajamento",
+          "variaveis": {"mediador": "engajamento", "caminho": "X->M->Y"},
+          "efeito_esperado": "Efeito indireto significativo",
+          "status": "a_testar"
+        }
+      ]
+    },
+    "P03": {
+      "titulo": "IA Generativa e Leitura (EEG 32-canais)",
+      "metodo": "Quase-experimental com EEG",
+      "n": 60,
+      "revista_alvo": "NeuroImage",
+      "pergunta": "Como a leitura em tela vs papel modula o processamento neural?",
+      "pre_registro_osf": true,
+      "hipoteses": [
+        {
+          "id": "H3.1",
+          "texto": "Tela aumenta N170 (processamento visual)",
+          "variaveis": {"componente": "N170 (170ms)", "regiao": "Occipito-temporal"},
+          "efeito_esperado": "Amplitude ↑",
+          "status": "a_testar"
+        },
+        {
+          "id": "H3.2",
+          "texto": "Tela reduz P300 (atenção)",
+          "variaveis": {"componente": "P300 (300ms)", "regiao": "Parietal"},
+          "efeito_esperado": "Amplitude ↓",
+          "status": "a_testar"
+        },
+        {
+          "id": "H3.3",
+          "texto": "Tela aumenta N400 (integração semântica)",
+          "variaveis": {"componente": "N400 (400ms)", "regiao": "Centro-parietal"},
+          "efeito_esperado": "Amplitude ↑",
+          "status": "a_testar"
+        },
+        {
+          "id": "H3.4",
+          "texto": "Idade modula efeito da tela",
+          "variaveis": {"moderador": "idade"},
+          "efeito_esperado": "Interação significativa",
+          "status": "a_testar"
+        },
+        {
+          "id": "H3.5",
+          "texto": "Compreensão melhor em papel",
+          "variaveis": {"dependente": "compreensão (comportamental)"},
+          "efeito_esperado": {"d": 0.30},
+          "status": "a_testar"
+        }
+      ]
+    },
+    "P04": {
+      "titulo": "IA Generativa e FE (SEM Transversal)",
+      "metodo": "SEM transversal",
+      "n": "300-500",
+      "revista_alvo": "Computers in Human Behavior",
+      "pergunta": "Como o uso de IA afeta FE, mediado por engajamento e moderado por letramento digital dos pais?",
+      "modelo": "X (IA) -> M (Engajamento) -> Y (FE), W (Letramento digital) modera X->Y",
+      "pre_registro_osf": true,
+      "hipoteses": [
+        {
+          "id": "H4.1",
+          "texto": "Uso de IA -> Engajamento",
+          "caminho": "a",
+          "efeito_esperado": {"coeficiente": 0.30, "ic95": [0.20, 0.40]},
+          "status": "a_testar"
+        },
+        {
+          "id": "H4.2",
+          "texto": "Engajamento -> FE",
+          "caminho": "b",
+          "efeito_esperado": {"coeficiente": 0.40, "ic95": [0.30, 0.50]},
+          "status": "a_testar"
+        },
+        {
+          "id": "H4.3",
+          "texto": "Uso de IA -> FE (direto)",
+          "caminho": "c'",
+          "efeito_esperado": {"coeficiente": 0.15, "ic95": [0.00, 0.20]},
+          "status": "a_testar"
+        },
+        {
+          "id": "H4.4",
+          "texto": "Efeito indireto significativo",
+          "caminho": "a*b",
+          "efeito_esperado": {"coeficiente": 0.12, "ic95": [0.06, 0.18]},
+          "status": "a_testar"
+        },
+        {
+          "id": "H4.5",
+          "texto": "W (letramento pais) modera X->Y",
+          "caminho": "W*X",
+          "efeito_esperado": {"coeficiente": 0.15, "ic95": [0.05, 0.25]},
+          "status": "a_testar"
+        }
+      ]
+    },
+    "P05": {
+      "titulo": "Coorte Longitudinal de FE (LGCM)",
+      "metodo": "LGCM longitudinal",
+      "n": 200,
+      "revista_alvo": "Child Development",
+      "pergunta": "Como as FE se desenvolvem ao longo do Ensino Fundamental?",
+      "ondas": 5,
+      "pre_registro_osf": true,
+      "hipoteses": [
+        {
+          "id": "H5.1",
+          "texto": "Crescimento linear das FE",
+          "parametro": "Slope (β1)",
+          "efeito_esperado": {"valor": "+0.5 DP/ano", "ic95": [+0.3, +0.7]},
+          "status": "a_testar"
+        },
+        {
+          "id": "H5.2",
+          "texto": "Variabilidade no intercepto",
+          "parametro": "Var(Intercept)",
+          "efeito_esperado": "> 0",
+          "status": "a_testar"
+        },
+        {
+          "id": "H5.3",
+          "texto": "Variabilidade no slope",
+          "parametro": "Var(Slope)",
+          "efeito_esperado": "> 0",
+          "status": "a_testar"
+        },
+        {
+          "id": "H5.4",
+          "texto": "Covariância intercept-slope",
+          "parametro": "Cov",
+          "efeito_esperado": "< 0 (catch-up effect)",
+          "status": "a_testar"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,66 @@
+project:
+  type: manuscript
+  output-dir: _rendered
+
+manuscript:
+  article: P01-manuscrito-quarto.qmd
+  resources:
+    - references.bib
+    - apa-7.csl
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  cache: true
+
+format:
+  html:
+    toc: true
+    number-sections: true
+    code-fold: false
+    theme:
+      light: cosmo
+      dark: darkly
+    include-before-body:
+      text: |
+        <style>
+          body { font-size: 18px; }
+          .title { color: #2c3e50; }
+        </style>
+  pdf:
+    toc: true
+    number-sections: true
+    documentclass: scrartcl
+    classoption:
+      - a4paper
+      - 11pt
+      - numbers
+    geometry:
+      - top=25mm
+      - bottom=25mm
+      - left=25mm
+      - right=25mm
+    colorlinks: true
+    fig-pos: "H"
+  docx:
+    toc: true
+    number-sections: true
+    reference-doc: custom-reference.docx
+  revealjs:
+    theme: simple
+    incremental: false
+    slide-number: true
+
+editor: visual
+
+language:
+  crossref-folios: true
+  quarto:
+    title-block-author-single: "Autor"
+    title-block-author-plural: "Autores"
+    title-block-affiliation-single: "Afiliação"
+    title-block-published: "Publicado em"
+    section-title-abstract: "Resumo"
+    section-title-appendices: "Apêndices"
+    section-title-references: "Referências"
