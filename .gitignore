@@ -121,3 +121,7 @@ push-to-github.sh
 **/*.key
 docs/sphinx/_build/
 docs/sphinx/api_python/
+
+# Plugin cache (ambiente)
+.plugin-cache/
+.skills/
