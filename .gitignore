@@ -125,3 +125,6 @@ docs/sphinx/api_python/
 # Plugin cache (ambiente)
 .plugin-cache/
 .skills/
+
+# Snakemake cache
+.snakemake/
