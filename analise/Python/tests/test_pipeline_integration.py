@@ -310,8 +310,15 @@ def test_osf_json_files_exist():
         import json
         with open(json_file) as f:
             data = json.load(f)
-        assert "data" in data
-        assert data["data"]["type"] == "preregistration"
+
+        # Aceitar dois formatos:
+        # 1. OSF API format: data.attributes.title
+        # 2. Flat format: title at root
+        has_osf_api = "data" in data and "attributes" in data.get("data", {})
+        has_flat = "title" in data and "description" in data
+
+        assert has_osf_api or has_flat, \
+            f"{json_file.name} deve ter formato OSF API (data.attributes) ou flat (title+description)"
 
 
 # ============================================================

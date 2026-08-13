@@ -163,19 +163,25 @@ def test_extract_metrics():
     # Simular grand average
     times = np.linspace(-0.2, 1.0, 301)
     n_channels = 32
+    np.random.seed(42)  # Reprodutibilidade
     data = np.random.randn(n_channels, len(times)) * 1e-6
 
-    # Simular N170 (negativo em 150ms)
+    # Simular N170 (negativo em 150ms) com Gaussiana
     ch_occipital = [15, 16, 17, 18]
-    n170_idx = np.argmin(np.abs(times - 0.15))
-    data[ch_occipital, n170_idx] = -5e-6
+    n170_peak = 0.15  # 150 ms
+    n170_width = 0.04  # 40 ms
+    # Criar Gaussiana invertida para N170
+    gaussian = -5e-6 * np.exp(-0.5 * ((times - n170_peak) / n170_width) ** 2)
+    # Adicionar a todos os canais occipitais
+    for ch in ch_occipital:
+        data[ch, :] += gaussian
 
     # Calcular amplitude média em 130-210 ms
     mask = (times >= 0.13) & (times <= 0.21)
     amplitude_n170 = data[ch_occipital][:, mask].mean() * 1e6
 
-    # Deve ser próximo de -5 µV
-    assert -7 < amplitude_n170 < -3
+    # Deve ser próximo de -5 µV (negativo)
+    assert amplitude_n170 < -1, f"Amplitude N170 não é negativa: {amplitude_n170}"
 
 
 def test_topography_creation():

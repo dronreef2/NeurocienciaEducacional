@@ -1,0 +1,121 @@
+{
+  "title": "Efeitos da Gamificação (Pontos + Narrativa) sobre Funções Executivas em Crianças do 3º ao 5º ano: Ensaio Controlado Randomizado",
+  "description": "Este ECR testa se a gamificação (pontos + narrativa) melhora funções executivas (atenção, memória de trabalho, inibição, flexibilidade) em crianças do 3º ao 5º ano. Design fatorial 2 (Pontos: sim/não) × 2 (Narrativa: sim/não), com 4 grupos (N=50 cada, total N=200). Análise: ANCOVA + modelos mistos + mediação (engajamento como mediador).",
+  "category": "project",
+  "tags": [
+    "gamification",
+    "executive functions",
+    "children",
+    "RCT",
+    "education",
+    "cognitive training",
+    "Brazil",
+    "neurociencia educacional"
+  ],
+  "license": "CC0 1.0 Universal",
+  "subjects": [
+    "Education",
+    "Educational Psychology",
+    "Cognitive Psychology",
+    "Developmental Psychology"
+  ],
+  "contributors": [
+    {
+      "name": "[Seu nome]",
+      "email": "[seu-email]@ufrn.br",
+      "orcid": "0000-0000-0000-0000",
+      "affiliation": "UFRN/CERES/PPGED"
+    },
+    {
+      "name": "Ângela Maria Chuvas Naschold",
+      "email": "angela.naschold@ufrn.br",
+      "orcid": "0000-0000-0000-0000",
+      "affiliation": "UFRN/CERES"
+    }
+  ],
+  "date_created": "2026-08-13",
+  "date_modified": "2026-08-13",
+  "version": "1.0",
+  "pre_registration": {
+    "type": "registered-report",
+    "hypotheses": [
+      {
+        "id": "H1",
+        "statement": "Pontos melhoram atenção sustentada (Stroop - inibição)",
+        "variables": {
+          "independent": "Pontos (sim/não)",
+          "dependent": "Stroop (inibição)"
+        },
+        "predicted_effect": "β ≈ 0.20, d = 0.20",
+        "test": "ANCOVA"
+      },
+      {
+        "id": "H2",
+        "statement": "Narrativa melhora memória de trabalho (Digit Span)",
+        "variables": {
+          "independent": "Narrativa (sim/não)",
+          "dependent": "Digit Span"
+        },
+        "predicted_effect": "β ≈ 0.25, d = 0.25",
+        "test": "ANCOVA"
+      },
+      {
+        "id": "H3",
+        "statement": "Combinação (Pontos × Narrativa) tem efeito aditivo na flexibilidade cognitiva (TMT-B)",
+        "variables": {
+          "independent": "P×N",
+          "dependent": "TMT-B"
+        },
+        "predicted_effect": "β ≈ 0.35, d = 0.35",
+        "test": "ANCOVA fatorial"
+      },
+      {
+        "id": "H4",
+        "statement": "Efeitos mediados por engajamento",
+        "variables": {
+          "mediator": "Engajamento escolar",
+          "path": "X→M→Y"
+        },
+        "predicted_effect": "Efeito indireto significativo (a×b ≠ 0)",
+        "test": "Mediação (Hayes PROCESS)"
+      }
+    ],
+    "design": {
+      "type": "RCT fatorial 2x4",
+      "groups": [
+        "Controle (sem gamificação)",
+        "Pontos apenas",
+        "Narrativa apenas",
+        "Pontos + Narrativa"
+      ],
+      "sample_size": 200,
+      "n_per_group": 50,
+      "duration": "14 meses",
+      "blinding": "Duplo-cego (avaliação)"
+    },
+    "instruments": [
+      "Stroop Test (inibição)",
+      "Trail Making Test B (flexibilidade)",
+      "Digit Span (memória de trabalho)",
+      "Questionário de engajamento"
+    ],
+    "analysis_plan": {
+      "primary": "ANCOVA 2x4 com pré-teste como covariável",
+      "secondary": [
+        "Modelos mistos",
+        "Análise de mediação (Hayes PROCESS Model 4)",
+        "Análise de moderação (sexo, idade)",
+        "Análise de sensibilidade"
+      ],
+      "power_analysis": "Simulação Monte Carlo (10000 replicações)"
+    },
+    "exclusion_criteria": [
+      "Transtornos neurológicos diagnosticados",
+      "Uso de medicação psicoativa",
+      "Ausência em >20% das sessões"
+    ]
+  },
+  "funding": "CAPES, CNPq",
+  "ethics": "Aprovação CEP/UFRN (número a definir)",
+  "data_availability": "Dados anonimizados serão disponibilizados no OSF após publicação"
+}
