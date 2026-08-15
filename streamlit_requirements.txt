@@ -1,0 +1,9 @@
+# Streamlit Cloud — requirements.txt
+# (referenciado em .streamlit/config.toml ou copiado para a raiz)
+streamlit
+pandas
+numpy
+matplotlib
+scipy
+reportlab
+pyyaml

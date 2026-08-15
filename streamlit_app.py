@@ -1,65 +1,146 @@
 """
-streamlit_app.py
-Entry point para deploy no Streamlit Community Cloud
-(https://share.streamlit.io/)
+streamlit_app.py — Entry point do dashboard multi-página
+Programa de Pesquisa em Neurociência Educacional (UFRN/CERES)
 
-Para deploy:
-1. Vá em https://share.streamlit.io/
-2. Conecte sua conta GitHub
-3. Selecione: dronreef2/NeurocienciaEducacional
-4. Branch: main
-5. Main file path: streamlit_app.py
-6. App URL: neurociencia-educacional-piloto (ou personalizado)
-
-Este arquivo é um wrapper que importa e executa o dashboard
-principal localizado em analise/Python/dashboard/piloto/app.py
+Estrutura:
+- Pages/1_🏠_Visao_Geral.py
+- Pages/2_📊_P01_Qualitativo.py
+- Pages/3_🎮_P02_Gamificacao.py
+- Pages/4_🧠_P03_EEG.py
+- Pages/5_📈_P04_SEM.py
+- Pages/6_📅_P05_Longitudinal.py
+- Pages/7_🎬_Storytelling.py
+- Pages/8_📚_Sobre.py
 """
 
-import sys
+import streamlit as st
+
+# Config da página principal (só funciona na página principal)
+st.set_page_config(
+    page_title="Neurociência Educacional | UFRN",
+    page_icon="🧠",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        "About": "Programa de Pesquisa em Neurociência Educacional - UFRN/CERES/PPGED\n\n5 projetos de pesquisa (2026-2030)\n\nOrientadora: Profa. Dra. Ângela M. C. Naschold",
+        "Get Help": "https://github.com/dronreef2/NeurocienciaEducacional/issues",
+        "Report a bug": "https://github.com/dronreef2/NeurocienciaEducacional/issues/new",
+    },
+)
+
+# Banner principal
+st.markdown(
+    """
+    # 🧠 Programa de Pesquisa em Neurociência Educacional
+
+    ### UFRN · CERES · PPGED (2026–2030)
+
+    ---
+    """
+)
+
+# Sidebar
+with st.sidebar:
+    st.markdown("## 🎯 Navegação")
+    st.markdown("""
+    Use o menu lateral para acessar cada projeto:
+
+    - 🏠 **Visão Geral** — status dos 5 projetos
+    - 📊 **P01 Qualitativo** — IA e MToM
+    - 🎮 **P02 Gamificação** — ECR
+    - 🧠 **P03 EEG** — Leitura tela vs papel
+    - 📈 **P04 SEM** — IA e FE
+    - 📅 **P05 Longitudinal** — LGCM
+    - 🎬 **Storytelling** — tour guiado
+    - 📚 **Sobre** — referências
+
+    ---
+
+    ### 📊 Métricas Globais
+    """)
+
+# Cards de overview
+col1, col2, col3, col4 = st.columns(4)
+with col1:
+    st.metric("Projetos", "5", "P01-P05")
+with col2:
+    st.metric("Período", "60 meses", "2026-2030")
+with col3:
+    st.metric("Datasets", "6", "sintéticos")
+with col4:
+    st.metric("Pré-registros", "5/5", "OSF")
+
+st.markdown("---")
+
+# Seção: Status dos Projetos
+st.markdown("## 📊 Status dos 5 Projetos")
+
+import pandas as pd
 from pathlib import Path
 
-# Adicionar o diretório do dashboard ao path
-DASHBOARD_DIR = Path(__file__).parent / "analise" / "Python" / "dashboard" / "piloto"
-sys.path.insert(0, str(DASHBOARD_DIR))
-
-# Importar o dashboard principal
-# O Streamlit Cloud executa este arquivo como __main__, então o app.py
-# precisa estar no mesmo namespace
-import importlib.util
-spec = importlib.util.spec_from_file_location("dashboard_piloto", DASHBOARD_DIR / "app.py")
-dashboard = importlib.util.module_from_spec(spec)
-
-# Re-executar o código do dashboard no escopo deste módulo
-# para que o Streamlit detecte os elementos de UI
 try:
-    spec.loader.exec_module(dashboard)
-except FileNotFoundError:
-    # Fallback se os dados não existirem no ambiente deploy
-    import streamlit as st
+    cat_path = Path("/workspace/dados_sinteticos/catalog.yaml")
+    if cat_path.exists():
+        import yaml
+        with open(cat_path) as f:
+            catalog = yaml.safe_load(f)
 
-    st.set_page_config(
-        page_title="P01 Piloto — Dashboard",
-        page_icon="🧠",
-        layout="wide",
-    )
+        # Monta tabela de status
+        status_data = []
+        for name, info in catalog.get("datasets", {}).items():
+            status_data.append({
+                "Dataset": name,
+                "Projeto": info.get("projeto", "?"),
+                "Tipo": info.get("tipo", "?"),
+                "Linhas/Shape": str(info.get("n_rows", info.get("shape", "?"))),
+                "Anonimizado": "✅" if info.get("anonimizado") else "❌",
+            })
 
-    st.title("🧠 Dashboard Piloto P01")
-    st.error("""
-    ❌ Dados do piloto não encontrados.
+        df_status = pd.DataFrame(status_data)
+        st.dataframe(df_status, use_container_width=True, hide_index=True)
+except Exception as e:
+    st.error(f"Erro ao carregar catalog: {e}")
 
-    Este dashboard espera os dados em:
-    `01-projeto-qualitativo-criancas-ia/dados/piloto/`
+# Seção: Como usar
+st.markdown("## 🚀 Como usar este dashboard")
 
-    Verifique se o repositório foi clonado completo.
-    """)
-
+col1, col2 = st.columns(2)
+with col1:
     st.markdown("""
-    ### Como resolver:
-    1. Verifique se o repositório inclui a pasta `01-projeto-qualitativo-criancas-ia/`
-    2. Os dados piloto devem estar em `dados/piloto/transcricoes/`, `diarios/`, `questionarios/`, `codebook/`
-    3. Caso estejam gitignored, faça commit e push primeiro
+    ### Para colaboradores
+    1. **Explore** cada projeto via menu lateral
+    2. **Filtre** dados por escola, idade, sexo
+    3. **Visualize** resultados em gráficos interativos
+    4. **Exporte** relatórios PDF por projeto
+
+    ### Para orientadora
+    1. Acompanhe o progresso dos 5 projetos
+    2. Revise pré-registros OSF
+    3. Aprove manuscritos
+    4. Planeje próximas etapas
     """)
 
-# Exibir informações do deploy
-if hasattr(dashboard, 'st'):
-    pass  # dashboard já configurou tudo
+with col2:
+    st.markdown("""
+    ### Para a Secretaria de Educação
+    1. **Visão geral** do programa
+    2. **Indicadores** por projeto
+    3. **Devolutivas** para escolas parceiras
+    4. **Política educacional** baseada em evidências
+
+    ### Para a comunidade científica
+    1. **Manuscritos** em 5 revistas A1
+    2. **Dados anonimizados** no OSF
+    3. **Código aberto** no GitHub
+    4. **Reprodutibilidade** completa
+    """)
+
+# Footer
+st.markdown("---")
+st.markdown("""
+<div style="text-align: center; color: #888; padding: 20px;">
+    Programa de Pesquisa em Neurociência Educacional · UFRN/CERES/PPGED<br>
+    Orientadora: Profa. Dra. Ângela M. C. Naschold<br>
+    <a href="https://github.com/dronreef2/NeurocienciaEducacional">github.com/dronreef2/NeurocienciaEducacional</a>
+</div>
+""", unsafe_allow_html=True)
