@@ -1,16 +1,4 @@
-"""
-neurociencia_edu.io
-Módulos para entrada/saída de dados (BIDS, CSV, etc.).
-"""
+"""Módulo de I/O do pacote neurociencia_edu."""
+from neurociencia_edu.io._serializers import convert_numpy, to_json_safe, save_json
 
-from neurociencia_edu.io.bids import (
-    load_bids_dataset,
-    create_bids_structure,
-    participant_ids,
-)
-
-__all__ = [
-    "load_bids_dataset",
-    "create_bids_structure",
-    "participant_ids",
-]
+__all__ = ["convert_numpy", "to_json_safe", "save_json"]
