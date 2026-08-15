@@ -128,3 +128,6 @@ docs/sphinx/api_python/
 
 # Snakemake cache
 .snakemake/
+
+# DVC
+.dvc/

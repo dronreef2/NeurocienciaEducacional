@@ -74,6 +74,9 @@ all = ["mne", "pymc", "streamlit", "plotly", "nbsphinx"]
 [tool.poetry.group.dev.dependencies]
 papermill = "^2.5"
 pytest-notebook = "^0.10"
+dvc = "^3.50"
+pyyaml = "^6.0"
+pytest-timeout = "^2.3"
 tqdm = "^4.66"
 pytest = "^7.4"
 pytest-cov = "^4.1"
