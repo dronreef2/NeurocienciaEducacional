@@ -72,6 +72,9 @@ docs = ["nbsphinx"]
 all = ["mne", "pymc", "streamlit", "plotly", "nbsphinx"]
 
 [tool.poetry.group.dev.dependencies]
+papermill = "^2.5"
+pytest-notebook = "^0.10"
+tqdm = "^4.66"
 pytest = "^7.4"
 pytest-cov = "^4.1"
 ruff = "^0.1"
