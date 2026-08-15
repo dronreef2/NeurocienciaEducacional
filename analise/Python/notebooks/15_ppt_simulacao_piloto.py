@@ -1,4 +1,5 @@
 """
+from neurociencia_edu.stats import mann_kendall
 15_ppt_simulacao_piloto.py
 Simulação completa do piloto P01 com métodos estatísticos avançados
 Aplica todos os métodos que serão usados no P01 final

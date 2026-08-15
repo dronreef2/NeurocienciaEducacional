@@ -5,6 +5,7 @@ Compara amplitudes N170 e P300 entre condições
 """
 
 import numpy as np
+from tqdm import tqdm
 import matplotlib.pyplot as plt
 from scipy import signal, stats
 from pathlib import Path

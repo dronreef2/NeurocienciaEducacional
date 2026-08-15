@@ -1,4 +1,5 @@
 """
+from neurociencia_edu.eeg import preprocess_eeg, compute_erp
 02_tutorial_eeg.py
 TUTORIAL 2: Análise EEG / ERP — P03
 

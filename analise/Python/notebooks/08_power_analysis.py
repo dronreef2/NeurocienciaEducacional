@@ -1,4 +1,5 @@
 """
+from neurociencia_edu.stats import power_analysis
 08_power_analysis.py
 Análise de poder estatístico para os 5 projetos
 Calcula tamanho amostral necessário para detectar efeitos

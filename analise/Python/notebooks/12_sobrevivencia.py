@@ -1,4 +1,5 @@
 """
+from neurociencia_edu.stats import kaplan_meier
 12_sobrevivencia.py
 Análise de Sobrevivência (Kaplan-Meier + Cox) — aplicação para P05
 

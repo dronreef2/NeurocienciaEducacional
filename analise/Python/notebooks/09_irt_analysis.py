@@ -1,10 +1,12 @@
 """
+from neurociencia_edu.stats import fit_rasch
 09_irt_analysis.py
 Item Response Theory (IRT) — P05
 Análise de itens de testes cognitivos com modelo de Rasch
 """
 
 import numpy as np
+from tqdm import tqdm
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
