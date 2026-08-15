@@ -5,6 +5,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+# Adicionar pacote ao path
+import sys
+_PKG_PATH = Path(__file__).resolve().parent.parent / "analise" / "Python"
+if str(_PKG_PATH) not in sys.path:
+    sys.path.insert(0, str(_PKG_PATH))
+
 st.set_page_config(page_title="P02 - Gamificação (ECR)", page_icon="🎮", layout="wide")
 
 st.markdown("# 🎮 P02 — Gamificação e Funções Executivas")
@@ -12,7 +18,8 @@ st.markdown("### *Experimento Controlado Randomizado (2×4) — N=200*")
 st.markdown("---")
 
 # Carregar dados
-data_path = Path("/workspace/dados_sinteticos/P02_dados_sinteticos.csv")
+_DATA_DIR = Path(__file__).resolve().parent.parent / "dados_sinteticos"
+data_path = _DATA_DIR / "P02_dados_sinteticos.csv"
 if data_path.exists():
     df = pd.read_csv(data_path)
 else:

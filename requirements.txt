@@ -1,15 +1,10 @@
-# Streamlit Community Cloud requirements
-# Este arquivo é usado pelo share.streamlit.io para instalar dependências
+# Dependências para Streamlit Cloud
+# (Streamlit detecta este arquivo automaticamente)
 
-# === Core ===
 streamlit>=1.28.0
 pandas>=2.0.0
 numpy>=1.24.0
-
-# === Visualization ===
-plotly>=5.17.0
 matplotlib>=3.7.0
-
-# === Utilities ===
 scipy>=1.11.0
-statsmodels>=0.14.0
+reportlab>=4.0.0
+pyyaml>=6.0

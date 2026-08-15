@@ -4,13 +4,20 @@ import pandas as pd
 import yaml
 from pathlib import Path
 
+# Adicionar pacote ao path
+import sys
+_PKG_PATH = Path(__file__).resolve().parent.parent / "analise" / "Python"
+if str(_PKG_PATH) not in sys.path:
+    sys.path.insert(0, str(_PKG_PATH))
+
 st.set_page_config(page_title="Visão Geral | P01-P05", page_icon="🏠", layout="wide")
 
 st.markdown("# 🏠 Visão Geral dos 5 Projetos")
 st.markdown("---")
 
 # Carregar catalog
-cat_path = Path("/workspace/dados_sinteticos/catalog.yaml")
+_DATA_DIR = Path(__file__).resolve().parent.parent / "dados_sinteticos"
+cat_path = _DATA_DIR / "catalog.yaml"
 if not cat_path.exists():
     st.error(f"❌ Catalog não encontrado: {cat_path}")
     st.stop()

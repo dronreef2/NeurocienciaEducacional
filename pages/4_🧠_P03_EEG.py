@@ -4,6 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+# Adicionar pacote ao path
+import sys
+_PKG_PATH = Path(__file__).resolve().parent.parent / "analise" / "Python"
+if str(_PKG_PATH) not in sys.path:
+    sys.path.insert(0, str(_PKG_PATH))
+
 st.set_page_config(page_title="P03 - EEG", page_icon="🧠", layout="wide")
 
 st.markdown("# 🧠 P03 — Leitura em Tela vs Papel")
@@ -11,8 +17,9 @@ st.markdown("### *Estudo quase-experimental com EEG 32-canais — N=60*")
 st.markdown("---")
 
 # Carregar dados
-papeis_path = Path("/workspace/dados_sinteticos/P03_eeg_papel.npy")
-tela_path = Path("/workspace/dados_sinteticos/P03_eeg_tela.npy")
+_DATA_DIR = Path(__file__).resolve().parent.parent / "dados_sinteticos"
+papeis_path = _DATA_DIR / "P03_eeg_papel.npy"
+tela_path = _DATA_DIR / "P03_eeg_tela.npy"
 
 with st.sidebar:
     st.markdown("## 🎛️ Filtros")
@@ -90,17 +97,19 @@ with col3:
 # Topografia
 st.markdown("### 🗺️ Topografia (32 canais)")
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+ims = []
 
 for i, (data, title) in enumerate([(papel, "Papel"), (tela, "Tela")]):
     topo = data.mean(axis=(0, 2)) * 1e6
     # Visualizar como grid 8x4
     topo_grid = topo.reshape(8, 4)
-    im = axes[i].imshow(topo_grid, cmap="RdBu_r", aspect="auto", vmin=-3, vmax=3)
+    ims.append(axes[i].imshow(topo_grid, cmap="RdBu_r", aspect="auto", vmin=-3, vmax=3))
     axes[i].set_title(f"{title}", fontweight="bold")
     axes[i].set_xlabel("Canal X")
     axes[i].set_ylabel("Canal Y")
-    plt.colorbar(im, ax=axes[i], label="µV")
 
+# Colorbar compartilhado (corrige warning de "different figure")
+fig.colorbar(ims[0], ax=axes, label="µV")
 plt.tight_layout()
 st.pyplot(fig)
 

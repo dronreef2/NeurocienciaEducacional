@@ -5,6 +5,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+# Adicionar pacote ao path
+import sys
+_PKG_PATH = Path(__file__).resolve().parent.parent / "analise" / "Python"
+if str(_PKG_PATH) not in sys.path:
+    sys.path.insert(0, str(_PKG_PATH))
+from neurociencia_edu.stats import kaplan_meier
+
 st.set_page_config(page_title="P05 - Longitudinal (LGCM)", page_icon="📅", layout="wide")
 
 st.markdown("# 📅 P05 — Coorte Longitudinal de Funções Executivas")
@@ -12,7 +19,8 @@ st.markdown("### *Latent Growth Curve Models (LGCM) — 5 ondas, 200 crianças*"
 st.markdown("---")
 
 # Carregar dados
-data_path = Path("/workspace/dados_sinteticos/P05_dados_longitudinais_sinteticos.csv")
+_DATA_DIR = Path(__file__).resolve().parent.parent / "dados_sinteticos"
+data_path = _DATA_DIR / "P05_dados_longitudinais_sinteticos.csv"
 if data_path.exists():
     df = pd.read_csv(data_path)
 else:

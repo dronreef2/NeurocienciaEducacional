@@ -14,6 +14,13 @@ Estrutura:
 """
 
 import streamlit as st
+import sys
+from pathlib import Path
+
+# Adicionar pacote ao path (relativo ao arquivo — funciona local + Streamlit Cloud)
+_PKG_PATH = Path(__file__).resolve().parent / "analise" / "Python"
+if str(_PKG_PATH) not in sys.path:
+    sys.path.insert(0, str(_PKG_PATH))
 
 # Config da página principal (só funciona na página principal)
 st.set_page_config(
@@ -79,7 +86,7 @@ import pandas as pd
 from pathlib import Path
 
 try:
-    cat_path = Path("/workspace/dados_sinteticos/catalog.yaml")
+    cat_path = Path(__file__).resolve().parent / "dados_sinteticos" / "catalog.yaml"
     if cat_path.exists():
         import yaml
         with open(cat_path) as f:

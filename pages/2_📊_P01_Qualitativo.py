@@ -6,8 +6,10 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import sys
 
-# Adicionar pacote ao path
-sys.path.insert(0, str(Path("/workspace/analise/Python")))
+# Adicionar pacote ao path (relativo ao arquivo, funciona em local + Streamlit Cloud)
+_PKG_PATH = Path(__file__).resolve().parent.parent / "analise" / "Python"
+if str(_PKG_PATH) not in sys.path:
+    sys.path.insert(0, str(_PKG_PATH))
 from neurociencia_edu.pdf_export import generate_project_pdf
 
 st.set_page_config(page_title="P01 - Qualitativo", page_icon="📊", layout="wide")
@@ -27,7 +29,8 @@ with st.sidebar:
     show_themes = st.checkbox("Mostrar 5 temas emergentes", value=True)
 
 # Carregar dados sintéticos
-data_path = Path("/workspace/dados_sinteticos/P01_diarios_sinteticos.csv")
+_DATA_DIR = Path(__file__).resolve().parent.parent / "dados_sinteticos"
+data_path = _DATA_DIR / "P01_diarios_sinteticos.csv"
 if not data_path.exists():
     st.warning("⚠️ Dados sintéticos não encontrados. Gerando on-the-fly...")
     np.random.seed(42)

@@ -5,6 +5,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+# Adicionar pacote ao path
+import sys
+_PKG_PATH = Path(__file__).resolve().parent.parent / "analise" / "Python"
+if str(_PKG_PATH) not in sys.path:
+    sys.path.insert(0, str(_PKG_PATH))
+
 st.set_page_config(page_title="P04 - SEM (IA × FE)", page_icon="📈", layout="wide")
 
 st.markdown("# 📈 P04 — IA Generativa e Funções Executivas")
@@ -12,7 +18,8 @@ st.markdown("### *Modelagem de Equações Estruturais (SEM) — N=300-500*")
 st.markdown("---")
 
 # Carregar dados
-data_path = Path("/workspace/dados_sinteticos/P04_dados_sinteticos.csv")
+_DATA_DIR = Path(__file__).resolve().parent.parent / "dados_sinteticos"
+data_path = _DATA_DIR / "P04_dados_sinteticos.csv"
 if data_path.exists():
     df = pd.read_csv(data_path)
 else:
