@@ -179,6 +179,18 @@ risks:
     - name: scope_creep_5_projects
       mitigation: "mestrado foca em P01, demais viram papers paralelos"
 
+# Primeiro Integration Test (2026-09-19)
+  os_executed: yes
+  reports_generated:
+    - .agent/reports/submission-readiness-P01-2026-09-19.md
+    - .agent/reports/meeting-angela-P01-2026-09-19.md
+  findings:
+    - P01 documentalmente 93% completo (14/15 docs)
+    - P01 cientificamente NÃO validado (sem revisão Ângela)
+    - P01 eticamente NÃO aprovado (sem CEP)
+    - 3 inconsistências entre docs (N, escolaridade, município)
+    - 10 decisões bloqueadas por reunião Ângela (D01-D10)
+
 # Próximos marcos (verificados no cronograma)
 upcoming_milestones:
   - date: 2026-09-XX
