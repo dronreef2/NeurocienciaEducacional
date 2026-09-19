@@ -34,6 +34,8 @@ projects:
 
   P01:
     name: "Vozes das crianças sobre tutores de IA"
+    maturity: N1_PROTOCOL
+    target_maturity: N2_ETHICS_APPROVED
     status: cep_ready
     documentation: mature
     protocol: complete
@@ -47,6 +49,8 @@ projects:
 
   P02:
     name: "Gamificação e funções executivas (ECR 2x4)"
+    maturity: N1_PROTOCOL
+    target_maturity: N2_ETHICS_APPROVED
     status: protocol_ready
     documentation: mature
     protocol: complete
@@ -58,6 +62,8 @@ projects:
 
   P03:
     name: "EEG leitura digital vs papel"
+    maturity: N1_PROTOCOL
+    target_maturity: N2_ETHICS_APPROVED
     status: protocol_ready
     documentation: mature
     protocol: complete
@@ -69,6 +75,8 @@ projects:
 
   P04:
     name: "IA generativa e funções executivas (SEM)"
+    maturity: N1_PROTOCOL
+    target_maturity: N2_ETHICS_APPROVED
     status: protocol_ready
     documentation: mature
     protocol: complete
@@ -80,6 +88,8 @@ projects:
 
   P05:
     name: "Coorte longitudinal EEG"
+    maturity: N1_PROTOCOL
+    target_maturity: N2_ETHICS_APPROVED
     status: protocol_ready
     documentation: mature
     protocol: complete
@@ -127,6 +137,17 @@ infrastructure:
     anonymized: required
     lgpd_compliant: yes (synthetic)
 
+# Maturity model (NEW — 2026-09-19)
+  model: 5_levels  # ver .agent/maturity-model.md
+  levels: [N0_PLANNING, N1_PROTOCOL, N2_ETHICS_APPROVED, N3_DATA_COLLECTED, N4_ANALYZED, N5_PUBLISHED]
+  current_overview:
+    P01: N1 (transição para N2)
+    P02: N1 (parado, aguardando trigger)
+    P03: N1 (parado, aguardando ICe)
+    P04: N1 (sequencial — após P01-P03)
+    P05: N1 (parado, aguardando funding)
+  bottleneck_real: P01 — porque está mais avançado e bloqueado por D01 (orientação Ângela)
+
 # Sistema multi-agent (NEW — 2026-09-19)
 multi_agent_system:
   version: "2.1"
@@ -137,9 +158,16 @@ multi_agent_system:
     - research
     - engineering
     - project-management
+  specialized_agents:
+    - methodology  # research design
+    - literature   # paper search/synthesis
+    - statistics   # statistical analysis
+    - review       # audit/QA
   playbooks: 3  # submeter-p01, reuniao-angela, bug-dashboard
   state_file: .agent/STATE.yaml
   decisions_file: .agent/decisions/
+  memory_file: .agent/memory/
+  maturity_model: .agent/maturity-model.md
   human_gate_rule: enforced
 
 # Pessoas-chave
