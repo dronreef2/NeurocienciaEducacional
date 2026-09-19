@@ -1,0 +1,207 @@
+# STATE.yaml — Estado verificado do projeto
+# Atualizado por AI Agent APENAS com o que foi verificado.
+# Última atualização: 2026-09-19 (M2 de 60)
+
+project:
+  name: NeurocienciaEducacional
+  repo: dronreef2/NeurocienciaEducacional
+  version: "2.1"            # versão do multi-agent system
+  conductor: Mavis           # root session
+  last_updated: 2026-09-19
+  overall_status:
+    documentation: mature
+    implementation: partial
+    testing: partial          # 182 testes, mas cobertura parcial em EEG/real
+    scientific_validation: pending_human_review  # Ângela ainda não revisou
+    ethics: project_dependent # depende de cada projeto
+    reproducibility: high     # seed=42, Poetry, Docker
+
+# Métricas agregadas (verificadas em git log + filesystem)
+metrics:
+  total_commits: 94
+  total_files: 871
+  total_markdown_lines: ~28000
+  python_tests: 182           # 159 pytest + 23 unittest
+  python_modules: 15
+  streamlit_pages: 8
+  preregistrations_osf: 5     # validados, prontos para submit
+  pre_registrations_submitted: 0  # depende de OSF_TOKEN do usuário
+  meetings_with_angela: 0     # ainda não realizada
+  cnpq_funding: 0             # não submetido ainda
+
+# Status por projeto
+projects:
+
+  P01:
+    name: "Vozes das crianças sobre tutores de IA"
+    status: cep_ready
+    documentation: mature
+    protocol: complete
+    instruments: 8_complete
+    piloto_synthetic_data: yes
+    manuscript: v1_draft
+    osf_preregistration: validated
+    next_action: "reunião com Ângela → autorização → submeter CEP"
+    blocked_by: angela_authorization
+    ethics_status: pending_human_review
+
+  P02:
+    name: "Gamificação e funções executivas (ECR 2x4)"
+    status: protocol_ready
+    documentation: mature
+    protocol: complete
+    synthetic_data: yes
+    manuscript: not_started
+    osf_preregistration: validated
+    next_action: "submeter FAPERN Demanda Espontânea (Q2/2026)"
+    blocked_by: funding
+
+  P03:
+    name: "EEG leitura digital vs papel"
+    status: protocol_ready
+    documentation: mature
+    protocol: complete
+    synthetic_data: yes
+    manuscript: not_started
+    osf_preregistration: validated
+    next_action: "acordo com ICe (Prof. Antonio Pereira) → coleta EEG"
+    blocked_by: ice_agreement
+
+  P04:
+    name: "IA generativa e funções executivas (SEM)"
+    status: protocol_ready
+    documentation: mature
+    protocol: complete
+    synthetic_data: yes
+    manuscript: not_started
+    osf_preregistration: validated
+    next_action: "2028 — iniciar coleta após P01+P02+P03"
+    blocked_by: sequencing
+
+  P05:
+    name: "Coorte longitudinal EEG"
+    status: protocol_ready
+    documentation: mature
+    protocol: complete
+    synthetic_data: yes
+    manuscript: not_started
+    osf_preregistration: validated
+    next_action: "2026-Q4 — começar T1 (N=200 crianças, 7 anos)"
+    blocked_by: funding_and_partnerships
+
+# Infraestrutura
+infrastructure:
+  package_python:
+    name: neurociencia_edu
+    pyproject: yes
+    pypi_published: no
+    version: "0.9.0-rc"
+  package_r:
+    name: neurocienciasedu
+    pypi_published: no
+  pipeline:
+    snakemake: yes
+    docker: yes
+    docker_compose: yes
+  ci_cd:
+    workflows: 12
+    all_passing: "non-blocking (continue-on-error: true)"
+    actual_strict_passing: unknown  # nunca rodou em strict mode
+  dashboard:
+    streamlit: yes
+    pages: 8
+    deployed: "needs deploy (Streamlit Cloud)"
+    url: null  # não deployado ainda
+  docs:
+    sphinx: yes
+    github_pages: yes
+    quarto: yes
+    pdf_export: yes
+  tests:
+    pytest: 159
+    unittest: 23
+    coverage: "unknown"
+  data:
+    synthetic_datasets: 6
+    real_data: 0
+    anonymized: required
+    lgpd_compliant: yes (synthetic)
+
+# Sistema multi-agent (NEW — 2026-09-19)
+multi_agent_system:
+  version: "2.1"
+  status: operational
+  agents_md_files: 11
+  conductor: AGENTS.md (root)
+  domains:
+    - research
+    - engineering
+    - project-management
+  playbooks: 3  # submeter-p01, reuniao-angela, bug-dashboard
+  state_file: .agent/STATE.yaml
+  decisions_file: .agent/decisions/
+  human_gate_rule: enforced
+
+# Pessoas-chave
+people:
+  angela_naschold:
+    role: orientadora_proposta
+    email: angela.naschold@ufrn.br
+    institution: UFRN/CERES
+    status: meeting_pending
+    line: "Leitura + Neurociências"
+  antonio_pereira:
+    role: co_orientador_eeg_proposto
+    institution: UFRN/ICe
+    status: not_contacted_yet
+  user:
+    role: pesquisadora_responsavel
+    background: "pós-graduada em gestão de projetos"
+    target: "mestrado PPGED/UFRN (2026.1)"
+    orcid: "0000-0000-0000-0000"
+
+# Riscos conhecidos
+risks:
+  high:
+    - name: angela_recusa_orientacao
+      probability: low
+      mitigation: "plano B: outros orientadores PPGED"
+    - name: cep_delay_>6_months
+      probability: medium
+      mitigation: "submeter P01 em Q3/2026"
+    - name: ice_agreement_denied
+      probability: medium
+      mitigation: "eye-tracker como sub-rogado para P03"
+    - name: funding_not_obtained
+      probability: high
+      mitigation: "P01+P02 rodam com piloto próprio"
+  medium:
+    - name: scope_creep_5_projects
+      mitigation: "mestrado foca em P01, demais viram papers paralelos"
+
+# Próximos marcos (verificados no cronograma)
+upcoming_milestones:
+  - date: 2026-09-XX
+    action: "reunião com Ângela"
+    owner: user
+    status: scheduled_pending
+  - date: 2026-09-30
+    action: "submeter P01 ao CEP"
+    owner: user
+    blocked_by: angela_authorization
+  - date: 2026-10-01
+    action: "submeter P01 manuscrito a Computers & Education"
+    owner: user
+    blocked_by: angela_authorization
+  - date: 2026-09-05
+    action: "submeter 5 pré-registros ao OSF"
+    owner: user
+    blocked_by: osf_token
+
+# Convenções de atualização do STATE.yaml
+update_rules:
+  - "Atualizar APENAS dados verificados (git log, filesystem, tests)"
+  - "Não inventar status — marcar 'unknown' se não verificado"
+  - "Cada mudança = commit separado com tag [state]"
+  - "Revisar mensalmente (reunião com Ângela)"
+  - "Histórico de versões em .agent/STATE.yaml.gitlog"
