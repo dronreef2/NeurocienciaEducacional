@@ -37,6 +37,14 @@ projects:
     maturity: N1_PROTOCOL
     target_maturity: N2_ETHICS_APPROVED
     status: cep_ready
+    readiness:
+      protocol: high        # 14/15 docs prontos
+      ethics: blocked       # bloqueado por D01
+      implementation: high  # piloto + pipeline R ok
+    validation:
+      scientific: pending_human_review   # Ângela não revisou
+      technical: verified                # 182 testes + pipeline ok
+      ethical: pending_human_review      # CEP não submetido
     documentation: mature
     protocol: complete
     instruments: 8_complete
@@ -52,6 +60,17 @@ projects:
     maturity: N1_PROTOCOL
     target_maturity: N2_ETHICS_APPROVED
     status: protocol_ready
+    canonical_path: "02-projeto-gamificacao-funcoes-executivas"  # funcoes-executivas v2.0
+    archived_path: "02-projeto-gamificacao-autorregulacao"     # v0.1 piloto antigo
+    consolidation_pending_human_decision: yes
+    readiness:
+      protocol: high
+      ethics: blocked       # aguardando funding FAPERN
+      implementation: partial  # sem instrumentos específicos
+    validation:
+      scientific: pending_human_review
+      technical: verified
+      ethical: pending_human_review
     documentation: mature
     protocol: complete
     synthetic_data: yes
@@ -65,6 +84,17 @@ projects:
     maturity: N1_PROTOCOL
     target_maturity: N2_ETHICS_APPROVED
     status: protocol_ready
+    canonical_path: "03-projeto-eeg-leitura-digital"   # v2.0 com ICe Pereira
+    archived_path: "03-projeto-eeg-leitura"            # v0.1 piloto antigo
+    consolidation_pending_human_decision: yes
+    readiness:
+      protocol: high
+      ethics: blocked       # aguardando acordo ICe
+      implementation: partial  # sem instrumentos EEG
+    validation:
+      scientific: pending_human_review
+      technical: verified
+      ethical: pending_human_review
     documentation: mature
     protocol: complete
     synthetic_data: yes
@@ -78,6 +108,14 @@ projects:
     maturity: N1_PROTOCOL
     target_maturity: N2_ETHICS_APPROVED
     status: protocol_ready
+    readiness:
+      protocol: high
+      ethics: blocked       # sequencial, 2028+
+      implementation: high
+    validation:
+      scientific: pending_human_review
+      technical: verified
+      ethical: pending_human_review
     documentation: mature
     protocol: complete
     synthetic_data: yes
@@ -91,6 +129,14 @@ projects:
     maturity: N1_PROTOCOL
     target_maturity: N2_ETHICS_APPROVED
     status: protocol_ready
+    readiness:
+      protocol: high
+      ethics: blocked       # aguardando funding
+      implementation: partial  # sem parcerias
+    validation:
+      scientific: pending_human_review
+      technical: verified
+      ethical: pending_human_review
     documentation: mature
     protocol: complete
     synthetic_data: yes
@@ -218,6 +264,25 @@ risks:
     - P01 eticamente NÃO aprovado (sem CEP)
     - 3 inconsistências entre docs (N, escolaridade, município)
     - 10 decisões bloqueadas por reunião Ângela (D01-D10)
+
+# Critical Dependencies (bloqueios explícitos)
+# Cada dependência tem: description, owner, status, blocks, affects
+# Resolve via HUMAN GATE (não automático)
+critical_dependencies:
+  D01:
+    description: "Orientação formal da Ângela no mestrado PPGED"
+    owner: "Ângela Maria Chuvas Naschold"
+    status: pending_human_decision
+    blocks:
+      - P01_submission_CEP
+      - P03_acesso_ICe
+      - confidence_program
+    affects:
+      - funding_opportunities
+      - academic_supervision
+      - institutional_access_ICe
+    proposed_resolution_date: "2026-09-XX (reunião)"
+    decision_record: ".agent/decisions/ADR-002-orientacao-programa.md (a criar)"
 
 # Próximos marcos (verificados no cronograma)
 upcoming_milestones:

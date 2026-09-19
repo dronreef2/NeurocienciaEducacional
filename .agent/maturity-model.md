@@ -1,8 +1,43 @@
 # Maturity Model — Modelo de Maturidade dos Projetos
 
 > **Sistema operacional** para classificar e progredir projetos de pesquisa.
-> **Versão:** 1.0 — 2026-09-19
+> **Versão:** 1.1 — 2026-09-19 (3 dimensões adicionadas)
 > **Inspiração:** NEURA, Capability Maturity Model (CMM), TRL (Technology Readiness Levels)
+
+---
+
+## 🚨 Conceito central: MATURITY ≠ READINESS ≠ VALIDATION
+
+Desde Cycle 3, separamos **3 dimensões ortogonais** que estavam sendo confundidas:
+
+| Dimensão | Pergunta que responde | Quem avalia |
+|---|---|---|
+| **Maturity** | Onde o projeto está no pipeline? | Agente (N0-N5) |
+| **Readiness** | O que está bloqueando o próximo passo? | Agente + humano |
+| **Validation** | O que foi **verificado de fato**? | Humano + peer review |
+
+**Exemplo (P01, Cycle 3):**
+
+```yaml
+P01:
+  maturity: N1_PROTOCOL          # está em N1
+  readiness:
+    protocol: high               # docs prontos
+    ethics: blocked              # bloqueado por D01
+    implementation: high         # piloto + pipeline ok
+  validation:
+    scientific: pending_human_review   # Ângela não revisou
+    technical: verified                # 182 testes passam
+    ethical: pending_human_review      # CEP não submetido
+```
+
+**Por que isso importa:**
+
+- N2 (maturity) ≠ "projeto cientificamente validado" (validation)
+- Um projeto pode ser N1 com documentação excelente e estar **cientificamente não validado**
+- O próximo gate pode ser **readiness** (fazer algo) ou **validation** (revisar algo existente)
+
+**Anti-padrão:** confundir maturity com validation leva a claims tipo "P01 está pronto" quando, na verdade, ele está "documentado mas não revisado".
 
 ---
 
