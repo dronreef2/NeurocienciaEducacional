@@ -1,8 +1,9 @@
 # AGENTS.md — Instruções para IAs trabalhando no Neuro
 
 > Este arquivo segue o padrão **AGENTS.md** reconhecido por Cursor, Claude Code, GitHub Copilot, Aider, Cline, Roo Code, Continue, Windsurf, e outros.
-> **Versão:** 2.0 — atualizada em 2026-09-19
+> **Versão:** 2.1 — atualizada em 2026-09-19
 > **Status:** programa em M2 de 60, P01 CEP-ready + kit de reunião Ângela pronto
+> **Arquitetura:** ver [AGENTS-CONDUCTOR.md](AGENTS-CONDUCTOR.md) (orquestrador) + [docs/AI-ARCHITECTURE.md](docs/AI-ARCHITECTURE.md)
 
 ---
 
@@ -239,6 +240,19 @@ NeurocienciaEducacional/
 
 ---
 
+## 🤖 Arquitetura AI
+
+O AI Project Agent opera em **3 domínios paralelos** + 1 camada de validação:
+
+| Domínio | Função | AGENTS.md |
+|---|---|---|
+| 🔬 **Pesquisa** | literatura, hipóteses, metodologia | `01-05-.../AGENTS.md` |
+| 🛠️ **Engenharia** | código, pipelines, testes, dashboard | `analise/Python/AGENTS.md`, `pages/AGENTS.md` |
+| 📋 **Gestão** | issues, roadmap, atas, documentação | `docs/AGENTS.md` |
+| ✅ **Validação** | schema, testes, LGPD, honestidade | (camada transversal) |
+
+**Ver:** [AGENTS-CONDUCTOR.md](AGENTS-CONDUCTOR.md) para a matriz completa de roteamento + skills.
+
 ## 🤖 Comandos rápidos para IAs
 
 ### Sub-agentes disponíveis
@@ -246,14 +260,18 @@ NeurocienciaEducacional/
 - `general` — tarefas delegadas bounded
 - `scout` — reconhecimento rápido externo
 
-### Skills carregáveis
-- `senior-fullstack-developer:engineering-workflow` (este workflow)
-- `senior-fullstack-developer:frontend-dev` (UI/visual)
+### Skills carregáveis (por domínio)
+**Pesquisa:**
+- `superpowers:brainstorming`, `superpowers:writing-plans`, `deep-research`
+
+**Engenharia:**
+- `senior-fullstack-developer:engineering-workflow` (engine)
+- `senior-fullstack-developer:frontend-dev` (UI)
 - `senior-fullstack-developer:fullstack-dev` (cross-layer)
-- `superpowers:brainstorming` (criatividade)
-- `superpowers:writing-plans` (planos)
-- `superpowers:test-driven-development` (TDD)
-- `superpowers:verification-before-completion` (validar antes de declarar pronto)
+- `superpowers:test-driven-development`, `superpowers:verification-before-completion`
+
+**Gestão:**
+- `mavis` CLI, `cron`, `memory_*`
 
 ### Onde olhar primeiro
 | Se você quer... | Olhe em... |
