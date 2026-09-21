@@ -6,27 +6,27 @@
 # ============================================
 
 # Análise de EEG / ERP
-mne>=1.12.1          # MEG/EEG analysis
+mne>=1.13.2          # MEG/EEG analysis
 mne-bids>=0.19.0      # BIDS dataset support
-mne-connectivity>=0.8.1  # Connectivity analysis
+mne-connectivity>=0.9.0  # Connectivity analysis
 pybv>=0.8.1           # BrainVision file format
 pyedflib>=0.1.42    # EDF file reading
-scipy>=1.18.0         # Scientific computing
-numpy>=2.5.1         # Numerical computing
-pandas>=3.0.5         # Data manipulation
+scipy>=1.18.1         # Scientific computing
+numpy>=2.5.3         # Numerical computing
+pandas>=3.0.6         # Data manipulation
 
 # Visualização
-matplotlib>=3.11.1
+matplotlib>=3.11.2
 seaborn>=0.13.2
-plotly>=6.9.0        # Interactive plots
-nilearn>=0.14.0       # Neuroimaging visualization (se necessário)
+plotly>=7.1.0        # Interactive plots
+nilearn>=0.14.1       # Neuroimaging visualization (se necessário)
 
 # Machine learning (P04 — para análise exploratória)
-scikit-learn>=1.9.0
+scikit-learn>=1.9.1
 mne-features>=0.3.2   # EEG feature extraction
 
 # Utilitários
-tqdm>=4.70.0          # Progress bars
+tqdm>=4.70.1          # Progress bars
 rich>=15.0.0          # Rich terminal output
 pyyaml>=6.0.3         # Config files
 h5py>=3.16.0           # HDF5 for EEG storage
@@ -34,8 +34,8 @@ h5py>=3.16.0           # HDF5 for EEG storage
 # Desenvolvimento
 pytest>=9.1.1          # Testing
 black>=26.5.1          # Formatting
-ruff>=0.16.1        # Linting
-mypy>=2.3.0            # Type checking
+ruff>=0.16.8        # Linting
+mypy>=2.3.1            # Type checking
 jupyter>=1.1.1         # Notebooks
 
 # ============================================
